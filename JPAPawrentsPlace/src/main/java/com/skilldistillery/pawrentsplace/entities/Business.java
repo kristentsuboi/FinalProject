@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,8 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class Business {
@@ -26,10 +33,16 @@ public class Business {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+
+	@JsonIgnore
+	@OneToMany(mappedBy="business")
+	private List<User> employees;
+
 	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+
 
 	public Business() {
 		super();
@@ -77,12 +90,23 @@ public class Business {
 	}
 	
 
+	
+
+	public List<User> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<User> employees) {
+		this.employees = employees;
+
+
 	public Address getAddress() {
 		return address;
 	}
 
 	public void setAddress(Address address) {
 		this.address = address;
+
 	}
 
 	@Override

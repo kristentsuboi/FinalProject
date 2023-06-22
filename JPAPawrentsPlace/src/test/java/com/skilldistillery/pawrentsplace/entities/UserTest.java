@@ -46,5 +46,28 @@ class UserTest {
 		assertEquals("admin", user.getUsername());
 		assertEquals("$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS", user.getPassword());
 	}
+	
+	@Test
+	void test_User_has_business() {
+		User user2 = em.find(User.class, 2);
+		assertNotNull(user2);
+		assertNotNull(user2.getBusiness());
+		assertEquals("fatastic pets", user2.getBusiness().getName());
+	}
+	
+	@Test
+	void test_User_has_address() {
+		assertNotNull(user);
+		assertNotNull(user.getAddress());
+		assertEquals(3, user.getAddress().getId());
+	}
+	
+	@Test
+	void test_User_has_comments() {
+		User user3 = em.find(User.class, 3);
+		assertNotNull(user3);
+		assertNotNull(user3.getComments());
+		assertEquals(1, user3.getComments().get(0).getId());
+	}
 
 }

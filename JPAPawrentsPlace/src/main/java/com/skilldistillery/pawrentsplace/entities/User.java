@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -41,6 +45,17 @@ public class User {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	@ManyToOne
+	@JoinColumn(name="business_id")
+	private Business business; 
+	
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Address address; 
+	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
 	
 
 	public User() {
@@ -126,6 +141,34 @@ public class User {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

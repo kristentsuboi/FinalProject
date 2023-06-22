@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -56,6 +57,9 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<Comment> comments;
+	
+	@ManyToMany(mappedBy="clients")
+	private List<Business> businessesUsed;
 	
 
 	public User() {
@@ -169,6 +173,16 @@ public class User {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	
+	
+
+	public List<Business> getBusinessesUsed() {
+		return businessesUsed;
+	}
+
+	public void setBusinessesUsed(List<Business> businessesUsed) {
+		this.businessesUsed = businessesUsed;
 	}
 
 	@Override

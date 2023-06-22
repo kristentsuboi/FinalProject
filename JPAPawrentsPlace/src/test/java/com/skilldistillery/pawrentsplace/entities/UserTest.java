@@ -69,5 +69,13 @@ class UserTest {
 		assertNotNull(user3.getComments());
 		assertEquals(1, user3.getComments().get(0).getId());
 	}
+	
+	@Test
+	void test_User_has_BusinessesUsed() {
+		User user3 = em.find(User.class, 3);
+		assertNotNull(user3.getBusinessesUsed());
+		assertTrue(user3.getBusinessesUsed().size() > 0);
+		assertEquals(1, user3.getBusinessesUsed().get(0).getId());
+	}
 
 }

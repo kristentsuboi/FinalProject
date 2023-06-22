@@ -43,10 +43,10 @@ public class PetComment {
 	private Pet pet;
 
 	@ManyToOne
-	@JoinColumn(name = "reply_to_id")
-	private PetComment reply;
+	@JoinColumn(name = "replying_to_id")
+	private PetComment mainComment;
 
-	@OneToMany(mappedBy = "reply")
+	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
 
 	public PetComment() {
@@ -99,6 +99,23 @@ public class PetComment {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+	
+
+	public PetComment getMainComment() {
+		return mainComment;
+	}
+
+	public void setMainComment(PetComment mainComment) {
+		this.mainComment = mainComment;
+	}
+
+	public List<PetComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<PetComment> replies) {
+		this.replies = replies;
 	}
 
 	@Override

@@ -1,5 +1,4 @@
 package com.skilldistillery.pawrentsplace.entities;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
@@ -41,8 +40,14 @@ class MedicalNoteTest {
 	}
 
 	@Test
-	void test() {
+	void medicalNote_basic_mapping_test() {
 		assertNotNull(medicalNote);
+		assertEquals("call the other doctor", medicalNote.getNotes());
+	}
+	@Test
+	void medicalNote_to_pet_ManyToOne() {
+		assertNotNull(medicalNote);
+		assertEquals(1, medicalNote.getPet().getId());
 	}
 
 }

@@ -75,6 +75,10 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<PetComment> petComments;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<MedicalNote> medicalNotes;
+	
 	
 	public Pet() {
 		super();
@@ -242,6 +246,15 @@ public class Pet {
 
 	public void setMedications(List<Medication> medications) {
 		this.medications = medications;
+	}
+	
+
+	public List<MedicalNote> getMedicalNotes() {
+		return medicalNotes;
+	}
+
+	public void setMedicalNotes(List<MedicalNote> medicalNotes) {
+		this.medicalNotes = medicalNotes;
 	}
 
 	@Override

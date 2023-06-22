@@ -8,7 +8,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!--BEGIN ENTITIES -->
-		<class>com.skilldistillery.pawrentsplace.entities.Address</class>
+
 		<class>com.skilldistillery.pawrentsplace.entities.Pet</class>
 		<class>com.skilldistillery.pawrentsplace.entities.User</class>
 

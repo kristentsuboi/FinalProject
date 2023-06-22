@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -43,6 +44,7 @@ public class PetTest {
 	@Test
 	void test() {
 		assertNotNull(pet);
+		assertEquals("brandon", pet.getName());
 	}
 
 }

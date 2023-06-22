@@ -31,6 +31,8 @@ public class Comment {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	private String topic;
 
 	public Comment() {
 		super();
@@ -76,6 +78,15 @@ public class Comment {
 		this.imageUrl = imageUrl;
 	}
 
+	
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -106,6 +117,8 @@ public class Comment {
 		builder.append(updatedAt);
 		builder.append(", imageUrl=");
 		builder.append(imageUrl);
+		builder.append(", topic=");
+		builder.append(topic);
 		builder.append("]");
 		return builder.toString();
 	}

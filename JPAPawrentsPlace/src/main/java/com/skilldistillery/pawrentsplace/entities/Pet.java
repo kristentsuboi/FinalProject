@@ -1,5 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Pet {
@@ -27,10 +32,7 @@ public class Pet {
 	
 	private String gender;
 	
-	private int age;
-	
-	@Column(name="age_interval")
-	private String ageInterval;
+	private LocalDate birth;
 	
 	private String color;
 	
@@ -40,6 +42,18 @@ public class Pet {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	private String allergies;
+	
+	private boolean enabled;
+	
+	@Column(name = "created_at")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 
 	public Pet() {
 		super();
@@ -102,20 +116,12 @@ public class Pet {
 		this.gender = gender;
 	}
 
-	public int getAge() {
-		return age;
+	public LocalDate getBirth() {
+		return birth;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getAgeInterval() {
-		return ageInterval;
-	}
-
-	public void setAgeInterval(String ageInterval) {
-		this.ageInterval = ageInterval;
+	public void setBirth(LocalDate birth) {
+		this.birth = birth;
 	}
 
 	public String getColor() {
@@ -149,15 +155,37 @@ public class Pet {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
-	
 
-	@Override
-	public String toString() {
-		return "Pet [id=" + id + ", name=" + name + ", species=" + species + ", breed=" + breed + ", height=" + height
-				+ ", weight=" + weight + ", gender=" + gender + ", age=" + age + ", ageInterval=" + ageInterval
-				+ ", color=" + color + ", about=" + about + ", microchipped=" + microchipped + ", imageUrl=" + imageUrl
-				+ "]";
+	public String getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(String allergies) {
+		this.allergies = allergies;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	@Override
@@ -176,7 +204,46 @@ public class Pet {
 		Pet other = (Pet) obj;
 		return id == other.id;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pet [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", species=");
+		builder.append(species);
+		builder.append(", breed=");
+		builder.append(breed);
+		builder.append(", height=");
+		builder.append(height);
+		builder.append(", weight=");
+		builder.append(weight);
+		builder.append(", gender=");
+		builder.append(gender);
+		builder.append(", birth=");
+		builder.append(birth);
+		builder.append(", color=");
+		builder.append(color);
+		builder.append(", about=");
+		builder.append(about);
+		builder.append(", microchipped=");
+		builder.append(microchipped);
+		builder.append(", imageUrl=");
+		builder.append(imageUrl);
+		builder.append(", allergies=");
+		builder.append(allergies);
+		builder.append(", enabled=");
+		builder.append(enabled);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", updatedAt=");
+		builder.append(updatedAt);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+	
 }

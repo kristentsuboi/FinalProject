@@ -8,12 +8,19 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!--BEGIN ENTITIES -->
+		
+		<class>com.skilldistillery.pawrentsplace.entities.Address</class>
+		<class>com.skilldistillery.pawrentsplace.entities.Business</class>
 		<class>com.skilldistillery.pawrentsplace.entities.BusinessRating</class>
 		<class>com.skilldistillery.pawrentsplace.entities.BusinessRatingId</class>
+		<class>com.skilldistillery.pawrentsplace.entities.Comment</class>
+		<class>com.skilldistillery.pawrentsplace.entities.Diet</class>
 		<class>com.skilldistillery.pawrentsplace.entities.MedicalNote</class>
+		<class>com.skilldistillery.pawrentsplace.entities.Medication</class>
 		<class>com.skilldistillery.pawrentsplace.entities.Pet</class>
 		<class>com.skilldistillery.pawrentsplace.entities.PetComment</class>
 		<class>com.skilldistillery.pawrentsplace.entities.ServiceType</class>
+		<class>com.skilldistillery.pawrentsplace.entities.Shot</class>
 		<class>com.skilldistillery.pawrentsplace.entities.User</class>
 
 		<!--END ENTITIES -->

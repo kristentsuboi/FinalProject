@@ -2,6 +2,8 @@ package com.skilldistillery.pawrentsplace.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Month;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,7 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PetPetCommentTest {
+class PetCommentTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -41,8 +43,16 @@ class PetPetCommentTest {
 	}
 
 	@Test
-	void test() {
+	void petComment_basic_mapping_test() {
 		assertNotNull(petComment);
+		assertEquals("healthy dog", petComment.getBody());
+		assertEquals(Month.DECEMBER, petComment.getUpdatedAt().getMonth());
+		
+	}
+	@Test
+	void petComment_to_pet_onetomany() {
+		assertNotNull(petComment);
+		assertEquals("brandon", petComment.getPet().getName());
 	}
 
 }

@@ -62,5 +62,10 @@ public class PetTest {
 		assertNotNull(pet);
 		assertTrue(pet.getMedications().size() == 1);
 	}
+	@Test
+	void pet_petComment_onetomany_mapping() {
+		assertNotNull(pet);
+		assertTrue(pet.getPetComments().size() == 1);
+	}
 
 }

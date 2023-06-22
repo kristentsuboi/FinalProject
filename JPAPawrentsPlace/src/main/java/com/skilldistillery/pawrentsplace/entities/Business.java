@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Business {
@@ -26,6 +28,9 @@ public class Business {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@OneToMany(mappedBy="business")
+	private List<User> employees;
 
 	public Business() {
 		super();

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -41,6 +43,10 @@ public class User {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	@ManyToOne()
+	@JoinColumn(name="business_id")
+	private Business business; 
 	
 
 	public User() {
@@ -126,6 +132,16 @@ public class User {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public void setBusiness(Business business) {
+		this.business = business;
 	}
 
 	@Override

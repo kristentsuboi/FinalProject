@@ -51,9 +51,18 @@ public class AddressTest {
 	}
 	
 	@Test
-	void test_One_to_One() {
+	void test_Address_has_User() {
 		assertNotNull(address);
-		//assertEquals("123 vet st", address.getStreet());
+		assertNotNull(address.getUser());
+		assertEquals(2, address.getUser().getId());
+
+	}
+	
+	@Test
+	void test_Address_has_Business() {
+		assertNotNull(address);
+		assertNotNull(address.getBusiness());
+		assertEquals("123 vet st", address.getStreet());
 
 	}
 

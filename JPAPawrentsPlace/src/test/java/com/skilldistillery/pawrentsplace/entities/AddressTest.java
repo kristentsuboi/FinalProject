@@ -17,7 +17,7 @@ public class AddressTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address Address;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,18 +32,22 @@ public class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		Address = em.find(Address.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		Address = null;
+		address = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(Address);
+		assertNotNull(address);
+		assertEquals("123 vet st", address.getStreet());
+		assertEquals("fayetteville", address.getCity());
+		assertEquals("NC", address.getState());
+		assertEquals("28311", address.getZipCode());
 	}
 
 }

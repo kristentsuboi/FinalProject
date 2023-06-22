@@ -49,13 +49,19 @@ class BusinessTest {
 	}
 	
 	@Test
-	void test_One_to_One() {
+	void test_One_to_One_Address() {
 		assertNotNull(business);
 		assertEquals("123 vet st", business.getAddress().getStreet());
 		assertEquals("fayetteville", business.getAddress().getCity());
 		assertEquals("NC", business.getAddress().getState());
 		assertEquals("28311", business.getAddress().getZipCode());
-
+	}
+	
+	@Test
+	void test_One_to_Many_BusinessRatings() {
+		assertNotNull(business);
+		assertEquals(5, business.getBusinessRatings().get(0));
+		
 	}
 
 }

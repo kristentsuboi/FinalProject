@@ -381,11 +381,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `service_provided_ by_business`
+-- Table `service_provided_by_business`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `service_provided_ by_business` ;
+DROP TABLE IF EXISTS `service_provided_by_business` ;
 
-CREATE TABLE IF NOT EXISTS `service_provided_ by_business` (
+CREATE TABLE IF NOT EXISTS `service_provided_by_business` (
   `service_type_id` INT NOT NULL,
   `business_id` INT NOT NULL,
   PRIMARY KEY (`service_type_id`, `business_id`),
@@ -484,6 +484,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (1, 'healthy dog', '2020-11-11', '2020-12-21', NULL, 1, 2, NULL);
+INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (2, 'it looks pretty healthy', '2020-11-12', '2020-11-13', NULL, 1, 3, 1);
 
 COMMIT;
 
@@ -559,11 +560,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `service_provided_ by_business`
+-- Data for table `service_provided_by_business`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `service_provided_ by_business` (`service_type_id`, `business_id`) VALUES (1, 1);
+INSERT INTO `service_provided_by_business` (`service_type_id`, `business_id`) VALUES (1, 1);
 
 COMMIT;
 

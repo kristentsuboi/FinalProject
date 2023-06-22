@@ -43,7 +43,7 @@ class BusinessTest {
 
 	@Test
 	void test() {
-//		assertNotNull(business);
+		assertNotNull(business);
 	}
 
 }

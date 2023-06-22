@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -42,10 +43,16 @@ class DietTest {
 		}
 
 		@Test
-		void test() {
+		void diet_basic_mapping_test() {
 			assertNotNull(diet);
+			assertEquals("lose weight", diet.getType());
+			assertEquals("3 times a day", diet.getAmount());
 			
-			
+		}
+		@Test
+		void diet_to_pet_ManyToOne() {
+			assertNotNull(diet);
+			assertEquals("brown", diet.getPet().getColor());
 		}
 
 	}

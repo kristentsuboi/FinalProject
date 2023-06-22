@@ -2,6 +2,7 @@ package com.skilldistillery.pawrentsplace.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,9 +43,24 @@ public class PetTest {
 	}
 
 	@Test
-	void test() {
+	void pet_basic_mapping_test() {
 		assertNotNull(pet);
 		assertEquals("brandon", pet.getName());
+	}
+	@Test
+	void pet_diet_onetomany_mapping() {
+		assertNotNull(pet);
+		assertTrue(pet.getDiets().size() == 1);
+	}
+	@Test
+	void pet_shot_onetomany_mapping() {
+		assertNotNull(pet);
+		assertTrue(pet.getShots().size() == 1);
+	}
+	@Test
+	void pet_medication_onetomany_mapping() {
+		assertNotNull(pet);
+		assertTrue(pet.getMedications().size() == 1);
 	}
 
 }

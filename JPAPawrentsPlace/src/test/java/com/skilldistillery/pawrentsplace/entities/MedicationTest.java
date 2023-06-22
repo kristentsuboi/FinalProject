@@ -2,6 +2,8 @@ package com.skilldistillery.pawrentsplace.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Month;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,10 +45,17 @@ class MedicationTest {
 		}
 
 		@Test
-		void test() {
+		void medication_test_basic_mapping() {
 			assertNotNull(medication);
-			
-			
+			assertEquals("tooth paste", medication.getName());
+			assertEquals(Month.NOVEMBER, medication.getDateStarted().getMonth());
+		}
+		
+		@Test
+		void medication_pet_ManyToOne() {
+			assertNotNull(medication);
+			assertEquals(Month.DECEMBER, medication.getPet().getBirth().getMonth());
+			assertEquals("chihuahua", medication.getPet().getBreed());
 		}
 
 	}

@@ -42,7 +42,8 @@ class CommentTest {
 
 	@Test
 	void test() {
-//		assertNotNull(comment);
+		assertNotNull(comment);
+		assertEquals("Can i sleep with a dog with rabies?", comment.getBody());
 	}
 
 }

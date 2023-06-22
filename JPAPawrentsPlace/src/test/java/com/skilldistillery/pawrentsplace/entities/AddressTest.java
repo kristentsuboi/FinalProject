@@ -49,5 +49,12 @@ public class AddressTest {
 		assertEquals("NC", address.getState());
 		assertEquals("28311", address.getZipCode());
 	}
+	
+	@Test
+	void test_One_to_One() {
+		assertNotNull(address);
+		//assertEquals("123 vet st", address.getStreet());
+
+	}
 
 }

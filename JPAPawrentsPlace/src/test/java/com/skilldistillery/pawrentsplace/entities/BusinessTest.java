@@ -47,5 +47,15 @@ class BusinessTest {
 		assertEquals("fatastic pets", business.getName());
 		assertEquals("1234325555", business.getPhone());
 	}
+	
+	@Test
+	void test_One_to_One() {
+		assertNotNull(business);
+		assertEquals("123 vet st", business.getAddress().getStreet());
+		assertEquals("fayetteville", business.getAddress().getCity());
+		assertEquals("NC", business.getAddress().getState());
+		assertEquals("28311", business.getAddress().getZipCode());
+
+	}
 
 }

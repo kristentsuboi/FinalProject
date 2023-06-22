@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,22 +10,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
-@Table(name="service_type") 
-public class ServiceType {
-	
+@Table(name="pet_comment")
+public class PetComment {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
-	 
-	private String description;
-		
+	private String body;
+	
+	@Column(name = "created_at")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+	
 	@Column(name="image_url")
 	private String imageUrl;
-	
-	public ServiceType() {
+
+	public PetComment() {
 		super();
 	}
 
@@ -36,20 +46,28 @@ public class ServiceType {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getBody() {
+		return body;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBody(String body) {
+		this.body = body;
 	}
 
-	public String getDescription() {
-		return description;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public String getImageUrl() {
@@ -62,8 +80,8 @@ public class ServiceType {
 
 	@Override
 	public String toString() {
-		return "ServiceType [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
-				+ "]";
+		return "PetComment [id=" + id + ", body=" + body + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ ", imageUrl=" + imageUrl + "]";
 	}
 
 	@Override
@@ -79,10 +97,10 @@ public class ServiceType {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ServiceType other = (ServiceType) obj;
+		PetComment other = (PetComment) obj;
 		return id == other.id;
 	}
-	
-	
 
+	
+	
 }

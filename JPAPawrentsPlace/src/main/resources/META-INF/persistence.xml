@@ -10,7 +10,9 @@
 		<!--BEGIN ENTITIES -->
 		<class>com.skilldistillery.pawrentsplace.entities.BusinessRating</class>
 		<class>com.skilldistillery.pawrentsplace.entities.BusinessRatingId</class>
+		<class>com.skilldistillery.pawrentsplace.entities.MedicalNote</class>
 		<class>com.skilldistillery.pawrentsplace.entities.Pet</class>
+		<class>com.skilldistillery.pawrentsplace.entities.PetComment</class>
 		<class>com.skilldistillery.pawrentsplace.entities.ServiceType</class>
 		<class>com.skilldistillery.pawrentsplace.entities.User</class>
 

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Business {
@@ -23,6 +25,11 @@ public class Business {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public Business() {
 		super();
@@ -67,6 +74,15 @@ public class Business {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

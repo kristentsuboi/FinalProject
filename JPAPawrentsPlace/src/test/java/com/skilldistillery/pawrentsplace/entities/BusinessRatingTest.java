@@ -2,6 +2,7 @@ package com.skilldistillery.pawrentsplace.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.crypto.AEADBadTagException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +32,7 @@ class BusinessRatingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		BusinessRatingId id = new BusinessRatingId();
-		id.setUserId(1);
+		id.setUserId(3);	
 		id.setBusinessId(1);
 		em = emf.createEntityManager();
 		bizRating = em.find(BusinessRating.class, id);
@@ -46,21 +47,10 @@ class BusinessRatingTest {
 	@Test
 	void rating_mapping() {
 		assertNotNull(bizRating);
-		assertNotNull(bizRating.getRating());
-//		assertEquals(, bizRating.getRating());
+		assertEquals("excellent service", bizRating.getRemark());
+		assertEquals(2022, bizRating.getCreatedAt().getYear());
+		
 	}
 	
-//	@Test 
-//	void rating_user() {
-//		assertNotNull(bizRating);
-//		assertNotNull(bizRating.getUser());
-//		assertEquals("", bizRating.getUser().getRole());
-//	}
-//	@Test 
-//	void rating_business() {
-//		assertNotNull(bizRating);
-//		assertNotNull(bizRating.getBusiness());
-//		assertEquals("",bizRating.getBusiness().getName());
-//	}
 
 }

@@ -134,6 +134,7 @@ public class Business {
 
 	public void setBusinessRatings(List<BusinessRating> businessRatings) {
 		this.businessRatings = businessRatings;
+	}
 
 	public List<User> getClients() {
 		return clients;

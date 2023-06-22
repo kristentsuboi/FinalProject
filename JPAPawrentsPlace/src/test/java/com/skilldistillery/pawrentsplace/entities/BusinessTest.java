@@ -62,9 +62,10 @@ class BusinessTest {
 	@Test
 	void test_One_to_Many_BusinessRatings() {
 		assertNotNull(business);
-		assertEquals(5, business.getBusinessRatings().get(0));
+		assertEquals(5, business.getBusinessRatings().get(0).getRating());
 		
 	}
+
 	
 	@Test
 	void test_Business_has_Clients() {
@@ -74,6 +75,7 @@ class BusinessTest {
 		assertEquals(3, business.getClients().get(0).getId());
 	}
 	
+
 	@Test
 	void test_Business_has_ServiceTypes() {
 		assertNotNull(business);
@@ -81,5 +83,14 @@ class BusinessTest {
 		assertTrue(business.getServiceTypes().size() > 0);
 		assertEquals(3, business.getServiceTypes().get(0).getId());
 	}
+
+//	@Test
+//	void test_Business_has_ServiceTypes() {
+//		assertNotNull(business);
+////		assertNotNull(business.getServiceTypes());
+////		assertTrue(business.getServiceTypes().size() > 0);
+////		assertEquals(3, business.getServiceTypes().get(0).getId());
+//	}
+
 
 }

@@ -44,9 +44,13 @@ public class User {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business; 
+	
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Address address; 
 	
 
 	public User() {
@@ -142,6 +146,16 @@ public class User {
 
 	public void setBusiness(Business business) {
 		this.business = business;
+	}
+
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

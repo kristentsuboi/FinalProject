@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Business {
 	
@@ -26,6 +28,7 @@ public class Business {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<User> employees;
 
@@ -72,6 +75,16 @@ public class Business {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	
+	
+
+	public List<User> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<User> employees) {
+		this.employees = employees;
 	}
 
 	@Override

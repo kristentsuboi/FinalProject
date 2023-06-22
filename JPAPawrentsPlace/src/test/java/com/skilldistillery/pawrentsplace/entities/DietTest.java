@@ -19,7 +19,7 @@ class DietTest {
 	private Diet diet;
 		@BeforeAll
 		static void setUpBeforeClass() throws Exception {
-			emf = Persistence.createEntityManagerFactory("");
+			emf = Persistence.createEntityManagerFactory("JPAPawrentsPlace");
 			
 		}
 

@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,25 +17,26 @@ public class Medication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	@Column(name = "last_administered")
-	private LocalDateTime lastAdministered;
+	private LocalDate lastAdministered;
+	
 	private String frequency;
+	
+	@Column(name="with_food")
+	private Boolean withFood;
+	
+	@Column(name="date_started")
+	private LocalDate dateStarted;
+	
+	private String notes;
 	
 	
 	public Medication() {
 		super();
 	}
-
-
-	public Medication(int id, String name, LocalDateTime lastAdministered, String frequency) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.lastAdministered = lastAdministered;
-		this.frequency = frequency;
-	}
-
 
 	public int getId() {
 		return id;
@@ -56,12 +58,12 @@ public class Medication {
 	}
 
 
-	public LocalDateTime getLastAdministered() {
+	public LocalDate getLastAdministered() {
 		return lastAdministered;
 	}
 
 
-	public void setLastAdministered(LocalDateTime lastAdministered) {
+	public void setLastAdministered(LocalDate lastAdministered) {
 		this.lastAdministered = lastAdministered;
 	}
 
@@ -75,12 +77,40 @@ public class Medication {
 		this.frequency = frequency;
 	}
 
+	public Boolean getWithFood() {
+		return withFood;
+	}
+
+	public void setWithFood(Boolean withFood) {
+		this.withFood = withFood;
+	}
+
+	public LocalDate getDateStarted() {
+		return dateStarted;
+	}
+
+	public void setDateStarted(LocalDate dateStarted) {
+		this.dateStarted = dateStarted;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	@Override
+	public String toString() {
+		return "Medication [id=" + id + ", name=" + name + ", lastAdministered=" + lastAdministered + ", frequency="
+				+ frequency + ", withFood=" + withFood + ", dateStarted=" + dateStarted + ", notes=" + notes + "]";
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -95,16 +125,6 @@ public class Medication {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Medication [id=" + id + ", name=" + name + ", lastAdministered=" + lastAdministered + ", frequency="
-				+ frequency + "]";
-	}
-	
-	
-	
-	
-	
 	
 
 }

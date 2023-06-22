@@ -17,9 +17,10 @@ class MedicationTest {
 	private static EntityManagerFactory emf;	
 	private EntityManager em;
 	private Medication medication;
+	
 		@BeforeAll
 		static void setUpBeforeClass() throws Exception {
-			emf = Persistence.createEntityManagerFactory("");
+			emf = Persistence.createEntityManagerFactory("JPAPawrentsPlace");
 			
 		}
 

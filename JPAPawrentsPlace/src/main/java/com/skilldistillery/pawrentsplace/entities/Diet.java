@@ -13,10 +13,15 @@ public class Diet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
+	
 	private String type;
+	
 	private String frequency;
+	
 	private String notes;
+	
 	private String amount;
 	
 	

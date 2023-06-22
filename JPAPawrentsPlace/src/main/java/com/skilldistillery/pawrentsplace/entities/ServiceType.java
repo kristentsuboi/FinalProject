@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,9 @@ public class ServiceType {
 		
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@ManyToMany(mappedBy="serviceTypes")
+	private List<Business> businesses;
 	
 	public ServiceType() {
 		super();
@@ -58,6 +63,14 @@ public class ServiceType {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	
+	public List<Business> getBusinesses() {
+		return businesses;
+	}
+
+	public void setBusinesses(List<Business> businesses) {
+		this.businesses = businesses;
 	}
 
 	@Override

@@ -48,9 +48,14 @@ class BusinessRatingTest {
 	void rating_mapping() {
 		assertNotNull(bizRating);
 		assertEquals("excellent service", bizRating.getRemark());
-		assertEquals(2022, bizRating.getCreatedAt().getYear());
-		
+		assertEquals(2022, bizRating.getCreatedAt().getYear());	
 	}
 	
+	@Test
+	void rating_mapping_Many_To_One() {
+		assertNotNull(bizRating);
+		assertEquals(1, bizRating.getBusiness().getId());
+		
+	}
 
 }

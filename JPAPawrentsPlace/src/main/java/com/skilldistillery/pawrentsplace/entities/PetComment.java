@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,21 +9,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name="pet_comment")
+@Table(name = "pet_comment")
 public class PetComment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String body;
-	
+
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private LocalDateTime createdAt;
@@ -30,9 +34,20 @@ public class PetComment {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
+
+	@ManyToOne
+	@JoinColumn(name = "pet_id")
+	private Pet pet;
+
+	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private PetComment reply;
+
+	@OneToMany(mappedBy = "reply")
+	private List<PetComment> replies;
 
 	public PetComment() {
 		super();
@@ -78,6 +93,14 @@ public class PetComment {
 		this.imageUrl = imageUrl;
 	}
 
+	public Pet getPet() {
+		return pet;
+	}
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+
 	@Override
 	public String toString() {
 		return "PetComment [id=" + id + ", body=" + body + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
@@ -101,6 +124,4 @@ public class PetComment {
 		return id == other.id;
 	}
 
-	
-	
 }

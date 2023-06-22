@@ -98,7 +98,7 @@ public class Business {
 
 	public void setEmployees(List<User> employees) {
 		this.employees = employees;
-
+	}
 
 	public Address getAddress() {
 		return address;

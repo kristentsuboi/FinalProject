@@ -71,6 +71,11 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<Medication> medications;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<PetComment> petComments;
+	
+	
 	public Pet() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -222,8 +227,14 @@ public class Pet {
 	public void setShots(List<Shot> shots) {
 		this.shots = shots;
 	}
-	
-	
+
+	public List<PetComment> getPetComments() {
+		return petComments;
+	}
+
+	public void setPetComments(List<PetComment> petComments) {
+		this.petComments = petComments;
+	}
 
 	public List<Medication> getMedications() {
 		return medications;

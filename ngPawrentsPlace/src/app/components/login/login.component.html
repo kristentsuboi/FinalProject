@@ -1,0 +1,9 @@
+<div name="loginForm">
+  <h3 style="text-decoration: underline">Login Form</h3>
+  <label for="email">Username:</label>
+  <input type="text" name="username" [(ngModel)]="user.username" />
+  <label for="email">Password:</label>
+  <input type="password" name="password" [(ngModel)]="user.password" />
+  <input type="submit" value="Login" (click)="login(user)" />
+  </div>
+

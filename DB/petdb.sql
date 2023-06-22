@@ -413,3 +413,47 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'pet';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (1, '123 vet st', 'fayetteville', 'NC', '28311');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (2, '321 owner st', 'fayetteville', 'NC', '28304');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (3, '456 admin st', 'bloomsburg', 'PA', '17815');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `business` (`id`, `name`, `about`, `phone`, `image_url`, `address_id`) VALUES (1, 'fatastic pets', '24h vets', '1234325555', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'admin@email.com', '123456789', NULL, NULL, NULL, NULL, 3);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (2, 'vet', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'vet', 'vet@email.com', '987643234', NULL, NULL, NULL, 1, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (3, 'owner', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'pet owner', 'dogowner@email.com', '3456789876', NULL, NULL, NULL, NULL, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pet`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `pet` (`id`, `name`, `species`, `breed`, `height`, `weight`, `gender`, `birth`, `color`, `about`, `microchipped`, `image_url`, `allergies`, `enabled`, `created_at`, `updated_at`, `owner_id`) VALUES (1, 'brandon', 'dog', 'chihuahua', 1, 6, 'male', '2018-12-21', 'brown', 'cool dog', 0, NULL, 'n/a', 1, NULL, NULL, 3);
+
+COMMIT;
+

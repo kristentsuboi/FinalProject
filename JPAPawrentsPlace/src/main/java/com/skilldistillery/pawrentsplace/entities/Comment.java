@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -33,6 +35,10 @@ public class Comment {
 	private String imageUrl;
 	
 	private String topic;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public Comment() {
 		super();
@@ -85,6 +91,15 @@ public class Comment {
 
 	public void setTopic(String topic) {
 		this.topic = topic;
+	}
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

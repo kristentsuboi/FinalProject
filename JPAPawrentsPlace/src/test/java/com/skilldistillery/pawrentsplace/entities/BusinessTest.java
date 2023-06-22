@@ -44,6 +44,8 @@ class BusinessTest {
 	@Test
 	void test() {
 		assertNotNull(business);
+		assertEquals("fatastic pets", business.getName());
+		assertEquals("1234325555", business.getPhone());
 	}
 
 }

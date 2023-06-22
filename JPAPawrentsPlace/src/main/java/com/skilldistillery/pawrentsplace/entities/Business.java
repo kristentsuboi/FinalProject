@@ -17,9 +17,6 @@ public class Business {
 	
 	private String name;
 	
-	@Column(name="service_type")
-	private String serviceType;
-	
 	private String about;
 	
 	private String phone;
@@ -47,13 +44,6 @@ public class Business {
 		this.name = name;
 	}
 
-	public String getServiceType() {
-		return serviceType;
-	}
-
-	public void setServiceType(String serviceType) {
-		this.serviceType = serviceType;
-	}
 
 	public String getAbout() {
 		return about;
@@ -98,22 +88,11 @@ public class Business {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Business [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", serviceType=");
-		builder.append(serviceType);
-		builder.append(", about=");
-		builder.append(about);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", imageUrl=");
-		builder.append(imageUrl);
-		builder.append("]");
-		return builder.toString();
+		return "Business [id=" + id + ", name=" + name + ", about=" + about + ", phone=" + phone + ", imageUrl="
+				+ imageUrl + "]";
 	}
+
+	
 	
 	
 

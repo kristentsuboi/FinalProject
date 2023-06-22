@@ -457,3 +457,113 @@ INSERT INTO `pet` (`id`, `name`, `species`, `breed`, `height`, `weight`, `gender
 
 COMMIT;
 
+
+-- -----------------------------------------------------
+-- Data for table `medication`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (1, 'tooth paste', '2020-11-11', 'daily', 0, '2020-11-11', 'brush his teeth', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `shot`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (1, 'rabies', '2022-10-10', 'once a year', 'all good', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pet_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (1, 'healthy dog', '2020-11-11', '2020-12-21', NULL, 1, 2, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `diet`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (1, 'keto diet', 'lose weight', 'daily', 'summer pack', '3 times a day', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pet_provider`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `pet_provider` (`provider_id`, `pet_id`) VALUES (2, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `medical_note`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (1, 'call the other doctor', '2020-11-11', NULL, 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `owner_uses_business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `owner_uses_business` (`user_id`, `business_id`) VALUES (3, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `business_rating`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `business_rating` (`user_id`, `business_id`, `rating`, `remark`, `created_at`, `updated_at`) VALUES (3, 1, 5, 'excellent service', '2022-11-11', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (1, 'Can i sleep with a dog with rabies?', '2023-06-11', NULL, NULL, 'general', 3, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `service_type`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'vet clinic', 'we take care of your dog', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `service_provided_ by_business`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `petdb`;
+INSERT INTO `service_provided_ by_business` (`service_type_id`, `business_id`) VALUES (1, 1);
+
+COMMIT;
+

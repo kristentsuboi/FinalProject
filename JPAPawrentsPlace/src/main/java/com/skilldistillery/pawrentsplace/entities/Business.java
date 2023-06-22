@@ -8,10 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -37,19 +41,27 @@ public class Business {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-
 	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<User> employees;
-
 	
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
 	
+
 	@JsonIgnore
 	@OneToMany(mappedBy="business")
 	private List<BusinessRating> businessRatings;
+
+
+	@ManyToMany
+	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> clients;
+	
+	@ManyToMany
+	@JoinTable(name = "service_provided_by_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "service_type_id"))
+	private List<ServiceType> serviceTypes;
 
 
 	public Business() {
@@ -97,9 +109,6 @@ public class Business {
 		this.imageUrl = imageUrl;
 	}
 	
-
-	
-
 	public List<User> getEmployees() {
 		return employees;
 	}
@@ -125,6 +134,23 @@ public class Business {
 
 	public void setBusinessRatings(List<BusinessRating> businessRatings) {
 		this.businessRatings = businessRatings;
+
+	public List<User> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<User> clients) {
+		this.clients = clients;
+	}
+
+	
+	
+	public List<ServiceType> getServiceTypes() {
+		return serviceTypes;
+	}
+
+	public void setServiceTypes(List<ServiceType> serviceTypes) {
+		this.serviceTypes = serviceTypes;
 	}
 
 	@Override

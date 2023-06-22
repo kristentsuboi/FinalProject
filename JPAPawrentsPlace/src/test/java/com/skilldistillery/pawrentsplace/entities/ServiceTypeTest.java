@@ -43,6 +43,18 @@ class ServiceTypeTest {
 	@Test
 	void test() {
 		assertNotNull(serviceType);
+		assertEquals("vet clinic", serviceType.getName());
+		assertEquals("we take care of your dog", serviceType.getDescription());
+		assertNull(serviceType.getImageUrl());
+	}
+	
+	@Test
+	void test_Service_has_Businesses() {
+		assertNotNull(serviceType);
+		assertNotNull(serviceType.getBusinesses());
+		assertTrue(serviceType.getBusinesses().size() > 0);
+//		assertEquals("", serviceType.getBusinesses().get(0).getName());
+		
 	}
 
 }

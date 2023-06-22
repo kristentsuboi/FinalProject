@@ -1,6 +1,8 @@
 package com.skilldistillery.pawrentsplace.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -62,6 +64,22 @@ class BusinessTest {
 		assertNotNull(business);
 		assertEquals(5, business.getBusinessRatings().get(0));
 		
+	}
+	
+	@Test
+	void test_Business_has_Clients() {
+		assertNotNull(business);
+		assertNotNull(business.getClients());
+		assertTrue(business.getClients().size() > 0);
+		assertEquals(3, business.getClients().get(0).getId());
+	}
+	
+	@Test
+	void test_Business_has_ServiceTypes() {
+		assertNotNull(business);
+		assertNotNull(business.getServiceTypes());
+		assertTrue(business.getServiceTypes().size() > 0);
+		assertEquals(3, business.getServiceTypes().get(0).getId());
 	}
 
 }

@@ -53,7 +53,7 @@ class ServiceTypeTest {
 		assertNotNull(serviceType);
 		assertNotNull(serviceType.getBusinesses());
 		assertTrue(serviceType.getBusinesses().size() > 0);
-//		assertEquals("", serviceType.getBusinesses().get(0).getName());
+		assertEquals("fatastic pets", serviceType.getBusinesses().get(0).getName());
 		
 	}
 

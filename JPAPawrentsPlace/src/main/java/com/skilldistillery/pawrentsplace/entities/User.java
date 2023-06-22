@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -51,7 +52,7 @@ public class User {
 	@JoinColumn(name="business_id")
 	private Business business; 
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="address_id")
 	private Address address; 
 	

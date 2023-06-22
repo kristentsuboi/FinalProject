@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Diet {
@@ -23,6 +25,10 @@ public class Diet {
 	private String notes;
 	
 	private String amount;
+	
+	@ManyToOne
+	@JoinColumn(name="pet_id")
+	private Pet pet; 
 	
 	
 	public Diet() {
@@ -98,6 +104,17 @@ public class Diet {
 
 	public void setAmount(String amount) {
 		this.amount = amount;
+	}
+
+	
+
+	public Pet getPet() {
+		return pet;
+	}
+
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
 	}
 
 

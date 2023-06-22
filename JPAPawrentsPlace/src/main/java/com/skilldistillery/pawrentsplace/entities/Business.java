@@ -100,6 +100,27 @@ public class Business {
 
 	public void setBusinessRatings(List<BusinessRating> businessRatings) {
 		this.businessRatings = businessRatings;
+<<<<<<< Updated upstream
+=======
+	}
+
+	public List<User> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<User> clients) {
+		this.clients = clients;
+	}
+
+	
+	
+	public List<ServiceType> getServiceTypes() {
+		return serviceTypes;
+	}
+
+	public void setServiceTypes(List<ServiceType> serviceTypes) {
+		this.serviceTypes = serviceTypes;
+>>>>>>> Stashed changes
 	}
 
 	@Override

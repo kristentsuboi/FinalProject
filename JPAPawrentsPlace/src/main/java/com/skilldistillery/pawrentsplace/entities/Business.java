@@ -44,6 +44,10 @@ public class Business {
 	@ManyToMany
 	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> clients;
+	
+	@ManyToMany
+	@JoinTable(name = "service_provided_by_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "service_type_id"))
+	private List<ServiceType> serviceTypes;
 
 	public Business() {
 		super();
@@ -114,6 +118,16 @@ public class Business {
 
 	public void setClients(List<User> clients) {
 		this.clients = clients;
+	}
+
+	
+	
+	public List<ServiceType> getServiceTypes() {
+		return serviceTypes;
+	}
+
+	public void setServiceTypes(List<ServiceType> serviceTypes) {
+		this.serviceTypes = serviceTypes;
 	}
 
 	@Override

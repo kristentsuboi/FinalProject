@@ -67,5 +67,13 @@ class BusinessTest {
 		assertTrue(business.getClients().size() > 0);
 		assertEquals(3, business.getClients().get(0).getId());
 	}
+	
+	@Test
+	void test_Business_has_ServiceTypes() {
+		assertNotNull(business);
+		assertNotNull(business.getServiceTypes());
+		assertTrue(business.getServiceTypes().size() > 0);
+		assertEquals(3, business.getServiceTypes().get(0).getId());
+	}
 
 }

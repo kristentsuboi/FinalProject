@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Medication {
@@ -32,6 +34,11 @@ public class Medication {
 	private LocalDate dateStarted;
 	
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="pet_id")
+	private Pet pet; 
+	
 	
 	
 	public Medication() {
@@ -101,11 +108,23 @@ public class Medication {
 		this.notes = notes;
 	}
 
+	
+	
+	public Pet getPet() {
+		return pet;
+	}
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+
 	@Override
 	public String toString() {
 		return "Medication [id=" + id + ", name=" + name + ", lastAdministered=" + lastAdministered + ", frequency="
 				+ frequency + ", withFood=" + withFood + ", dateStarted=" + dateStarted + ", notes=" + notes + "]";
 	}
+	
+	
 
 	@Override
 	public int hashCode() {

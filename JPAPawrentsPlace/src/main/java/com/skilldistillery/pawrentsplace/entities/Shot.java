@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Shot {
@@ -25,6 +27,10 @@ public class Shot {
 	
 	private String notes;
 
+	@ManyToOne
+	@JoinColumn(name="pet_id")
+	private Pet pet;
+	
 	public Shot() {
 		super();
 	}
@@ -67,6 +73,16 @@ public class Shot {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	
+	
+
+	public Pet getPet() {
+		return pet;
+	}
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
 	}
 
 	@Override

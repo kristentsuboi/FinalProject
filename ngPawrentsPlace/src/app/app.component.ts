@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +9,9 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'ngPawrentsPlace';
 
-  // constructor(private auth: AuthService ///FIX ME! DELETE LATER!!!
-  //   ) {}
+  constructor(private titleService:Title) {
+    this.titleService.setTitle("Pawrents Place");
+  }
 
-  // ngOnInit() {
-  //   // this.tempTestDeleteMeLater(); // DELETE LATER!!!
-  // }
-
-  // tempTestDeleteMeLater() {
-  //   this.auth.login('admin','test').subscribe({ // change username to match DB
-  //     next: (data) => {
-  //       console.log('Logged in:');
-  //       console.log(data);
-  //     },
-  //     error: (fail) => {
-  //       console.error('Error authenticating:')
-  //       console.error(fail);
-  //     }
-  //   });
-  // }
 
 }

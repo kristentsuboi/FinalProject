@@ -1,22 +1,27 @@
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Diet } from 'src/app/models/diet';
+import { DietService } from 'src/app/services/diet.service';
 import { PetService } from 'src/app/services/pet.service';
 
 @Component({
   selector: 'app-pet',
   templateUrl: './pet.component.html',
-  styleUrls: ['./pet.component.css']
+  styleUrls: ['./pet.component.css'],
 })
 export class PetComponent {
-
   pets: Pet[] = [];
   newPet: Pet = new Pet();
   editPet: Pet | null = null;
   selected: Pet | null = null;
+  diets: Diet[] = [];
+  newDiet: Diet = new Diet();
+  editDiet: Diet | null = null;
 
   constructor(
     private petService: PetService,
+    private dietService: DietService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -58,7 +63,7 @@ export class PetComponent {
     });
   }
 
-  addTodo(newPet: Pet): void {
+  addPet(newPet: Pet): void {
     console.log(newPet);
     this.petService.create(newPet).subscribe({
       next: (result) => {
@@ -95,6 +100,7 @@ export class PetComponent {
       },
     });
   }
+
   displayPet(selectedPet: Pet) {
     this.router.navigateByUrl('pets/' + selectedPet.id);
     this.selected = selectedPet;
@@ -109,6 +115,7 @@ export class PetComponent {
     this.petService.destroy(id).subscribe({
       next: (result) => {
         this.reload();
+        this.router.navigateByUrl('pets');
       },
       error: (nojoy) => {
         console.error('PetListHttpComponent.deleteTodo(): error deleting pet:');
@@ -117,4 +124,16 @@ export class PetComponent {
     });
   }
 
+  updateDiet(editDiet: Diet): void {
+    console.log(editDiet);
+    // this.dietService.update(editDiet).subscribe({
+    //   next: (result) => {
+    //     this.editDiet = null;
+    //   },
+    //   error: (nojoy) => {
+    //     console.error('PetListHttpComponent.updateTodo(): error updating pet:');
+    //     console.error(nojoy);
+    //   },
+    // });
+  }
 }

@@ -1,4 +1,4 @@
-<div id="listView" name="listView" *ngIf="!selected">
+<div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px;">
   <h4 style="text-align: center;">My Pets</h4>
   <table class="table table-striped">
     <thead>
@@ -13,7 +13,7 @@
     <tbody
       *ngFor="let pet of pets; let i = index" [attr.data-index]="i" >
       <tr style="vertical-align: middle; font-size: larger" >
-        <td><img src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture"></td>
+        <td><img src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture" style="max-width: 75px;"></td>
         <td>
           {{pet.name}}
         </td>
@@ -31,7 +31,7 @@
 
 <div name="addPetForm">
   <hr>
-  <h3 style="text-decoration: underline">Add A Pet</h3>
+  <h3 style="text-decoration: underline">Add A Pet:</h3>
 
   <label for="name">Name:&ensp;</label>
   <input id="name" type="text" name="name" [(ngModel)]="newPet.name" required/><br>
@@ -69,5 +69,5 @@
   <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="newPet.imageUrl"/><br>
   <label for="about">About:&ensp;</label><br>
   <textarea id="about" name="about" [(ngModel)]="newPet.about"></textarea><br>
-  <input type="submit" value="AddPet" (click)="addPet(newPet)" />
+  <input type="submit" value="Add Pet" (click)="addPet(newPet)" />
 </div>

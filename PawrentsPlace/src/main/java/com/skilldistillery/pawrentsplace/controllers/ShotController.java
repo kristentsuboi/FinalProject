@@ -17,56 +17,56 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.pawrentsplace.entities.Diet;
 import com.skilldistillery.pawrentsplace.entities.Medication;
-import com.skilldistillery.pawrentsplace.services.MedicationService;
+import com.skilldistillery.pawrentsplace.entities.Shot;
 import com.skilldistillery.pawrentsplace.services.PetService;
+import com.skilldistillery.pawrentsplace.services.ShotService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost/" })
-public class MedicationController {
+public class ShotController {
 	@Autowired
 	private PetService petService;
 	@Autowired
-	private MedicationService medService;
+	private ShotService shotService;
 
-	@GetMapping("pets/{petId}/medications")
-	public List<Medication> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
+	@GetMapping("pets/{petId}/shots")
+	public List<Shot> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
 			Principal principal) {
-		List<Medication> meds = medService.index(principal.getName(), petId);
-		return meds;
+		List<Shot> shots = shotService.index(principal.getName(), petId);
+		return shots;
 	}
 
-	@GetMapping("pets/{petId}/medications/{medId}")
-	public Medication show(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
-			@PathVariable int medId, Principal principal) {
-		return medService.show(principal.getName(), medId);
+	@GetMapping("pets/{petId}/shots/{shotId}")
+	public Shot show(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @PathVariable int shotId,
+			Principal principal) {
+		return shotService.show(principal.getName(), shotId);
 	}
 
-	@PostMapping("pets/{petId}/medications")
-	public Medication create(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
-			@RequestBody Medication medication, Principal principal) {
+	@PostMapping("pets/{petId}/shots")
+	public Shot create(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @RequestBody Shot shot,
+			Principal principal) {
 		try {
-			medication = medService.create(principal.getName(), petId, medication);
+			shot = shotService.create(principal.getName(), petId, shot);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(medication.getId());
+			url.append("/").append(shot.getId());
 			res.setHeader("Location", url.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
-			medication = null;
+			shot = null;
 		}
-		return medication;
+		return shot;
 	}
 
-	@PutMapping("pets/{petId}/medications/{medId}")
-	public Medication update(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
-			@RequestBody Medication medication, @PathVariable int medId, Principal principal) {
-		Medication updated = null;
+	@PutMapping("pets/{petId}/shots/{shotId}")
+	public Shot update(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @RequestBody Shot shot,
+			@PathVariable int shotId, Principal principal) {
+		Shot updated = null;
 		try {
-			updated = medService.update(principal.getName(), medId, medication, petId);
+			updated = shotService.update(principal.getName(), shotId, shot, petId);
 			if (updated == null) {
 				res.setStatus(404);
 			}
@@ -77,14 +77,15 @@ public class MedicationController {
 		return updated;
 	}
 
-	@DeleteMapping("pets/{petId}/medications/{medId}")
+	@DeleteMapping("pets/{petId}/shots/{shotId}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
-			@PathVariable int medId, Principal principal) {
-		boolean deleted = medService.delete(principal.getName(), medId, petId);
+			@PathVariable int shotId, Principal principal) {
+		boolean deleted = shotService.delete(principal.getName(), shotId, petId);
 		if (deleted) {
 			res.setStatus(204);
 		} else {
 			res.setStatus(404);
 		}
 	}
+
 }

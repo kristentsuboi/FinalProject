@@ -79,7 +79,7 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<Shot> shots;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")
 	private List<Medication> medications;
 	

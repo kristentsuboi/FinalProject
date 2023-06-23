@@ -68,8 +68,7 @@ public class DietServiceImpl implements DietService{
 
 	@Override
 	public Diet show(String username, int dietId) {
-		// TODO Auto-generated method stub
-		return null;
+		return dietRepo.findById(dietId);
 	}
 
 

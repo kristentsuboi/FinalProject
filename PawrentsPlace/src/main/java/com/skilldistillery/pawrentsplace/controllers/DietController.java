@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.pawrentsplace.entities.Diet;
+import com.skilldistillery.pawrentsplace.entities.Medication;
 import com.skilldistillery.pawrentsplace.services.DietService;
 import com.skilldistillery.pawrentsplace.services.PetService;
 
@@ -38,6 +39,10 @@ public class DietController {
 	public List<Diet> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, Principal principal) {
 		List<Diet> diets = dietService.index(principal.getName(), petId);
 		return diets;
+	}
+	@GetMapping("pets/{petId}/diets/{dietId}")
+	public Diet show(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @PathVariable int dietId, Principal principal) {
+		return dietService.show(principal.getName(), dietId);
 	}
 	
 	@PostMapping("pets/{petId}/diets") 

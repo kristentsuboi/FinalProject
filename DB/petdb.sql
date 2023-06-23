@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   `business_id` INT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_business1_idx` (`business_id` ASC),

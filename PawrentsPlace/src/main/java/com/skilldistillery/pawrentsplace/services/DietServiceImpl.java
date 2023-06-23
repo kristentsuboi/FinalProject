@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class DietServiceImpl implements DietService{
 	
 	@Autowired
 	private DietRepository dietRepo;
+	
 	
 	
 	
@@ -48,21 +50,21 @@ public class DietServiceImpl implements DietService{
 		
 		return null;
 	}
-//
-//	@Override
-//	public Diet update(String username, int dietId, Diet diet, int petId) {
-//		Pet managedPet = petRepo.findByUser_UsernameAndId(username, petId);
-//		Diet managedDiet = dietRepo.findByUser_UsernameAndId(username, dietId);
-//		if (managedDiet != null) {
-//			managedDiet.setName(diet.getName());
-//			managedDiet.setType(diet.getType());
-//			managedDiet.setFrequency(diet.getFrequency());
-//			managedDiet.setNotes(diet.getNotes());
-//			managedDiet.setAmount(diet.getAmount());
-//			return dietRepo.saveAndFlush(managedDiet);
-//		}
-//		return null;
-//	}
+
+	@Override
+	public Diet update(String username, int dietId, Diet diet, int petId) {
+		Pet managedPet = petRepo.findByUser_UsernameAndId(username, petId);
+		Diet managedDiet = dietRepo.findById(dietId);
+		if (managedDiet != null) {
+			managedDiet.setName(diet.getName());
+			managedDiet.setType(diet.getType());
+			managedDiet.setFrequency(diet.getFrequency());
+			managedDiet.setNotes(diet.getNotes());
+			managedDiet.setAmount(diet.getAmount());
+			return dietRepo.saveAndFlush(managedDiet);
+		}
+		return null;
+	}
 
 	@Override
 	public Diet show(String username, int dietId) {
@@ -70,27 +72,33 @@ public class DietServiceImpl implements DietService{
 		return null;
 	}
 
-	@Override
-	public Diet update(String username, int dietId, Diet diet, int petId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+	
+
 
 	@Override
-	public boolean delete(String username, int dietId) {
-		// TODO Auto-generated method stub
+	public boolean delete(String username, int dietId, int petId) {
+	Pet pet = petRepo.findById(petId);
+	
+	
+	Diet deleted = dietRepo.findById(dietId);
+	
+	if(deleted != null) {
+		ArrayList<Diet> diets = new ArrayList<>(pet.getDiets());
+		for(Diet diet: diets) {
+			if(diet.getId() == dietId) {
+				
+				pet.getDiets().remove(diet);
+			}
+			
+		}
+		petRepo.saveAndFlush(pet);
+		dietRepo.delete(deleted);	
+		return true;
+	}else {
 		return false;
 	}
-
-//	@Override
-//	public boolean delete(String username, int dietId) {
-//	Diet deleted = dietRepo.findByUser_UsernameAndId(username, dietId);
-//	if(deleted != null) {
-//		dietRepo.delete(deleted);
-//		return true;
-//	}else {
-//		return false;
-//	}
-//	}
+	}
 
 }

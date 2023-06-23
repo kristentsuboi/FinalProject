@@ -65,7 +65,9 @@ class PetCommentTest {
 		assertEquals("healthy dog", petComment.getBody());
 		assertEquals(Month.DECEMBER, petComment.getUpdatedAt().getMonth());
 		
+
 	}
+
 
 	
 	@Test
@@ -74,6 +76,12 @@ class PetCommentTest {
 		assertEquals(2, petComment.getUser().getId());
 	}
 	
+
+	void petComment_to_User_ManyToOne() {
+		assertNotNull(petComment);
+		assertEquals(2, petComment.getUser().getId());
+	}
+
 
 
 }

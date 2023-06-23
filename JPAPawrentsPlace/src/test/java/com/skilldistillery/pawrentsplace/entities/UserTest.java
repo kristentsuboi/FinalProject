@@ -77,5 +77,19 @@ class UserTest {
 		assertTrue(user3.getBusinessesUsed().size() > 0);
 		assertEquals(1, user3.getBusinessesUsed().get(0).getId());
 	}
-
+	
+	@Test
+	void test_User_has_MedicalNotes() {
+		User user2 = em.find(User.class, 2);
+		assertNotNull(user2.getMedicalNotes());
+		assertTrue(user2.getMedicalNotes().size() > 0);
+		assertEquals(1, user2.getMedicalNotes().get(0).getId());
+	}
+	
+	@Test
+	void test_User_has_PetComments() {
+		assertNotNull(user);
+		assertNotNull(user.getAddress());
+		assertEquals(3, user.getAddress().getId());
+	}
 }

@@ -46,18 +46,17 @@ export class PetComponent {
         });
       }
     } else {
-      this.reload();
       this.router.navigateByUrl('pets');
     }
   }
 
-  reload() {
-    this.petService.index().subscribe({
-      next: (petList) => {
-        this.pets = petList;
+  reload(petId: number) {
+    this.petService.show(petId).subscribe({
+      next: (pet) => {
+        this.selected = pet;
       },
       error: function (theError) {
-        console.error('PetListComponent.reload(): Error loading pet list.');
+        console.error('PetComponent.reload(): Error loading pet.');
         console.error(theError);
       },
     });
@@ -68,11 +67,11 @@ export class PetComponent {
     this.petService.create(newPet).subscribe({
       next: (result) => {
         this.newPet = new Pet();
-        this.reload();
+        this.reload(result.id);
         this.selected = result;
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.addTodo(): error creating pet:');
+        console.error('PetHttpComponent.addPet(): error creating pet:');
         console.error(nojoy);
       },
     });
@@ -91,11 +90,11 @@ export class PetComponent {
     this.petService.update(editPet).subscribe({
       next: (result) => {
         this.editPet = null;
-        this.reload();
+        this.reload(result.id);
         this.selected = result;
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.updateTodo(): error updating pet:');
+        console.error('PetListHttpComponent.updatePet(): error updating pet:');
         console.error(nojoy);
       },
     });
@@ -114,26 +113,61 @@ export class PetComponent {
   deletePet(id: number) {
     this.petService.destroy(id).subscribe({
       next: (result) => {
-        this.reload();
         this.router.navigateByUrl('pets');
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.deleteTodo(): error deleting pet:');
+        console.error('PetHttpComponent.deletePet(): error deleting pet:');
         console.error(nojoy);
       },
     });
   }
 
-  updateDiet(editDiet: Diet): void {
-    console.log(editDiet);
-    // this.dietService.update(editDiet).subscribe({
-    //   next: (result) => {
-    //     this.editDiet = null;
-    //   },
-    //   error: (nojoy) => {
-    //     console.error('PetListHttpComponent.updateTodo(): error updating pet:');
-    //     console.error(nojoy);
-    //   },
-    // });
+  addDiet(petId: number, newDiet: Diet): void {
+    console.log(newDiet);
+    this.dietService.create(petId, newDiet).subscribe({
+      next: (result) => {
+        this.newDiet = new Diet();
+        this.reload(petId);
+
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addDiet(): error creating diet:');
+        console.error(nojoy);
+      },
+    });
   }
+
+  updateDiet(petId: number, editDiet: Diet): void {
+    console.log(editDiet);
+    this.dietService.update(petId, editDiet).subscribe({
+      next: (result) => {
+        this.editDiet = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updateDiet(): error updating diet:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  cancelEditDiet() {
+    this.editDiet = null;
+  }
+
+  deleteDiet(petId: number, dietId: number) {
+    this.dietService.destroy(petId, dietId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editDiet = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deleteDiet(): error deleting diet:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+
+
 }

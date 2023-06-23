@@ -41,6 +41,30 @@ export class DietService {
     );
   }
 
+  create(petId: number, diet: Diet): Observable<Diet> {
+    return this.http.post<Diet>(this.url + '/' + petId + '/diets', diet, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('DietService.create(): error creating diet: ' + err)
+        );
+      })
+    );
+  }
 
+  update(petId: number, editDiet: Diet): Observable<Diet> {
+    return this.http.put<Diet>(this.url + '/' + petId + '/diets/' + editDiet.id, editDiet, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('DietService.update(): error updating diet: ' + err)
+        );
+      })
+    );
+  }
+
+  destroy(petId: number, dietId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + petId + '/diets/' + dietId, this.getHttpOptions());
+  }
 
 }

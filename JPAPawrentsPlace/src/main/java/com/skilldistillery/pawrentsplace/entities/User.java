@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -62,6 +63,18 @@ public class User {
 	@ManyToMany(mappedBy="clients")
 	private List<Business> businessesUsed;
 	
+	@OneToMany(mappedBy="user")
+	private List<MedicalNote> medicalNotes;
+	
+	@OneToMany(mappedBy="user")
+	private List<PetComment> petComments;
+	
+	@OneToMany(mappedBy="user")
+	private List<Pet> pets;
+	
+	@ManyToMany
+	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
+	private List<Pet> petClients;
 
 	public User() {
 		super();
@@ -148,8 +161,6 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 	
-	
-
 	public Business getBusiness() {
 		return business;
 	}
@@ -166,7 +177,6 @@ public class User {
 		this.address = address;
 	}
 	
-	
 
 	public List<Comment> getComments() {
 		return comments;
@@ -175,8 +185,6 @@ public class User {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
-	
 
 	public List<Business> getBusinessesUsed() {
 		return businessesUsed;
@@ -184,6 +192,40 @@ public class User {
 
 	public void setBusinessesUsed(List<Business> businessesUsed) {
 		this.businessesUsed = businessesUsed;
+	}
+	
+	public List<MedicalNote> getMedicalNotes() {
+		return medicalNotes;
+	}
+
+	public void setMedicalNotes(List<MedicalNote> medicalNotes) {
+		this.medicalNotes = medicalNotes;
+	}
+
+	public List<PetComment> getPetComments() {
+		return petComments;
+	}
+
+	public void setPetComments(List<PetComment> petComments) {
+		this.petComments = petComments;
+	}
+
+	
+	
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
+
+	public List<Pet> getPetClients() {
+		return petClients;
+	}
+
+	public void setPetClients(List<Pet> petClients) {
+		this.petClients = petClients;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,6 +41,13 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@ManyToOne
+	 @JoinColumn(name = "replying_to_id")
+	 private Comment mainComment;
+	 
+	 @OneToMany(mappedBy = "reply")
+	 private List<Comment> replies;
 
 	public Comment() {
 		super();
@@ -100,6 +109,23 @@ public class Comment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+
+	public Comment getMainComment() {
+		return mainComment;
+	}
+
+	public void setMainComment(Comment mainComment) {
+		this.mainComment = mainComment;
+	}
+
+	public List<Comment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
 	}
 
 	@Override

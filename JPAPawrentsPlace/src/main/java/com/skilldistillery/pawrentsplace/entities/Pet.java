@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -59,6 +62,10 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="pet")
 	private List<Diet> diets;
@@ -79,6 +86,8 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
+	@ManyToMany(mappedBy=“petClients”)
+	private List<User> providers;
 	
 	public Pet() {
 		super();
@@ -255,6 +264,14 @@ public class Pet {
 
 	public void setMedicalNotes(List<MedicalNote> medicalNotes) {
 		this.medicalNotes = medicalNotes;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

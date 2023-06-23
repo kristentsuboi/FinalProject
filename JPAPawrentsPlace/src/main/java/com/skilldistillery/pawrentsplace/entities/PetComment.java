@@ -38,13 +38,22 @@ public class PetComment {
 	@Column(name = "image_url")
 	private String imageUrl;
 
+
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
@@ -76,6 +85,15 @@ public class PetComment {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
@@ -101,6 +119,14 @@ public class PetComment {
 		this.pet = pet;
 	}
 	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public PetComment getMainComment() {
 		return mainComment;

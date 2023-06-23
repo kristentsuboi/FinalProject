@@ -6,14 +6,18 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Embeddable
 public class BusinessRatingId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@Column(name = "user_id")
 	private int userId;
 
+	@JsonIgnore
 	@Column(name = "business_id")
 	private int businessId;
 

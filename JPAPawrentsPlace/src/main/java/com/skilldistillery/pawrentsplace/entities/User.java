@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -49,6 +51,7 @@ public class User {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	private Business business; 
@@ -72,9 +75,12 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Pet> pets;
 	
+
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
 	private List<Pet> petClients;
+
 
 	public User() {
 		super();

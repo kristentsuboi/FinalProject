@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.controllers;
 
+import java.security.Principal;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,20 +27,17 @@ public class PetController {
 
 	@Autowired
 	private PetService petService;
-	private String username = "owner";
-	
-	
-	
+
 	@GetMapping("pets")
-	 public Set<Pet> index(HttpServletRequest req, HttpServletResponse res) {
+	 public Set<Pet> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		
-	  Set<Pet> pets = petService.index(username);
+	  Set<Pet> pets = petService.index(principal.getName());
 	  return pets;
 	}
 	
 	@GetMapping("pets/{petId}")
-	 public Pet show(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId) {
-	  Pet pet = petService.show(username, petId);
+	 public Pet show(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, Principal principal) {
+	  Pet pet = petService.show(principal.getName(), petId);
 	  if (pet == null) {
 	   res.setStatus(404);
 	  }
@@ -47,9 +45,9 @@ public class PetController {
 	 }
 	
 	@PostMapping("pets")
-	 public Pet create(HttpServletRequest req, HttpServletResponse res, @RequestBody Pet pet) {
+	 public Pet create(HttpServletRequest req, HttpServletResponse res, @RequestBody Pet pet, Principal principal) {
 	  try {
-	   pet = petService.create(username, pet);
+	   pet = petService.create(principal.getName(), pet);
 	   res.setStatus(201);
 	   StringBuffer url = req.getRequestURL();
 	   url.append("/").append(pet.getId());
@@ -63,10 +61,10 @@ public class PetController {
 	 }
 	
 	@PutMapping("pets/{petId}")
-	 public Pet update(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId, @RequestBody Pet pet) {
+	 public Pet update(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId, @RequestBody Pet pet, Principal principal) {
 	  Pet updated = null;;
 	  try {
-	   updated = petService.update(username, petId, pet);
+	   updated = petService.update(principal.getName(), petId, pet);
 	   if (updated == null) {
 	    res.setStatus(404);
 	   }
@@ -79,8 +77,8 @@ public class PetController {
 	
 	
 	@DeleteMapping("pets/{petId}")
-	 public void destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId) {
-	  boolean deleted = petService.delete(username, petId);
+	 public void destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId, Principal principal) {
+	  boolean deleted = petService.delete(principal.getName(), petId);
 	  if (deleted) {
 	   res.setStatus(204);
 	  }

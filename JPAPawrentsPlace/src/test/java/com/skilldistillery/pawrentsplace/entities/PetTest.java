@@ -72,5 +72,11 @@ public class PetTest {
 		assertNotNull(pet);
 		assertTrue(pet.getMedicalNotes().size() == 1);
 	}
+	@Test
+	void pet_user_manyToOne() {
+		assertNotNull(pet);
+		assertEquals("owner", pet.getUser().getUsername());
+	}
+	
 
 }

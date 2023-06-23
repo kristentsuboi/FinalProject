@@ -545,6 +545,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (1, 'Can i sleep with a dog with rabies?', '2023-06-11', NULL, NULL, 'general', 3, NULL);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (2, 'what do you wanna sleep with you dog?', '2023-06-12', NULL, NULL, 'general', 2, 1);
 
 COMMIT;
 

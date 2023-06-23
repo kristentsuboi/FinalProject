@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "pet_comment")
 public class PetComment {
@@ -43,14 +45,19 @@ public class PetComment {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
+
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
 
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
 

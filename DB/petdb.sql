@@ -441,9 +441,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (1, 'admin', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'admin', 'admin@email.com', '123456789', NULL, NULL, NULL, NULL, 3);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (2, 'vet', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'vet', 'vet@email.com', '987643234', NULL, NULL, NULL, 1, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (3, 'owner', '$2a$10$nShOi5/f0bKNvHB8x0u3qOpeivazbuN0NE4TO0LGvQiTMafaBxLJS', 1, 'pet owner', 'dogowner@email.com', '3456789876', NULL, NULL, NULL, NULL, 2);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'admin', 'admin@email.com', '123456789', NULL, NULL, NULL, NULL, 3);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (2, 'vet', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'vet', 'vet@email.com', '987643234', NULL, NULL, NULL, 1, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `phone`, `image_url`, `created_at`, `updated_at`, `business_id`, `address_id`) VALUES (3, 'owner', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'pet owner', 'dogowner@email.com', '3456789876', NULL, NULL, NULL, NULL, 2);
 
 COMMIT;
 

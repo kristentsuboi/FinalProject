@@ -36,9 +36,16 @@ public class Address {
 	private Business business;
 	
 
+
 	@OneToOne(mappedBy="address")
 	private User user;
 	
+
+	@JsonIgnore
+	@OneToOne(mappedBy="address")
+	private User user;
+	
+
 	public Address() {
 
 	}

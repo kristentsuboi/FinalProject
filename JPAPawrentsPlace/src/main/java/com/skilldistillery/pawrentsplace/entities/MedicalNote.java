@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="medical_note")
 public class MedicalNote {
@@ -32,11 +34,18 @@ public class MedicalNote {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+
 	
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet; 
 	
+
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

@@ -1,1 +1,32 @@
-<p>pet works!</p>
+
+<div name="detailPetView" *ngIf="selected && !editPet">
+  <div name="basicInfo">
+    <h4>ID: {{ selected.id }}</h4>
+    <p>Name: {{ selected.name }}</p>
+    <img src="{{ selected.gender }}" alt="{{selected.name}} picture"><br>
+    <blockquote *ngIf="selected.about">About: {{ selected.about }}</blockquote>
+    <p>Species: {{ selected.species }}</p>
+    <p>Breed: {{ selected.breed }}</p>
+    <p>Gender: {{ selected.gender }}</p>
+    <p>Birthday: {{ selected.birth }}</p>
+    <p *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</p>
+    <p *ngIf="selected.height">Height: {{ selected.height }} inches</p>
+    <p>Color: {{ selected.color }}</p>
+    <p>Microchipped: {{ selected.microchipped }}</p>
+    <p>Allergies: {{ selected.allergies }}</p>
+    <p>Last Update: {{ selected.updatedAt }}</p>
+
+    <button (click)="displayTable()">Back</button>
+    <button (click)="setEditPet()">Edit</button>
+  </div>
+  <div name="dietInfo">
+
+  </div>
+  <div name="medicalInfo">
+
+  </div>
+  <div name="discussionBoard">
+
+  </div>
+</div>
+

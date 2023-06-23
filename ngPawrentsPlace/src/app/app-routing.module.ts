@@ -6,13 +6,14 @@ import { PetListComponent } from './components/pet-list/pet-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PetComponent } from './components/pet/pet.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'pets', component: PetListComponent },
-  { path: 'pets/:id', component: PetListComponent },
+  { path: 'pets/:id', component: PetComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent }

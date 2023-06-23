@@ -30,7 +30,8 @@ export class PetListComponent {
       } else {
         this.petService.show(id).subscribe({
           next: (pet) => {
-            this.selected = pet;
+            // this.selected = pet;
+            this.router.navigateByUrl('pets/' + pet.id);
           },
           error: (theError) => {
             console.error('PetListComponent.ngOnInit(): Error loading pet.');
@@ -56,13 +57,14 @@ export class PetListComponent {
     });
   }
 
-  addTodo(newPet: Pet): void {
+  addPet(newPet: Pet): void {
     console.log(newPet);
     this.petService.create(newPet).subscribe({
       next: (result) => {
         this.newPet = new Pet();
         this.reload();
         this.selected = result;
+        this.router.navigateByUrl('pets/' + result.id);
       },
       error: (nojoy) => {
         console.error('PetListHttpComponent.addTodo(): error creating pet:');

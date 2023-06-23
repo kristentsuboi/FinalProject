@@ -50,7 +50,6 @@ public class PetComment {
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
-	
 
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
@@ -82,8 +81,6 @@ public class PetComment {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	
-
 
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;

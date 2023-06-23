@@ -67,6 +67,8 @@ class PetCommentTest {
 		
 
 	}
+
+
 	
 	@Test
 	void petComment_to_user_ManyToOne() {
@@ -74,12 +76,12 @@ class PetCommentTest {
 		assertEquals(2, petComment.getUser().getId());
 	}
 	
-	
 
 	void petComment_to_User_ManyToOne() {
 		assertNotNull(petComment);
 		assertEquals(2, petComment.getUser().getId());
 	}
+
 
 
 }

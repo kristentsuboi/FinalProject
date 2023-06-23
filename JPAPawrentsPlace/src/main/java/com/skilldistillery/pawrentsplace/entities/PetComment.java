@@ -50,10 +50,6 @@ public class PetComment {
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
@@ -84,15 +80,6 @@ public class PetComment {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
-	}
-	
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public LocalDateTime getUpdatedAt() {

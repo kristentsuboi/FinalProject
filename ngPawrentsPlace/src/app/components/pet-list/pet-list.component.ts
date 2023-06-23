@@ -6,22 +6,21 @@ import { PetService } from 'src/app/services/pet.service';
 @Component({
   selector: 'app-pet-list',
   templateUrl: './pet-list.component.html',
-  styleUrls: ['./pet-list.component.css']
+  styleUrls: ['./pet-list.component.css'],
 })
 export class PetListComponent {
-
   pets: Pet[] = [];
   newPet: Pet = new Pet();
   editPet: Pet | null = null;
   selected: Pet | null = null;
 
-    constructor(
+  constructor(
     private petService: PetService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     //check if route param for a todoid is present
     let idStr = this.route.snapshot.paramMap.get('id');
     if (!this.selected && idStr) {
@@ -57,7 +56,7 @@ export class PetListComponent {
     });
   }
 
-    addTodo(newPet: Pet): void {
+  addTodo(newPet: Pet): void {
     console.log(newPet);
     this.petService.create(newPet).subscribe({
       next: (result) => {
@@ -70,7 +69,6 @@ export class PetListComponent {
         console.error(nojoy);
       },
     });
-
   }
 
   setEditPet() {
@@ -90,14 +88,12 @@ export class PetListComponent {
         this.selected = result;
       },
       error: (nojoy) => {
-        console.error(
-          'PetListHttpComponent.updateTodo(): error updating pet:'
-        );
+        console.error('PetListHttpComponent.updateTodo(): error updating pet:');
         console.error(nojoy);
       },
     });
   }
-displayPet(selectedPet: Pet) {
+  displayPet(selectedPet: Pet) {
     this.router.navigateByUrl('pets/' + selectedPet.id);
     this.selected = selectedPet;
   }
@@ -113,12 +109,9 @@ displayPet(selectedPet: Pet) {
         this.reload();
       },
       error: (nojoy) => {
-        console.error(
-          'PetListHttpComponent.deleteTodo(): error deleting pet:'
-        );
+        console.error('PetListHttpComponent.deleteTodo(): error deleting pet:');
         console.error(nojoy);
       },
     });
   }
-
 }

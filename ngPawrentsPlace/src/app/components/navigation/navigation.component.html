@@ -12,8 +12,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [ngbCollapse]='isCollapsed'> -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [ngbCollapse]='isCollapsed'>
       <a class="navbar-brand" *ngIf="checkLogin()" [routerLink]="['/todos']">Todos!</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngIf="!checkLogin()">
@@ -28,20 +27,14 @@
         <li class="nav-item"  *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/register']">Register</a>
         </li>
-        <li class="nav-item"  *ngIf="!checkLogin()">
-          <a class="nav-link" [routerLink]="['/login']">Login</a>
-        </li>
-        <li class="nav-item" *ngIf="!checkLogin()">
+        </ul>
+        <li class="d-flex me-2" *ngIf="!checkLogin()">
           <app-login></app-login>
         </li>
         <li class="nav-item" *ngIf="checkLogin()">
           <app-logout></app-logout>
         </li>
-      </ul>
-      <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
+      <!-- </ul> -->
     </div>
   </div>
 </nav>

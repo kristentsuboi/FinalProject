@@ -22,7 +22,6 @@ public class AuthServiceImpl implements AuthService {
 		user.setPassword(encryptedPassword);
 		
 		user.setEnabled(true);
-		user.setRole("standard");
 		
 		return userRepo.saveAndFlush(user);
 	}

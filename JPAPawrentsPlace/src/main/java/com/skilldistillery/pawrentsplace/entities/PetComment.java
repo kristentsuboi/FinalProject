@@ -42,6 +42,10 @@ public class PetComment {
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
@@ -115,6 +119,14 @@ public class PetComment {
 		this.pet = pet;
 	}
 	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public PetComment getMainComment() {
 		return mainComment;

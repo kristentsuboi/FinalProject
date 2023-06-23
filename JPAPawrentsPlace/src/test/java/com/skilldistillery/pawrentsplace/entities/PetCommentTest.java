@@ -68,6 +68,7 @@ class PetCommentTest {
 	}
 	
 	@Test
+<<<<<<< Updated upstream
 	void petComment_to_pet_onetomany() {
 		assertNotNull(petComment);
 		assertEquals("brandon", petComment.getPet().getName());
@@ -90,5 +91,11 @@ class PetCommentTest {
 	}
 	
 	
+=======
+	void petComment_to_User_ManyToOne() {
+		assertNotNull(petComment);
+		assertEquals(2, petComment.getUser().getId());
+	}
+>>>>>>> Stashed changes
 
 }

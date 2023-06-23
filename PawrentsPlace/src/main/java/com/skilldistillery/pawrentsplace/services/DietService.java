@@ -11,6 +11,6 @@ public interface DietService {
 	public Diet show (String username, int dietId);
 	public Diet create(String username, int petId, Diet diet);
 	public Diet update(String username, int dietId, Diet diet, int petId);
-	public boolean delete(String username, int dietId); 
+	public boolean delete(String username, int dietId, int petId); 
 
 }

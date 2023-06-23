@@ -73,8 +73,8 @@ public class DietController {
 	}
 	
 	@DeleteMapping("pets/{petId}/diets/{dietId}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId, int dietId, Principal principal) {
-		   boolean deleted = dietService.delete(principal.getName(), petId);
+	public void destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int petId, @PathVariable int dietId, Principal principal) {
+		   boolean deleted = dietService.delete(principal.getName(), dietId, petId);
 		   if (deleted) {
 		    res.setStatus(204);
 		   }

@@ -62,13 +62,17 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private User user;
 	
+
 	@JsonIgnore
 	@OneToMany(mappedBy="pet")
 	private List<Diet> diets;
+
 
 	@JsonIgnore
 	@OneToMany(mappedBy="pet")
@@ -86,6 +90,8 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
+
+	@JsonIgnore
 	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;
 	

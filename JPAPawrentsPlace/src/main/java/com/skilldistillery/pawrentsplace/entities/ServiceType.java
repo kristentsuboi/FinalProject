@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="service_type") 
 public class ServiceType {
@@ -26,6 +28,7 @@ public class ServiceType {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="serviceTypes")
 	private List<Business> businesses;
 	

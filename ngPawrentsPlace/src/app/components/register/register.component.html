@@ -1,11 +1,22 @@
 
 <div name="addTodoForm">
   <h3 style="text-decoration: underline">Registration Form</h3>
-  <!-- <label for="email">Email:</label>
-  <input type="text" name="email" [(ngModel)]="user.email" /><br> -->
-  <label for="email">Create Username:</label>
-  <input type="text" name="username" [(ngModel)]="user.username" /><br>
-  <label for="email">Create Password:</label>
-  <input type="password" name="password" [(ngModel)]="user.password" /><br>
+
+  <label for="email">Create Username:&ensp;</label>
+  <input id="username" type="text" name="username" [(ngModel)]="user.username" required/><br>
+  <label for="email">Create Password:&ensp;</label>
+  <input id="password" type="password" name="password" [(ngModel)]="user.password" required/><br>
+  <label for="role">Select Role:&ensp;</label>
+  <select id="role" name="role" [(ngModel)]="user.role" required="">
+    <option value="Pawrent">Pawrent</option>
+    <option value="Provider">Provider</option>
+  </select><br>
+  <label for="email">Enter E-mail:&ensp;</label>
+  <input id="email" type="email" name="email" [(ngModel)]="user.email" required/><br>
+  <label for="phone">Enter Phone:&ensp;</label>
+  <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" required/><br>
+  <label for="imageUrl">Profile Picture Link:&ensp;</label>
+  <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="user.imageUrl"/><br>
+
   <input type="submit" value="Register" (click)="register(user)" />
   </div>

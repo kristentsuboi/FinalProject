@@ -73,7 +73,7 @@ public class User {
 	private List<Pet> pets;
 	
 	@ManyToMany
-	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
+	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
 	private List<Pet> petClients;
 
 	public User() {

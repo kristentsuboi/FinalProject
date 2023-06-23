@@ -88,8 +88,28 @@ class UserTest {
 	
 	@Test
 	void test_User_has_PetComments() {
-		assertNotNull(user);
-		assertNotNull(user.getAddress());
-		assertEquals(3, user.getAddress().getId());
+		User user2 = em.find(User.class, 2);
+		assertNotNull(user2);
+		assertNotNull(user2.getPetComments());
+		assertEquals(3, user2.getPetComments().size() > 0);
+		assertEquals(1, user2.getPetComments().get(0).getId());
+	}
+	
+	@Test
+	void test_User_has_Pets() {
+		User user3 = em.find(User.class, 3);
+		assertNotNull(user3);
+		assertNotNull(user3.getPets());
+		assertTrue(user3.getPetComments().size() > 0);
+		assertEquals("brandon", user3.getPets().get(0).getName());
+	}
+	
+	@Test
+	void test_User_has_PetClients() {
+		User user2 = em.find(User.class, 2);
+		assertNotNull(user2);
+		assertNotNull(user2.getPetClients());
+		assertTrue(user2.getPetClients().size() > 0);
+		assertEquals(1, user2.getPets().get(0).getId());
 	}
 }

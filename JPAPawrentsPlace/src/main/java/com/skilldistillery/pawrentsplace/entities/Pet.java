@@ -86,7 +86,7 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
-	@ManyToMany(mappedBy=“petClients”)
+	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;
 	
 	public Pet() {

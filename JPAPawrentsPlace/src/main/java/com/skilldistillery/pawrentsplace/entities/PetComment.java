@@ -51,9 +51,6 @@ public class PetComment {
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
@@ -87,13 +84,6 @@ public class PetComment {
 	}
 	
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;

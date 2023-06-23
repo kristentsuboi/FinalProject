@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -42,6 +44,36 @@ public class User {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+<<<<<<< Updated upstream
+=======
+	@ManyToOne
+	@JoinColumn(name="business_id")
+	private Business business; 
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address; 
+	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
+	
+	@ManyToMany(mappedBy="clients")
+	private List<Business> businessesUsed;
+	
+	@OneToMany(mappedBy="user")
+	private List<MedicalNote> medicalNotes;
+	
+	@OneToMany(mappedBy="user")
+	private List<PetComment> petComments;
+	
+	@OneToMany(mappedBy="user")
+	private List<Pet> pets;
+	
+
+	@ManyToMany
+	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
+	private List<Pet> petClients;
+>>>>>>> Stashed changes
 
 	public User() {
 		super();

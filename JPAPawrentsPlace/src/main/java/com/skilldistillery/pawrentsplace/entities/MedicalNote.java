@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="medical_note")
 public class MedicalNote {
@@ -30,6 +32,18 @@ public class MedicalNote {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+<<<<<<< Updated upstream
+=======
+	
+	@ManyToOne
+	@JoinColumn(name="pet_id")
+	private Pet pet; 
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+>>>>>>> Stashed changes
 
 	
 	

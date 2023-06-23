@@ -31,6 +31,7 @@ public class Business {
 	private String imageUrl;
 	
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -39,6 +40,20 @@ public class Business {
 	@OneToMany(mappedBy="business")
 	private List<BusinessRating> businessRatings;
 
+<<<<<<< Updated upstream
+=======
+
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> clients;
+	
+	@ManyToMany
+	@JoinTable(name = "service_provided_by_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "service_type_id"))
+	private List<ServiceType> serviceTypes;
+
+
+>>>>>>> Stashed changes
 	public Business() {
 		super();
 	}

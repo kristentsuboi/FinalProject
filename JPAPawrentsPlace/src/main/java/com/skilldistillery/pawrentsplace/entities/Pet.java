@@ -59,10 +59,41 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+<<<<<<< Updated upstream
+=======
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="owner_id")
+	private User user;
+	
+>>>>>>> Stashed changes
 	@JsonIgnore
 	@OneToMany(mappedBy="pet")
 	private List<Diet> diets;
 
+<<<<<<< Updated upstream
+=======
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<Shot> shots;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<Medication> medications;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<PetComment> petComments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="pet")
+	private List<MedicalNote> medicalNotes;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="petClients")
+	private List<User> providers;
+	
+>>>>>>> Stashed changes
 	public Pet() {
 		super();
 		// TODO Auto-generated constructor stub

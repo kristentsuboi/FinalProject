@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="pet_comment")
 public class PetComment {
@@ -44,10 +46,20 @@ public class PetComment {
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
+<<<<<<< Updated upstream
+=======
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "replying_to_id")
+	private PetComment mainComment;
+
+	@JsonIgnore
+>>>>>>> Stashed changes
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
 

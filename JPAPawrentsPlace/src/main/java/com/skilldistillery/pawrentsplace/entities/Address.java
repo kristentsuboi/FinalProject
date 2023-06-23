@@ -28,6 +28,13 @@ public class Address {
 	@OneToOne(mappedBy="address")
 	private Business business;
 
+<<<<<<< Updated upstream
+=======
+	@JsonIgnore
+	@OneToOne(mappedBy="address")
+	private User user;
+	
+>>>>>>> Stashed changes
 	public Address() {
 
 	}

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="service_type") 
 public class ServiceType {
@@ -24,6 +26,13 @@ public class ServiceType {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+<<<<<<< Updated upstream
+=======
+	@JsonIgnore
+	@ManyToMany(mappedBy="serviceTypes")
+	private List<Business> businesses;
+	
+>>>>>>> Stashed changes
 	public ServiceType() {
 		super();
 	}

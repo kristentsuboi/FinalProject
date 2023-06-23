@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 
@@ -33,6 +35,23 @@ public class Comment {
 	private String imageUrl;
 	
 	private String topic;
+<<<<<<< Updated upstream
+=======
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@JsonIgnore
+	@ManyToOne
+	 @JoinColumn(name = "replying_to_id")
+	 private Comment mainComment;
+	 
+	@JsonIgnore
+	 @OneToMany(mappedBy = "mainComment")
+	 private List<Comment> replies;
+>>>>>>> Stashed changes
 
 	public Comment() {
 		super();

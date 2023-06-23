@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
+import { PetComponent } from './components/pet/pet.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AccountComponent } from './components/account/account.component';
     LogoutComponent,
     AboutComponent,
     NotFoundComponent,
-    AccountComponent
+    AccountComponent,
+    PetComponent
   ],
   imports: [
     BrowserModule,

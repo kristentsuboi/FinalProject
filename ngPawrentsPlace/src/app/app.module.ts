@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
@@ -39,7 +39,8 @@ import { PetComponent } from './components/pet/pet.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgbAccordionModule
   ],
   providers: [
     AuthService

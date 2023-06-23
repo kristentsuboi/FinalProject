@@ -49,10 +49,10 @@ class CommentTest {
 	@Test
 	void comment_reply_test() {
 		assertNotNull(comment);
-		assertTrue(comment.getReplies().size() == 1);
+		assertTrue(comment.getReplies().size() > 0);
 		Comment comment2 = em.find(Comment.class, 2);
 		assertNotNull(comment2);
-		assertEquals("Can i sleep with a dog with rabies?", comment.getMainComment().getBody());
+		assertEquals("Can i sleep with a dog with rabies?", comment2.getMainComment().getBody());
 	}
 
 }

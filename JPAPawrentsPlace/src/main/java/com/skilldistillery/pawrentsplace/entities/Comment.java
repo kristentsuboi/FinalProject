@@ -110,6 +110,23 @@ public class Comment {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+
+	public Comment getMainComment() {
+		return mainComment;
+	}
+
+	public void setMainComment(Comment mainComment) {
+		this.mainComment = mainComment;
+	}
+
+	public List<Comment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<Comment> replies) {
+		this.replies = replies;
+	}
 
 	@Override
 	public int hashCode() {

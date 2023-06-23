@@ -12,6 +12,7 @@ import com.skilldistillery.pawrentsplace.entities.Diet;
 
 public interface DietRepository extends JpaRepository<Diet, Integer>{
 	List<Diet>findByPet_Id(int petId);
+	Diet findById(int dietId);
 	//Diet findByUser_UsernameAndId(String username, int dietId);
 	//Set<Diet> findByUser_Username(String username);
 	

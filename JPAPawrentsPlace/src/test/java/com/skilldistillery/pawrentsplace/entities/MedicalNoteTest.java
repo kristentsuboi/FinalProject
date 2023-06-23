@@ -49,5 +49,10 @@ class MedicalNoteTest {
 		assertNotNull(medicalNote);
 		assertEquals(1, medicalNote.getPet().getId());
 	}
+	@Test
+	void medicalNote_to_user_ManyToOne() {
+		assertNotNull(medicalNote);
+		assertEquals("vet", medicalNote.getUser().getUsername());
+	}
 
 }

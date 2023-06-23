@@ -36,6 +36,10 @@ public class MedicalNote {
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet; 
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	
 	
@@ -83,6 +87,14 @@ public class MedicalNote {
 
 	public void setPet(Pet pet) {
 		this.pet = pet;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

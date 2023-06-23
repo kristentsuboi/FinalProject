@@ -19,6 +19,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Pet {
@@ -69,7 +70,7 @@ public class Pet {
 	private User user;
 	
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")
 	private List<Diet> diets;
 

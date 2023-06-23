@@ -10,6 +10,7 @@ public interface PetRepository extends JpaRepository<Pet, Integer>  {
 	
 	Pet findByUser_UsernameAndId(String username, int petId);
 	Set<Pet> findByUser_Username(String username);
+	Pet findById(int petId);
 	
 	
 

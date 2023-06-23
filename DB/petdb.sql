@@ -456,6 +456,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `pet` (`id`, `name`, `species`, `breed`, `height`, `weight`, `gender`, `birth`, `color`, `about`, `microchipped`, `image_url`, `allergies`, `enabled`, `created_at`, `updated_at`, `owner_id`) VALUES (1, 'brandon', 'dog', 'chihuahua', 1, 6, 'male', '2018-12-21', 'brown', 'cool dog', 0, NULL, 'n/a', 1, NULL, NULL, 3);
+INSERT INTO `pet` (`id`, `name`, `species`, `breed`, `height`, `weight`, `gender`, `birth`, `color`, `about`, `microchipped`, `image_url`, `allergies`, `enabled`, `created_at`, `updated_at`, `owner_id`) VALUES (2, 'deletepet', 'dog', 'noexist', 5, 7, 'non-binary', '2018-12-21', 'white', 'cool dog', 1, NULL, 'none', 1, NULL, NULL, 4);
 
 COMMIT;
 
@@ -517,6 +518,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (1, 'call the other doctor', '2020-11-11', NULL, 1, 2);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (2, 'test this medical note', '2020-11-11', NULL, 2, 2);
 
 COMMIT;
 

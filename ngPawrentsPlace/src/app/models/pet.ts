@@ -1,3 +1,5 @@
+import { Diet } from "./diet";
+
 export class Pet {
 
   id: number;
@@ -16,6 +18,7 @@ export class Pet {
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
+  diets: Diet[];
 
   constructor(
     id: number = 0,
@@ -33,7 +36,8 @@ export class Pet {
     allergies: string = '',
     enabled: boolean = false,
     createdAt: string = '',
-    updatedAt: string = ''
+    updatedAt: string = '',
+    diets: Diet[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -51,5 +55,6 @@ export class Pet {
     this.enabled = enabled;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.diets = diets;
   }
 }

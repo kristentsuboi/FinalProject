@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `about` TEXT NULL,
   `phone` VARCHAR(100) NOT NULL,
   `image_url` VARCHAR(3000) NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_business_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_business_address1`

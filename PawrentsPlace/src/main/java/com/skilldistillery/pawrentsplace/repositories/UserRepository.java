@@ -7,4 +7,5 @@ import com.skilldistillery.pawrentsplace.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	User findByUsername(String username);
+	User findById(int userId);
 }

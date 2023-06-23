@@ -1,4 +1,4 @@
-<div id="listView" name="listView" *ngIf="!selected">
+<div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px;">
   <h4 style="text-align: center;">My Pets</h4>
   <table class="table table-striped">
     <thead>
@@ -13,7 +13,7 @@
     <tbody
       *ngFor="let pet of pets; let i = index" [attr.data-index]="i" >
       <tr style="vertical-align: middle; font-size: larger" >
-        <td><img src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture"></td>
+        <td><img src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture" style="max-width: 75px;"></td>
         <td>
           {{pet.name}}
         </td>
@@ -29,24 +29,45 @@
   </table>
 </div>
 
-<div name="detailPetView" *ngIf="selected && !editPet">
-  <div name="basicInfo">
-    <h4>ID: {{ selected.id }}</h4>
-    <p>Name: {{ selected.name }}</p>
-    <img src="{{ selected.gender }}" alt="{{selected.name}} picture"><br>
-    <blockquote *ngIf="selected.about">About: {{ selected.about }}</blockquote>
-    <p>Species: {{ selected.species }}</p>
-    <p>Breed: {{ selected.breed }}</p>
-    <p>Gender: {{ selected.gender }}</p>
-    <p>Birthday: {{ selected.birth }}</p>
-    <p *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</p>
-    <p *ngIf="selected.height">Height: {{ selected.height }} inches</p>
-    <p>Color: {{ selected.color }}</p>
-    <p>Microchipped: {{ selected.microchipped }}</p>
-    <p>Allergies: {{ selected.allergies }}</p>
-    <p>Last Update: {{ selected.updatedAt }}</p>
+<div name="addPetForm">
+  <hr>
+  <h3 style="text-decoration: underline">Add A Pet:</h3>
 
-    <button (click)="displayTable()">Back</button>
-    <button (click)="setEditPet()">Edit</button>
-  </div>
+  <label for="name">Name:&ensp;</label>
+  <input id="name" type="text" name="name" [(ngModel)]="newPet.name" required/><br>
+
+  <label for="species">Select Species:&ensp;</label>
+  <select id="species" name="species" [(ngModel)]="newPet.species" required>
+    <option value="Cat">Cat</option>
+    <option value="Dog">Dog</option>
+  </select><br>
+  <label for="breed">Breed:&ensp;</label>
+  <input id="breed" type="text" name="breed" [(ngModel)]="newPet.breed"/><br>
+  <label for="gender">Select Gender:&ensp;</label>
+  <select id="gender" name="gender" [(ngModel)]="newPet.gender" required>
+    <option value="female">female</option>
+    <option value="male">male</option>
+  </select><br>
+  <label for="birth">Birth:&ensp;</label>
+  <input id="birth" type="date" name="birth" [(ngModel)]="newPet.birth"/><br>
+  <label for="weight">Weight:&ensp;</label>
+  <input id="weight" type="number" name="weight" [(ngModel)]="newPet.weight" />
+  <label for="weight">pounds</label><br>
+  <label for="height">Height:&ensp;</label>
+  <input id="height" type="number" name="height" [(ngModel)]="newPet.height"/>
+  <label for="height">inches</label><br>
+  <label for="color">Color:&ensp;</label>
+  <input id="color" type="text" name="color" [(ngModel)]="newPet.color" /><br>
+  <label for="microchipped">Microchipped:&ensp;</label>
+  <select id="microchipped" name="microchipped" [(ngModel)]="newPet.microchipped" >
+    <option value="true">yes</option>
+    <option value="false">no</option>
+  </select><br>
+  <label for="allergies">Allergies:&ensp;</label>
+  <input id="allergies" type="text" name="allergies" [(ngModel)]="newPet.allergies" /><br>
+  <label for="imageUrl">Picture Link:&ensp;</label>
+  <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="newPet.imageUrl"/><br>
+  <label for="about">About:&ensp;</label><br>
+  <textarea id="about" name="about" [(ngModel)]="newPet.about"></textarea><br>
+  <input type="submit" value="Add Pet" (click)="addPet(newPet)" />
 </div>

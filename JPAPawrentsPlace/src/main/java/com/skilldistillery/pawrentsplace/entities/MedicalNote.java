@@ -39,11 +39,7 @@ public class MedicalNote {
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet; 
-	
 
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
 
 	@JsonIgnore
 	@ManyToOne

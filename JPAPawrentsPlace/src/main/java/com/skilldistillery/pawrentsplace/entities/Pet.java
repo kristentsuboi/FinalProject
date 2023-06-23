@@ -91,10 +91,6 @@ public class Pet {
 	private List<MedicalNote> medicalNotes;
 	
 
-	@ManyToMany(mappedBy="petClients")
-	private List<User> providers;
-	
-
 	@JsonIgnore
 	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;

@@ -52,9 +52,6 @@ public class Comment {
 	 @JoinColumn(name = "replying_to_id")
 	 private Comment mainComment;
 
-	 @OneToMany(mappedBy = "mainComment")
-	 private List<Comment> replies;
-
 	@JsonIgnore
 	 @OneToMany(mappedBy = "mainComment")
 	 private List<Comment> replies;

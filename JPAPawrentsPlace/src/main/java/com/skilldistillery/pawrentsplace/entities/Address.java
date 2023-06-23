@@ -34,12 +34,6 @@ public class Address {
 
 	@OneToOne(mappedBy="address")
 	private Business business;
-	
-
-
-	@OneToOne(mappedBy="address")
-	private User user;
-	
 
 	@JsonIgnore
 	@OneToOne(mappedBy="address")

@@ -28,11 +28,6 @@ public class ServiceType {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-
-	@ManyToMany(mappedBy="serviceTypes")
-	private List<Business> businesses;
-	
-
 	@JsonIgnore
 	@ManyToMany(mappedBy="serviceTypes")
 	private List<Business> businesses;

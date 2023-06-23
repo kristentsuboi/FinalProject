@@ -62,6 +62,33 @@ class PetCommentTest {
 		assertNotNull(comment2);
 		assertEquals("healthy dog", comment2.getMainComment().getBody());
 		assertTrue(petComment.getReplies().size() == 1);
+		assertEquals("healthy dog", petComment.getBody());
+		assertEquals(Month.DECEMBER, petComment.getUpdatedAt().getMonth());
+		
 	}
+	
+	@Test
+	void petComment_to_pet_onetomany() {
+		assertNotNull(petComment);
+		assertEquals("brandon", petComment.getPet().getName());
+	}
+	
+	@Test
+	void petComment_replies() {
+		PetComment comment2 = em.find(PetComment.class, 2);
+		assertNotNull(petComment);
+		assertNotNull(comment2);
+		assertEquals("healthy dog", comment2.getMainComment().getBody());
+		assertTrue(petComment.getReplies().size() == 1);
+
+	}
+	
+	@Test
+	void petComment_to_user_ManyToOne() {
+		assertNotNull(petComment);
+		assertEquals(2, petComment.getUser().getId());
+	}
+	
+	
 
 }

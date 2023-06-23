@@ -55,8 +55,6 @@ public class Business {
 	@OneToMany(mappedBy="business")
 	private List<BusinessRating> businessRatings;
 
-
-
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))

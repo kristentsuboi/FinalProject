@@ -63,7 +63,7 @@ public class Pet {
 	private LocalDateTime updatedAt;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="owner_id")
 	private User user;
 	
 	@JsonIgnore

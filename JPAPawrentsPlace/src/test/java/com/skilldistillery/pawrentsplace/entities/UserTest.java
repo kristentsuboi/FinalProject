@@ -91,7 +91,7 @@ class UserTest {
 		User user2 = em.find(User.class, 2);
 		assertNotNull(user2);
 		assertNotNull(user2.getPetComments());
-		assertEquals(3, user2.getPetComments().size() > 0);
+		assertTrue(user2.getPetComments().size() > 0);
 		assertEquals(1, user2.getPetComments().get(0).getId());
 	}
 	
@@ -110,6 +110,6 @@ class UserTest {
 		assertNotNull(user2);
 		assertNotNull(user2.getPetClients());
 		assertTrue(user2.getPetClients().size() > 0);
-		assertEquals(1, user2.getPets().get(0).getId());
+		assertEquals(1, user2.getPetClients().get(0).getId());
 	}
 }

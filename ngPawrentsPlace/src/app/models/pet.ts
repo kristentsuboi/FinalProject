@@ -37,7 +37,7 @@ export class Pet {
     enabled: boolean = false,
     createdAt: string = '',
     updatedAt: string = '',
-    diets: Diet[] =[]
+    diets: Diet[] = []
   ) {
     this.id = id;
     this.name = name;

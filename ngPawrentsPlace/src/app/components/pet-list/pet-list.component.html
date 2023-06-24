@@ -1,3 +1,11 @@
+<div id="userHeader" *ngIf="loggedInUser">
+  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
+    <h2 class="float-start">{{ loggedInUser.username }}</h2>
+    <img *ngIf="loggedInUser.imageUrl" src="{{ loggedInUser.imageUrl }}" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    <img *ngIf="!loggedInUser.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+  </div>
+</div>
+
 <div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px;">
   <h4 style="text-align: center;">My Pets</h4>
   <table class="table table-striped">

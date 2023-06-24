@@ -1,10 +1,12 @@
 
-<div name="detailPetView" *ngIf="selected">
+<div name="detailPetView" *ngIf="selected && loggedInUser">
 
-  <div name="petHeader" class="container container-fluid" style="height: 150px; margin: 15px 15px">
-    <h2 class="float-start">{{ selected.name }}</h2>
-    <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-    <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+  <div name="petHeader" >
+    <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
+      <h2 class="float-start">{{ selected.name }}</h2>
+      <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+      <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    </div>
   </div>
 
   <div class="container container-fluid">
@@ -289,9 +291,9 @@
                       <span *ngIf="medicalNote.updatedAt && (medicalNote.updatedAt != medicalNote.createdAt)">&ensp;Updated:&ensp;{{medicalNote.updatedAt}}</span>
                     </td>
                   </tr>
-                  <tr *ngIf="!editMedicalNote">
+                  <tr *ngIf="!editMedicalNote  && medicalNote.user">
                     <td *ngIf="!editMedicalNote">{{medicalNote.notes}}
-                      <span class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = medicalNote">Edit</button></span>
+                      <span *ngIf="(loggedInUser.id === medicalNote.user.id)" class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = medicalNote">Edit</button></span>
                     </td>
                   </tr>
                 </tbody>

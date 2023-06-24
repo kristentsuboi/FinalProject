@@ -1,6 +1,8 @@
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { PetService } from 'src/app/services/pet.service';
 
 @Component({
@@ -14,8 +16,11 @@ export class PetListComponent {
   editPet: Pet | null = null;
   selected: Pet | null = null;
 
+  loggedInUser: User | null = null;
+
   constructor(
     private petService: PetService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -41,8 +46,21 @@ export class PetListComponent {
         });
       }
     } else {
+      this.getLoggedInUser();
       this.reload();
     }
+  }
+
+  getLoggedInUser() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: function (theError) {
+        console.error('PetListComponent.reload(): Error loading user.');
+        console.error(theError);
+      },
+    });
   }
 
   reload() {

@@ -22,7 +22,7 @@
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
         <li class="nav-item" *ngIf="checkLogin()">
-          <a class="nav-link" [routerLink]="['/pets']">Profile</a>
+          <a class="nav-link" [routerLink]="['/pets']">My Pets</a>
         </li>
         <li class="nav-item"  *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/register']">Register</a>

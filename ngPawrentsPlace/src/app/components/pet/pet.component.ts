@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class PetComponent {
   editPet: Pet | null = null;
   selected: Pet | null = null;
 
+  loggedInUser: User | null = null;
   user: User | null = null;
 
   newDiet: Diet = new Diet();
@@ -46,6 +48,7 @@ export class PetComponent {
 
   constructor(
     private petService: PetService,
+    private authService: AuthService,
     private dietService: DietService,
     private shotService: ShotService,
     private medicationService: MedicationService,
@@ -64,10 +67,11 @@ export class PetComponent {
       } else {
         this.petService.show(id).subscribe({
           next: (pet) => {
+            this.getLoggedInUser();
             this.selected = pet;
           },
           error: (theError) => {
-            console.error('PetListComponent.ngOnInit(): Error loading pet.');
+            console.error('PetComponent.ngOnInit(): Error loading pet.');
             console.error(theError);
             this.router.navigateByUrl('**');
           },
@@ -76,6 +80,19 @@ export class PetComponent {
     } else {
       this.router.navigateByUrl('pets');
     }
+  }
+
+  getLoggedInUser() {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        console.log(user);
+        this.loggedInUser = user;
+      },
+      error: function (theError) {
+        console.error('PetComponent.reload(): Error loading user.');
+        console.error(theError);
+      },
+    });
   }
 
   reload(petId: number) {

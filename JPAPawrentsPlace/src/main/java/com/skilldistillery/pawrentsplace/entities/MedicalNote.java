@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="medical_note")
@@ -34,19 +35,15 @@ public class MedicalNote {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-
 	
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet; 
 
-
-	@JsonIgnore
+	@JsonIgnoreProperties({"medicalNotes", "pets", "petComments"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
-
-	
 	
 	public MedicalNote() {
 		super();

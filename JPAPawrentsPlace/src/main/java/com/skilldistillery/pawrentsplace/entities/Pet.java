@@ -63,17 +63,14 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private User user;
 	
-
 	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")
 	private List<Diet> diets;
-
 
 	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")

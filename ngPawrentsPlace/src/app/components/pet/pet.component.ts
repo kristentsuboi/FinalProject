@@ -8,6 +8,7 @@ import { PetComment } from 'src/app/models/pet-comment';
 import { Shot } from 'src/app/models/shot';
 import { User } from 'src/app/models/user';
 import { DietService } from 'src/app/services/diet.service';
+import { MedicationService } from 'src/app/services/medication.service';
 import { PetService } from 'src/app/services/pet.service';
 import { ShotService } from 'src/app/services/shot.service';
 
@@ -24,27 +25,21 @@ export class PetComponent {
 
   user: User | null = null;
 
-  // diets: Diet[] = [];
   newDiet: Diet = new Diet();
   editDiet: Diet | null = null;
 
-  // shots: Shot[] = [];
   newShot: Shot = new Shot();
   editShot: Shot | null = null;
 
-  // medications: Medication[] = [];
   newMedication: Medication = new Medication();
   editMedication: Medication | null = null;
 
-  // medicalNotes: MedicalNote[] = [];
   newMedicalNote: MedicalNote = new MedicalNote();
   editMedicalNote: MedicalNote | null = null;
 
-  // petComments: PetComment[] = [];
   newPetComment: PetComment = new PetComment();
   editPetComment: PetComment | null = null;
 
-  // providers: User[] = [];
   newUser: User = new User();
   editUser: User | null = null;
 
@@ -52,6 +47,7 @@ export class PetComponent {
     private petService: PetService,
     private dietService: DietService,
     private shotService: ShotService,
+    private medicationService: MedicationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -245,5 +241,53 @@ export class PetComponent {
       },
     });
   }
+
+  addMedication(petId: number, newMedication: Medication): void {
+    console.log(newMedication);
+    this.medicationService.create(petId, newMedication).subscribe({
+      next: (result) => {
+        this.newMedication = new Medication();
+        this.reload(petId);
+
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addMedication(): error creating medication:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  updateMedication(petId: number, editMedication: Medication): void {
+    console.log(editMedication);
+    this.medicationService.update(petId, editMedication).subscribe({
+      next: (result) => {
+        this.editMedication = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updateMedication(): error updating medication:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  cancelEditMedication(petId: number) {
+    this.editMedication = null;
+    this.reload(petId);
+  }
+
+  deleteMedication(petId: number, medicationId: number) {
+    this.medicationService.destroy(petId, medicationId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editMedication = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deleteMedication(): error deleting medication:');
+        console.error(nojoy);
+      },
+    });
+  }
+
 
 }

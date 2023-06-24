@@ -13,7 +13,10 @@
     <tbody
       *ngFor="let pet of pets; let i = index" [attr.data-index]="i" >
       <tr style="vertical-align: middle; font-size: larger" >
-        <td><img src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture" style="max-width: 75px;"></td>
+        <td>
+          <img *ngIf="pet.imageUrl" src="{{ pet.imageUrl }}" alt="{{pet.name}} Picture" style="max-width: 75px;">
+          <img *ngIf="!pet.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{pet.name}} Picture" style="max-width: 75px;">
+        </td>
         <td>
           {{pet.name}}
         </td>

@@ -75,6 +75,15 @@ export class PetListComponent {
     });
   }
 
+  calculateAge(birthdateStr: string): string {
+    let birthdate =  new Date(birthdateStr);
+    let timeDiff = Math.abs(Date.now() - birthdate.getTime());
+    let years = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    let rmngTime = ((timeDiff / (1000 * 3600 * 24))/365.25) - Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    let months = Math.floor(rmngTime * 12);
+    return (years + ' years, ' + months + ' months old');
+  }
+
   addPet(newPet: Pet): void {
     console.log(newPet);
     this.petService.create(newPet).subscribe({

@@ -2,27 +2,33 @@
 <div name="detailPetView" *ngIf="selected && loggedInUser">
 
   <div name="petHeader" >
+    <br>
     <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
-      <h2 class="float-start">{{ selected.name }}</h2>
+      <div class="float-start">
+        <h2>{{ selected.name | titlecase }}</h2>
+        <h5>{{selected.species | titlecase }}<span *ngIf="selected.breed">: {{selected.breed | titlecase }}</span></h5>
+        <h5>{{selected.gender}}</h5>
+        <h5 *ngIf="selected.birth">{{calculateAge(selected.birth)}}</h5>
+      </div>
       <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
       <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
     </div>
   </div>
 
   <div class="container container-fluid">
+  <br>
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="petAccordian">
     <ngb-panel title="Basic Information" id="config-panel-one">
       <ng-template ngbPanelContent>
         <div name="basicInfo" *ngIf="!editPet">
           <h4></h4>
           <!-- <p>ID: {{ selected.id }}</p> -->
-          <blockquote *ngIf="selected.about">About: {{ selected.about }}</blockquote>
-          <p>Species: {{ selected.species }}</p>
-          <p>Breed: {{ selected.breed }}</p>
-          <p>Gender: {{ selected.gender }}</p>
+          <blockquote *ngIf="selected.about">About: <em>{{ selected.about }}</em></blockquote>
+          <!-- <p>Species: {{ selected.species }}</p>
+          <p>Breed: {{ selected.breed }}</p> -->
+          <!-- <p>Gender: {{ selected.gender }}</p> -->
           <p>Birthday: {{ selected.birth }}</p>
-          <p *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</p>
-          <p *ngIf="selected.height">Height: {{ selected.height }} inches</p>
+          <p><span *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</span><span *ngIf="selected.height && selected.weight">,&ensp;</span><span *ngIf="selected.height">Height: {{ selected.height }} inches </span></p>
           <p>Color: {{ selected.color }}</p>
           <p>Microchipped: {{ selected.microchipped }}</p>
           <p>Allergies: {{ selected.allergies }}</p>

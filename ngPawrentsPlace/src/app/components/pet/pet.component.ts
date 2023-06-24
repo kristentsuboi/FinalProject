@@ -8,6 +8,7 @@ import { PetComment } from 'src/app/models/pet-comment';
 import { Shot } from 'src/app/models/shot';
 import { User } from 'src/app/models/user';
 import { DietService } from 'src/app/services/diet.service';
+import { MedicalNoteService } from 'src/app/services/medical-note.service';
 import { MedicationService } from 'src/app/services/medication.service';
 import { PetService } from 'src/app/services/pet.service';
 import { ShotService } from 'src/app/services/shot.service';
@@ -48,6 +49,7 @@ export class PetComponent {
     private dietService: DietService,
     private shotService: ShotService,
     private medicationService: MedicationService,
+    private medicalNoteService: MedicalNoteService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -74,7 +76,6 @@ export class PetComponent {
     } else {
       this.router.navigateByUrl('pets');
     }
-    console.log(this.selected);
   }
 
   reload(petId: number) {
@@ -121,7 +122,7 @@ export class PetComponent {
         this.selected = result;
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.updatePet(): error updating pet:');
+        console.error('PetHttpComponent.updatePet(): error updating pet:');
         console.error(nojoy);
       },
     });
@@ -290,52 +291,52 @@ export class PetComponent {
     });
   }
 
-  addMedicalNote(petId: number, newMedication: Medication): void {
-    console.log(newMedication);
-    this.medicationService.create(petId, newMedication).subscribe({
+  addMedicalNote(petId: number, newMedicalNote: MedicalNote): void {
+    console.log(newMedicalNote);
+    this.medicalNoteService.create(petId, newMedicalNote).subscribe({
       next: (result) => {
-        this.newMedication = new Medication();
+        this.newMedicalNote = new MedicalNote();
         this.reload(petId);
 
       },
       error: (nojoy) => {
-        console.error('PetHttpComponent.addMedication(): error creating medication:');
+        console.error('PetHttpComponent.addMedicalNote(): error creating medical note:');
         console.error(nojoy);
       },
     });
   }
 
-  // updateMedication(petId: number, editMedication: Medication): void {
-  //   console.log(editMedication);
-  //   this.medicationService.update(petId, editMedication).subscribe({
-  //     next: (result) => {
-  //       this.editMedication = null;
-  //       this.reload(petId);
-  //     },
-  //     error: (nojoy) => {
-  //       console.error('PetHttpComponent.updateMedication(): error updating medication:');
-  //       console.error(nojoy);
-  //     },
-  //   });
-  // }
+  updateMedicalNote(petId: number, editMedicalNote: MedicalNote): void {
+    console.log(editMedicalNote);
+    this.medicalNoteService.update(petId, editMedicalNote).subscribe({
+      next: (result) => {
+        this.editMedicalNote = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updateMedicalNote(): error updating medicalNote:');
+        console.error(nojoy);
+      },
+    });
+  }
 
-  // cancelEditMedication(petId: number) {
-  //   this.editMedication = null;
-  //   this.reload(petId);
-  // }
+  cancelEditMedicalNote(petId: number) {
+    this.editMedicalNote = null;
+    this.reload(petId);
+  }
 
-  // deleteMedication(petId: number, medicationId: number) {
-  //   this.medicationService.destroy(petId, medicationId).subscribe({
-  //     next: (result) => {
-  //       this.reload(petId);
-  //       this.editMedication = null;
-  //     },
-  //     error: (nojoy) => {
-  //       console.error('PetHttpComponent.deleteMedication(): error deleting medication:');
-  //       console.error(nojoy);
-  //     },
-  //   });
-  // }
+  deleteMedicalNote(petId: number, noteId: number) {
+    this.medicalNoteService.destroy(petId, noteId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editMedicalNote = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deleteMedicalNote(): error deleting medicalNote:');
+        console.error(nojoy);
+      },
+    });
+  }
 
 
 }

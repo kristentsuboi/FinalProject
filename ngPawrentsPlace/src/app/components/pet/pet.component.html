@@ -54,22 +54,22 @@
                 <td *ngIf="!editDiet"><button class="btn btn-outline-dark" (click)="editDiet = diet">Edit</button></td>
               </tr>
               <tr *ngIf="editDiet">
-                <td><input id="name" type="text" name="name" [(ngModel)]="editDiet.name" size="15" /></td>
-                <td><input id="type" type="text" name="type" [(ngModel)]="editDiet.type" size="15" /></td>
-                <td><input id="amount" type="text" name="amount" [(ngModel)]="editDiet.amount" size="15" /></td>
-                <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editDiet.frequency" size="15" /></td>
-                <td><input id="notes" type="text" name="notes" [(ngModel)]="editDiet.notes" size="15" /></td>
+                <td><input id="name" type="text" name="name" [(ngModel)]="editDiet.name" size="12" /></td>
+                <td><input id="type" type="text" name="type" [(ngModel)]="editDiet.type" size="12" /></td>
+                <td><input id="amount" type="text" name="amount" [(ngModel)]="editDiet.amount" size="12" /></td>
+                <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editDiet.frequency" size="12" /></td>
+                <td><input id="notes" type="text" name="notes" [(ngModel)]="editDiet.notes" size="12" /></td>
                 <td><button class="btn btn-outline-dark" (click)="updateDiet(selected.id, editDiet)">Update</button>
                 <button class="btn btn-outline-dark" (click)=cancelEditDiet(selected.id)>Cancel</button>
                 <button class="btn btn-outline-dark" (click)="deleteDiet(selected.id, editDiet.id)">Delete</button></td>
               </tr>
               <th *ngIf="!editDiet" colspan="6">&ensp;Add Diet:</th>
               <tr>
-                <td *ngIf="!editDiet"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newDiet.name" size="15"/></td>
-                <td *ngIf="!editDiet"><input id="type" type="text" name="type" placeholder="type" [(ngModel)]="newDiet.type" size="15" /></td>
-                <td *ngIf="!editDiet"><input id="amount" type="text" name="amount" placeholder="amount" [(ngModel)]="newDiet.amount" size="15" /></td>
-                <td *ngIf="!editDiet"><input id="frequency" type="text" name="frequency" placeholder="frequency" [(ngModel)]="newDiet.frequency" size="15" /></td>
-                <td *ngIf="!editDiet"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newDiet.notes" size="15" /></td>
+                <td *ngIf="!editDiet"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newDiet.name" size="12"/></td>
+                <td *ngIf="!editDiet"><input id="type" type="text" name="type" placeholder="type" [(ngModel)]="newDiet.type" size="12" /></td>
+                <td *ngIf="!editDiet"><input id="amount" type="text" name="amount" placeholder="amount" [(ngModel)]="newDiet.amount" size="12" /></td>
+                <td *ngIf="!editDiet"><input id="frequency" type="text" name="frequency" placeholder="frequency" [(ngModel)]="newDiet.frequency" size="12" /></td>
+                <td *ngIf="!editDiet"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newDiet.notes" size="12" /></td>
                 <td *ngIf="!editDiet"><button class="btn btn-outline-dark" (click)="addDiet(selected.id, newDiet)">Add</button></td>
               </tr>
             </tbody>
@@ -81,6 +81,60 @@
     <ngb-panel title="Medical Information" id="config-panel-three">
       <ng-template ngbPanelContent>
         <div name="medicalInfo">
+          <div name="shottInfo">
+            <h5>Shot Record:</h5>
+            <table class="table table-striped" *ngIf="selected.shots">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Date Last Administered</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Date Due</th>
+                  <th scope="col">Notes</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let shot of selected.shots">
+                  <td *ngIf="!editShot">{{shot.name}}</td>
+                  <td *ngIf="!editShot">{{shot.dateAdministered}}</td>
+                  <td *ngIf="!editShot">{{shot.frequency}}</td>
+                  <td *ngIf="!editShot">TBP auto-calc</td>
+                  <td *ngIf="!editShot">{{shot.notes}}</td>
+                  <td *ngIf="!editShot"><button class="btn btn-outline-dark" (click)="editShot = shot">Edit</button></td>
+                </tr>
+                <tr *ngIf="editShot">
+                  <td><input id="name" type="text" name="name" [(ngModel)]="editShot.name" size="12" /></td>
+                  <td><input id="amount" type="date" name="dateAdministered" [(ngModel)]="editShot.dateAdministered" /></td>
+                  <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editShot.frequency" size="12" /></td>
+                  <td>auto-calc</td>
+                  <td><input id="notes" type="text" name="notes" [(ngModel)]="editShot.notes" size="12" /></td>
+                  <td><button class="btn btn-outline-dark" (click)="updateShot(selected.id, editShot)">Update</button>
+                  <button class="btn btn-outline-dark" (click)=cancelEditShot(selected.id)>Cancel</button>
+                  <button class="btn btn-outline-dark" (click)="deleteShot(selected.id, editShot.id)">Delete</button></td>
+                </tr>
+                <th *ngIf="!editShot" colspan="6">&ensp;Add Shot:</th>
+                <tr>
+                  <td *ngIf="!editShot"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newShot.name" size="12" /></td>
+                  <td *ngIf="!editShot"><input id="dateAdministered" type="date" name="dateAdministered" [(ngModel)]="newShot.dateAdministered" /></td>
+                  <td *ngIf="!editShot">
+                    <select id="frequency" name="frequency" placeholder="frequency" [(ngModel)]="newShot.frequency">
+                      <option value="initial: 2wks">initial: 2wks</option>
+                      <option value="initial: 4wks">initial: 4wks</option>
+                      <option value="semi-annual">semi-annual</option>
+                      <option value="annual">annual</option>
+                      <option value="every 2yrs">every 2yrs</option>
+                      <option value="every 3yrs">every 3yrs</option>
+                    </select>
+                  </td>
+                  <td *ngIf="!editShot">auto-calc</td>
+                  <td *ngIf="!editShot"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newShot.notes" size="12" /></td>
+                  <td *ngIf="!editShot"><button class="btn btn-outline-dark" (click)="addShot(selected.id, newShot)">Add</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
 
         </div>
       </ng-template>

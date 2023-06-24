@@ -9,6 +9,7 @@ import { Shot } from 'src/app/models/shot';
 import { User } from 'src/app/models/user';
 import { DietService } from 'src/app/services/diet.service';
 import { PetService } from 'src/app/services/pet.service';
+import { ShotService } from 'src/app/services/shot.service';
 
 @Component({
   selector: 'app-pet',
@@ -23,33 +24,34 @@ export class PetComponent {
 
   user: User | null = null;
 
-  diets: Diet[] = [];
+  // diets: Diet[] = [];
   newDiet: Diet = new Diet();
   editDiet: Diet | null = null;
 
-  shots: Shot[] = [];
+  // shots: Shot[] = [];
   newShot: Shot = new Shot();
   editShot: Shot | null = null;
 
-  medications: Medication[] = [];
+  // medications: Medication[] = [];
   newMedication: Medication = new Medication();
   editMedication: Medication | null = null;
 
-  medicalNotes: MedicalNote[] = [];
+  // medicalNotes: MedicalNote[] = [];
   newMedicalNote: MedicalNote = new MedicalNote();
   editMedicalNote: MedicalNote | null = null;
 
-  petComments: PetComment[] = [];
+  // petComments: PetComment[] = [];
   newPetComment: PetComment = new PetComment();
   editPetComment: PetComment | null = null;
 
-  providers: User[] = [];
+  // providers: User[] = [];
   newUser: User = new User();
   editUser: User | null = null;
 
   constructor(
     private petService: PetService,
     private dietService: DietService,
+    private shotService: ShotService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -197,6 +199,51 @@ export class PetComponent {
     });
   }
 
+  addShot(petId: number, newShot: Shot): void {
+    console.log(newShot);
+    this.shotService.create(petId, newShot).subscribe({
+      next: (result) => {
+        this.newShot = new Shot();
+        this.reload(petId);
 
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addShot(): error creating shot:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  updateShot(petId: number, editShot: Shot): void {
+    console.log(editShot);
+    this.shotService.update(petId, editShot).subscribe({
+      next: (result) => {
+        this.editShot = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updateShot(): error updating shot:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  cancelEditShot(petId: number) {
+    this.editShot = null;
+    this.reload(petId);
+  }
+
+  deleteShot(petId: number, shotId: number) {
+    this.shotService.destroy(petId, shotId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editShot = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deleteShot(): error deleting shot:');
+        console.error(nojoy);
+      },
+    });
+  }
 
 }

@@ -1,7 +1,7 @@
 
 <div name="detailPetView" *ngIf="selected">
 
-  <div name="petHeader" class="container container-fluid" style="height: 150px; margin: 15px">
+  <div name="petHeader" class="container container-fluid" style="height: 150px; margin: 15px 15px">
     <h2 class="float-start">{{ selected.name }}</h2>
     <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
     <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
@@ -78,7 +78,7 @@
     <ngb-panel title="Diet Information" id="config-panel-two">
       <ng-template ngbPanelContent>
         <div name="dietInfo">
-          <table class="table table-striped" *ngIf="selected.diets">
+          <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -128,7 +128,7 @@
         <div name="medicalInfo">
           <div name="shotInfo">
             <h5>Shot Record:</h5>
-            <table class="table table-striped" *ngIf="selected.shots">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
@@ -189,15 +189,17 @@
             </table>
           </div>
 
+
           <div name="medicationInfo">
+            <br>
             <h5>Medication:</h5>
-            <table class="table table-striped" *ngIf="selected.medications">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
                   <th scope="col">Date Last Administered</th>
                   <th scope="col">Frequency</th>
-                  <th scope="col">Taken With Food</th>
+                  <th scope="col">With Food</th>
                   <th scope="col">Date Started</th>
                   <th scope="col">Notes</th>
                   <th scope="col"></th>
@@ -229,10 +231,10 @@
                   <td><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="editMedication.dateStarted" /></td>
                   <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedication.notes" size="12" /></td>
                   <td><button class="btn btn-outline-dark" (click)="updateMedication(selected.id, editMedication)">Update</button>
-                  <button class="btn btn-outline-dark" (click)=cancelEditShot(selected.id)>Cancel</button>
+                  <button class="btn btn-outline-dark" (click)=cancelEditMedication(selected.id)>Cancel</button>
                   <button class="btn btn-outline-dark" (click)="deleteMedication(selected.id, editMedication.id)">Delete</button></td>
                 </tr>
-                <th *ngIf="!editShot" colspan="6">&ensp;Add Medication:</th>
+                <th *ngIf="!editMedication" colspan="6">&ensp;Add Medication:</th>
                 <tr>
                   <td *ngIf="!editMedication"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newMedication.name" size="12" required /></td>
                   <td *ngIf="!editMedication"><input id="lastAdministered" type="date" name="lastAdministered" [(ngModel)]="newMedication.lastAdministered" /></td>
@@ -254,6 +256,53 @@
               </tbody>
             </table>
           </div>
+
+          <div name="medicalNotes">
+            <br>
+            <h5>Medical Notes:</h5>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let medicalNote of selected.medicalNotes">
+                  <td *ngIf="!editMedicalNote">{{medicalNote.notes}}</td>
+                  <td *ngIf="!editMedicalNote"><button class="btn btn-outline-dark" (click)="editMedicalNote = medicalNote">Edit</button></td>
+                </tr>
+                <!-- <tr *ngIf="editMedicalNote">
+                  <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedicalNote.notes" /></td>
+                  <td>
+                    <button class="btn btn-outline-dark" (click)="updateMedication(selected.id, editMedicalNote)">Update</button> -->
+                    <!-- <button class="btn btn-outline-dark" (click)=cancelEditMedication(selected.id)>Cancel</button>
+                    <button class="btn btn-outline-dark" (click)="deleteMedication(selected.id, editMedication.id)">Delete</button>
+                </td>
+                </tr> -->
+                <!-- <th *ngIf="!editMedicalNote" colspan="6">&ensp;Add Medical Note:</th>
+                <tr>
+                  <td *ngIf="!editMedication"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newMedication.name" size="12" required /></td>
+                  <td *ngIf="!editMedication"><input id="lastAdministered" type="date" name="lastAdministered" [(ngModel)]="newMedication.lastAdministered" /></td>
+                  <td *ngIf="!editMedication">
+                    <select id="frequency" name="frequency" placeholder="frequency" [(ngModel)]="newMedication.frequency">
+                      <option value="twice daily">twice daily</option>
+                      <option value="daily">daily</option>
+                      <option value="alternate days">alternate days</option>
+                      <option value="weekly">weekly</option>
+                      <option value="monthly">monthly</option>
+                      <option value="annually">annually</option>
+                    </select>
+                  </td>
+                  <td *ngIf="!editMedication"><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="newMedication.withFood" /></td>
+                  <td *ngIf="!editMedication"><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="newMedication.dateStarted" /></td>
+                  <td *ngIf="!editMedication"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newMedication.notes" size="12" /></td>
+                  <td *ngIf="!editMedication"><button class="btn btn-outline-dark" (click)="addMedication(selected.id, newMedication)">Add</button></td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+
 
         </div>
       </ng-template>

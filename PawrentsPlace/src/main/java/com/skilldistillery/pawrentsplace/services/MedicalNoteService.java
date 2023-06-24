@@ -6,7 +6,7 @@ import com.skilldistillery.pawrentsplace.entities.MedicalNote;
 
 public interface MedicalNoteService {
 
-
+	List<MedicalNote> index(String username, int petId);
 	MedicalNote show(String username, int medicalNoteId);
 	MedicalNote create(String username, MedicalNote medicalNote);
 	MedicalNote update(String username, int medicalNoteId, MedicalNote medicalNote);

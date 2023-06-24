@@ -6,8 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.pawrentsplace.entities.Diet;
 import com.skilldistillery.pawrentsplace.entities.MedicalNote;
+import com.skilldistillery.pawrentsplace.entities.Pet;
 import com.skilldistillery.pawrentsplace.repositories.MedicalNoteRepository;
+import com.skilldistillery.pawrentsplace.repositories.PetRepository;
 import com.skilldistillery.pawrentsplace.repositories.UserRepository;
 
 @Service
@@ -16,9 +19,22 @@ public class MedicalNoteServiceImpl implements MedicalNoteService {
     @Autowired
     private MedicalNoteRepository medicalNoteRepository;
     
+	@Autowired
+	private PetRepository petRepo;
+    
     @Autowired
 	private UserRepository userRepo;
     
+	@Override
+	public List<MedicalNote> index(String username, int petId) {
+		Pet pet = petRepo.findById(petId);
+		if(pet != null) {
+			return medicalNoteRepository.findByPet_Id(petId);
+			
+		}
+	return null;
+	}
+
 
     @Override
     public MedicalNote show(String username, int medicalNoteId) {

@@ -74,6 +74,7 @@ export class PetComponent {
     } else {
       this.router.navigateByUrl('pets');
     }
+    console.log(this.selected);
   }
 
   reload(petId: number) {
@@ -288,6 +289,53 @@ export class PetComponent {
       },
     });
   }
+
+  addMedicalNote(petId: number, newMedication: Medication): void {
+    console.log(newMedication);
+    this.medicationService.create(petId, newMedication).subscribe({
+      next: (result) => {
+        this.newMedication = new Medication();
+        this.reload(petId);
+
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addMedication(): error creating medication:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  // updateMedication(petId: number, editMedication: Medication): void {
+  //   console.log(editMedication);
+  //   this.medicationService.update(petId, editMedication).subscribe({
+  //     next: (result) => {
+  //       this.editMedication = null;
+  //       this.reload(petId);
+  //     },
+  //     error: (nojoy) => {
+  //       console.error('PetHttpComponent.updateMedication(): error updating medication:');
+  //       console.error(nojoy);
+  //     },
+  //   });
+  // }
+
+  // cancelEditMedication(petId: number) {
+  //   this.editMedication = null;
+  //   this.reload(petId);
+  // }
+
+  // deleteMedication(petId: number, medicationId: number) {
+  //   this.medicationService.destroy(petId, medicationId).subscribe({
+  //     next: (result) => {
+  //       this.reload(petId);
+  //       this.editMedication = null;
+  //     },
+  //     error: (nojoy) => {
+  //       console.error('PetHttpComponent.deleteMedication(): error deleting medication:');
+  //       console.error(nojoy);
+  //     },
+  //   });
+  // }
 
 
 }

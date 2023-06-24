@@ -1,8 +1,26 @@
+<div id="userHeader" *ngIf="loggedInUser">
+  <div class="container container-fluid" style="height: 150px; margin: 15px">
+    <br>
+    <div class="float-start">
+      <h2>{{ loggedInUser.username }}</h2>
+      <h5>{{ loggedInUser.phone }}</h5>
+      <h5>{{ loggedInUser.email }}</h5>
+      <button class="btn btn-outline-dark">View Account</button>
+    </div>
+    <img *ngIf="loggedInUser.imageUrl" src="{{ loggedInUser.imageUrl }}" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    <img *ngIf="!loggedInUser.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+  </div>
+</div>
+
 <div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px;">
+  <br>
+  <br>
+  <hr>
   <h4 style="text-align: center;">My Pets</h4>
   <table class="table table-striped">
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -18,13 +36,18 @@
           <img *ngIf="!pet.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{pet.name}} Picture" style="max-width: 75px;">
         </td>
         <td>
-          {{pet.name}}
+          {{pet.name | titlecase }}
         </td>
         <td>
-          <span>{{pet.breed}} {{pet.birth}}</span>
+          <span>{{pet.species | titlecase }}</span><span *ngIf="pet.breed">: {{pet.breed | titlecase }}</span>
         </td>
         <td>
+          <span *ngIf="pet.birth"> {{calculateAge(pet.birth)}}</span>
+        </td>
+        <td>
+          <span class="float-end">
           <button type="button" id="selectPetBtn" class="btn btn-outline-dark" (click)="displayPet(pet)">View Profile</button>
+          </span>
         </td>
 
       </tr>

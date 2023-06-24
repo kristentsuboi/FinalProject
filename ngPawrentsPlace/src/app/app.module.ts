@@ -18,6 +18,7 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PetComponent } from './components/pet/pet.component';
     NgbAccordionModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    TitleCasePipe
   ],
   bootstrap: [AppComponent]
 })

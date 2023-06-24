@@ -50,23 +50,22 @@ public class MedicalNoteServiceImpl implements MedicalNoteService {
 
 
     @Override
-    public MedicalNote create(String username, MedicalNote medicalNote) {
+    public MedicalNote create(String username, int petId, MedicalNote medicalNote) {
         // Set the user to the medicalNote
         medicalNote.setUser(userRepo.findByUsername(username));
+        medicalNote.setPet(petRepo.findById(petId));
         return medicalNoteRepository.save(medicalNote);
     }
 
     @Override
-    public MedicalNote update(String username, int medicalNoteId, MedicalNote medicalNote) {
+    public MedicalNote update(String username, int petId, int medicalNoteId, MedicalNote medicalNote) {
         Optional<MedicalNote> optionalMedicalNote = medicalNoteRepository.findById(medicalNoteId);
         if (optionalMedicalNote.isPresent()) {
             MedicalNote existingMedicalNote = optionalMedicalNote.get();
             if (existingMedicalNote.getUser().getUsername().equals(username)) {
            
                 existingMedicalNote.setNotes(medicalNote.getNotes());
-                existingMedicalNote.setUpdatedAt(medicalNote.getUpdatedAt());
-      
-
+//                existingMedicalNote.setUpdatedAt(medicalNote.getUpdatedAt());
                 return medicalNoteRepository.save(existingMedicalNote);
             }
         }
@@ -74,11 +73,13 @@ public class MedicalNoteServiceImpl implements MedicalNoteService {
     }
 
     @Override
-    public boolean delete(String username, int medicalNoteId) {
+    public boolean delete(String username, int petId, int medicalNoteId) {
         Optional<MedicalNote> optionalMedicalNote = medicalNoteRepository.findById(medicalNoteId);
         if (optionalMedicalNote.isPresent()) {
             MedicalNote medicalNote = optionalMedicalNote.get();
             if (medicalNote.getUser().getUsername().equals(username)) {
+            	medicalNote.setPet(null);
+            	medicalNote.setUser(null);
                 medicalNoteRepository.delete(medicalNote);
                 return true;
             }

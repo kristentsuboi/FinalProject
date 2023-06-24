@@ -1,26 +1,34 @@
 
-<div name="detailPetView" *ngIf="selected">
+<div name="detailPetView" *ngIf="selected && loggedInUser">
 
-  <div name="petHeader" class="container container-fluid" style="height: 150px; margin: 15px 15px">
-    <h2 class="float-start">{{ selected.name }}</h2>
-    <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-    <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+  <div name="petHeader" >
+    <br>
+    <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
+      <div class="float-start">
+        <h2>{{ selected.name | titlecase }}</h2>
+        <h5>{{selected.species | titlecase }}<span *ngIf="selected.breed">: {{selected.breed | titlecase }}</span></h5>
+        <h5>{{selected.gender}}</h5>
+        <h5 *ngIf="selected.birth">{{calculateAge(selected.birth)}}</h5>
+      </div>
+      <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+      <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    </div>
   </div>
 
   <div class="container container-fluid">
+  <br>
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="petAccordian">
     <ngb-panel title="Basic Information" id="config-panel-one">
       <ng-template ngbPanelContent>
         <div name="basicInfo" *ngIf="!editPet">
           <h4></h4>
           <!-- <p>ID: {{ selected.id }}</p> -->
-          <blockquote *ngIf="selected.about">About: {{ selected.about }}</blockquote>
-          <p>Species: {{ selected.species }}</p>
-          <p>Breed: {{ selected.breed }}</p>
-          <p>Gender: {{ selected.gender }}</p>
+          <blockquote *ngIf="selected.about">About: <em>{{ selected.about }}</em></blockquote>
+          <!-- <p>Species: {{ selected.species }}</p>
+          <p>Breed: {{ selected.breed }}</p> -->
+          <!-- <p>Gender: {{ selected.gender }}</p> -->
           <p>Birthday: {{ selected.birth }}</p>
-          <p *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</p>
-          <p *ngIf="selected.height">Height: {{ selected.height }} inches</p>
+          <p><span *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</span><span *ngIf="selected.height && selected.weight">,&ensp;</span><span *ngIf="selected.height">Height: {{ selected.height }} inches </span></p>
           <p>Color: {{ selected.color }}</p>
           <p>Microchipped: {{ selected.microchipped }}</p>
           <p>Allergies: {{ selected.allergies }}</p>
@@ -96,7 +104,7 @@
                 <td *ngIf="!editDiet">{{diet.amount}}</td>
                 <td *ngIf="!editDiet">{{diet.frequency}}</td>
                 <td *ngIf="!editDiet">{{diet.notes}}</td>
-                <td *ngIf="!editDiet"><button class="btn btn-outline-dark" (click)="editDiet = diet">Edit</button></td>
+                <td *ngIf="!editDiet"><span class="float-end"><button class="btn btn-outline-dark" (click)="editDiet = diet">Edit</button></span></td>
               </tr>
               <tr *ngIf="editDiet">
                 <td><input id="name" type="text" name="name" [(ngModel)]="editDiet.name" size="12" /></td>
@@ -104,9 +112,13 @@
                 <td><input id="amount" type="text" name="amount" [(ngModel)]="editDiet.amount" size="12" /></td>
                 <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editDiet.frequency" size="12" /></td>
                 <td><input id="notes" type="text" name="notes" [(ngModel)]="editDiet.notes" size="12" /></td>
-                <td><button class="btn btn-outline-dark" (click)="updateDiet(selected.id, editDiet)">Update</button>
-                <button class="btn btn-outline-dark" (click)=cancelEditDiet(selected.id)>Cancel</button>
-                <button class="btn btn-outline-dark" (click)="deleteDiet(selected.id, editDiet.id)">Delete</button></td>
+                <td>
+                  <span class="float-end">
+                    <button class="btn btn-outline-dark" (click)="updateDiet(selected.id, editDiet)">Update</button>
+                    <button class="btn btn-outline-dark" (click)=cancelEditDiet(selected.id)>Cancel</button>
+                    <button class="btn btn-outline-dark" (click)="deleteDiet(selected.id, editDiet.id)">Delete</button>
+                  </span>
+                </td>
               </tr>
               <th *ngIf="!editDiet" colspan="6">&ensp;Add Diet:</th>
               <tr>
@@ -115,7 +127,7 @@
                 <td *ngIf="!editDiet"><input id="amount" type="text" name="amount" placeholder="amount" [(ngModel)]="newDiet.amount" size="12" required /></td>
                 <td *ngIf="!editDiet"><input id="frequency" type="text" name="frequency" placeholder="frequency" [(ngModel)]="newDiet.frequency" size="12" required /></td>
                 <td *ngIf="!editDiet"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newDiet.notes" size="12" /></td>
-                <td *ngIf="!editDiet"><button class="btn btn-outline-dark" (click)="addDiet(selected.id, newDiet)">Add</button></td>
+                <td *ngIf="!editDiet"><span class="float-end"><button class="btn btn-outline-dark" (click)="addDiet(selected.id, newDiet)">Add</button></span></td>
               </tr>
             </tbody>
           </table>
@@ -127,6 +139,7 @@
       <ng-template ngbPanelContent>
         <div name="medicalInfo">
           <div name="shotInfo">
+            <br>
             <h5>Shot Record:</h5>
             <table class="table table-striped">
               <thead>
@@ -146,7 +159,7 @@
                   <td *ngIf="!editShot">{{shot.frequency}}</td>
                   <td *ngIf="!editShot">TBP auto-calc</td>
                   <td *ngIf="!editShot">{{shot.notes}}</td>
-                  <td *ngIf="!editShot"><button class="btn btn-outline-dark" (click)="editShot = shot">Edit</button></td>
+                  <td *ngIf="!editShot"><span class="float-end"><button class="btn btn-outline-dark" (click)="editShot = shot">Edit</button></span></td>
                 </tr>
                 <tr *ngIf="editShot">
                   <td><input id="name" type="text" name="name" [(ngModel)]="editShot.name" size="12" /></td>
@@ -163,9 +176,13 @@
                   </td>
                   <td>auto-calc</td>
                   <td><input id="notes" type="text" name="notes" [(ngModel)]="editShot.notes" size="12" /></td>
-                  <td><button class="btn btn-outline-dark" (click)="updateShot(selected.id, editShot)">Update</button>
-                  <button class="btn btn-outline-dark" (click)=cancelEditShot(selected.id)>Cancel</button>
-                  <button class="btn btn-outline-dark" (click)="deleteShot(selected.id, editShot.id)">Delete</button></td>
+                  <td>
+                    <span class="float-end">
+                      <button class="btn btn-outline-dark" (click)="updateShot(selected.id, editShot)">Update</button>
+                      <button class="btn btn-outline-dark" (click)=cancelEditShot(selected.id)>Cancel</button>
+                      <button class="btn btn-outline-dark" (click)="deleteShot(selected.id, editShot.id)">Delete</button>
+                    </span>
+                  </td>
                 </tr>
                 <th *ngIf="!editShot" colspan="6">&ensp;Add Shot:</th>
                 <tr>
@@ -183,7 +200,7 @@
                   </td>
                   <td *ngIf="!editShot">auto-calc</td>
                   <td *ngIf="!editShot"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newShot.notes" size="12" /></td>
-                  <td *ngIf="!editShot"><button class="btn btn-outline-dark" (click)="addShot(selected.id, newShot)">Add</button></td>
+                  <td *ngIf="!editShot"><span class="float-end"><button class="btn btn-outline-dark" (click)="addShot(selected.id, newShot)">Add</button></span></td>
                 </tr>
               </tbody>
             </table>
@@ -213,7 +230,7 @@
                   <td *ngIf="!editMedication">{{medication.withFood}}</td>
                   <td *ngIf="!editMedication">{{medication.dateStarted}}</td>
                   <td *ngIf="!editMedication">{{medication.notes}}</td>
-                  <td *ngIf="!editMedication"><button class="btn btn-outline-dark" (click)="editMedication = medication">Edit</button></td>
+                  <td *ngIf="!editMedication"><span class="float-end"><button class="btn btn-outline-dark" (click)="editMedication = medication">Edit</button></span></td>
                 </tr>
                 <tr *ngIf="editMedication">
                   <td><input id="name" type="text" name="name" [(ngModel)]="editMedication.name" size="12" /></td>
@@ -230,9 +247,13 @@
                   <td><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="editMedication.withFood" /></td>
                   <td><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="editMedication.dateStarted" /></td>
                   <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedication.notes" size="12" /></td>
-                  <td><button class="btn btn-outline-dark" (click)="updateMedication(selected.id, editMedication)">Update</button>
-                  <button class="btn btn-outline-dark" (click)=cancelEditMedication(selected.id)>Cancel</button>
-                  <button class="btn btn-outline-dark" (click)="deleteMedication(selected.id, editMedication.id)">Delete</button></td>
+                  <td>
+                    <span class="float-end">
+                      <button class="btn btn-outline-dark" (click)="updateMedication(selected.id, editMedication)">Update</button>
+                      <button class="btn btn-outline-dark" (click)=cancelEditMedication(selected.id)>Cancel</button>
+                      <button class="btn btn-outline-dark" (click)="deleteMedication(selected.id, editMedication.id)">Delete</button>
+                    </span>
+                  </td>
                 </tr>
                 <th *ngIf="!editMedication" colspan="6">&ensp;Add Medication:</th>
                 <tr>
@@ -251,7 +272,7 @@
                   <td *ngIf="!editMedication"><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="newMedication.withFood" /></td>
                   <td *ngIf="!editMedication"><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="newMedication.dateStarted" /></td>
                   <td *ngIf="!editMedication"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newMedication.notes" size="12" /></td>
-                  <td *ngIf="!editMedication"><button class="btn btn-outline-dark" (click)="addMedication(selected.id, newMedication)">Add</button></td>
+                  <td *ngIf="!editMedication"><span class="float-end"><button class="btn btn-outline-dark" (click)="addMedication(selected.id, newMedication)">Add</button></span></td>
                 </tr>
               </tbody>
             </table>
@@ -265,49 +286,71 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngIf="!editMedicalNote && medicalNote.user">
-                    <td><img *ngIf="medicalNote.user.imageUrl" src="{{medicalNote.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                    <td>
+                      <img *ngIf="medicalNote.user.imageUrl" src="{{medicalNote.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                      <img *ngIf="!medicalNote.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
                       &ensp;{{medicalNote.user.username}}&ensp;{{medicalNote.createdAt}}
-                      <span *ngIf="medicalNote.updatedAt">&ensp;Updated:&ensp;{{medicalNote.updatedAt}}</span>
+                      <span *ngIf="medicalNote.updatedAt && (medicalNote.updatedAt != medicalNote.createdAt)">&ensp;Updated:&ensp;{{medicalNote.updatedAt}}</span>
                     </td>
-                    <td *ngIf="!editMedicalNote"><button class="btn btn-outline-dark" (click)="editMedicalNote = medicalNote">Edit</button></td>
                   </tr>
-                  <tr *ngIf="!editMedicalNote">
-                    <td *ngIf="!editMedicalNote">{{medicalNote.notes}}</td>
+                  <tr *ngIf="!editMedicalNote  && medicalNote.user">
+                    <td *ngIf="!editMedicalNote">{{medicalNote.notes}}
+                      <span *ngIf="(loggedInUser.id === medicalNote.user.id)" class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = medicalNote">Edit</button></span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-                <!-- <tr *ngIf="editMedicalNote">
-                  <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedicalNote.notes" /></td>
-                  <td>
-                    <button class="btn btn-outline-dark" (click)="updateMedication(selected.id, editMedicalNote)">Update</button> -->
-                    <!-- <button class="btn btn-outline-dark" (click)=cancelEditMedication(selected.id)>Cancel</button>
-                    <button class="btn btn-outline-dark" (click)="deleteMedication(selected.id, editMedication.id)">Delete</button>
-                </td>
-                </tr> -->
-                <!-- <th *ngIf="!editMedicalNote" colspan="6">&ensp;Add Medical Note:</th>
-                <tr>
-                  <td *ngIf="!editMedication"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newMedication.name" size="12" required /></td>
-                  <td *ngIf="!editMedication"><input id="lastAdministered" type="date" name="lastAdministered" [(ngModel)]="newMedication.lastAdministered" /></td>
-                  <td *ngIf="!editMedication">
-                    <select id="frequency" name="frequency" placeholder="frequency" [(ngModel)]="newMedication.frequency">
-                      <option value="twice daily">twice daily</option>
-                      <option value="daily">daily</option>
-                      <option value="alternate days">alternate days</option>
-                      <option value="weekly">weekly</option>
-                      <option value="monthly">monthly</option>
-                      <option value="annually">annually</option>
-                    </select>
-                  </td>
-                  <td *ngIf="!editMedication"><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="newMedication.withFood" /></td>
-                  <td *ngIf="!editMedication"><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="newMedication.dateStarted" /></td>
-                  <td *ngIf="!editMedication"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newMedication.notes" size="12" /></td>
-                  <td *ngIf="!editMedication"><button class="btn btn-outline-dark" (click)="addMedication(selected.id, newMedication)">Add</button></td>
-                </tr> -->
+
+              <table class="table table-striped" *ngIf="editMedicalNote">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="editMedicalNote.user">
+                    <td>
+                      <img *ngIf="editMedicalNote.user.imageUrl" src="{{editMedicalNote.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                      <img *ngIf="!editMedicalNote.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
+                      &ensp;{{editMedicalNote.user.username}}&ensp;{{editMedicalNote.createdAt}}
+                      <span *ngIf="editMedicalNote.updatedAt && (editMedicalNote.updatedAt != editMedicalNote.createdAt)">&ensp;Updated:&ensp;{{editMedicalNote.updatedAt}}</span>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedicalNote.notes" /></td>
+                    <td>
+                      <span class="float-end">
+                        <button class="btn btn-outline-dark" (click)="updateMedicalNote(selected.id, editMedicalNote)">Update</button>
+                        <button class="btn btn-outline-dark" (click)=cancelEditMedicalNote(selected.id)>Cancel</button>
+                        <button class="btn btn-outline-dark" (click)="deleteMedicalNote(selected.id, editMedicalNote.id)">Delete</button>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table table-striped" *ngIf="!editMedication">
+                <thead>
+                  <tr>
+                    <th scope="col" >&ensp;Add Medical Note:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <td>
+                      <input id="notes" type="text" name="notes" [(ngModel)]="newMedicalNote.notes" />
+                      <span class="float-end"><button class="btn btn-outline-dark" (click)="addMedicalNote(selected.id, newMedicalNote)">Add</button></span>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
 
           </div>
 
@@ -319,6 +362,28 @@
     <ngb-panel title="Discussion Board" id="config-panel-four">
       <ng-template ngbPanelContent>
         <div name="discussionBoard">
+          <table class="table table-striped" *ngFor="let petComment of selected.petComments">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!editPetComment && petComment.user">
+                <td>
+                  <img *ngIf="petComment.user.imageUrl" src="{{petComment.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                  <img *ngIf="!petComment.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
+                  &ensp;{{petComment.user.username}}&ensp;{{petComment.createdAt}}
+                  <span *ngIf="petComment.updatedAt && (petComment.updatedAt != petComment.createdAt)">&ensp;Updated:&ensp;{{petComment.updatedAt}}</span>
+                </td>
+              </tr>
+              <tr *ngIf="!editPetComment">
+                <td *ngIf="!editPetComment">{{petComment.body}}
+                  <!-- <span class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = petComment">Edit</button></span> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
       </ng-template>

@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "pet_comment")
@@ -45,7 +46,7 @@ public class PetComment {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"medicalNotes", "pets", "petComments"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

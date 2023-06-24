@@ -60,7 +60,7 @@
                 <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editDiet.frequency" size="15" /></td>
                 <td><input id="notes" type="text" name="notes" [(ngModel)]="editDiet.notes" size="15" /></td>
                 <td><button class="btn btn-outline-dark" (click)="updateDiet(selected.id, editDiet)">Update</button>
-                <button class="btn btn-outline-dark" (click)=cancelEditDiet()>Cancel</button>
+                <button class="btn btn-outline-dark" (click)=cancelEditDiet(selected.id)>Cancel</button>
                 <button class="btn btn-outline-dark" (click)="deleteDiet(selected.id, editDiet.id)">Delete</button></td>
               </tr>
               <th *ngIf="!editDiet" colspan="6">&ensp;Add Diet:</th>

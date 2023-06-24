@@ -2,6 +2,11 @@ import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Diet } from 'src/app/models/diet';
+import { MedicalNote } from 'src/app/models/medical-note';
+import { Medication } from 'src/app/models/medication';
+import { PetComment } from 'src/app/models/pet-comment';
+import { Shot } from 'src/app/models/shot';
+import { User } from 'src/app/models/user';
 import { DietService } from 'src/app/services/diet.service';
 import { PetService } from 'src/app/services/pet.service';
 
@@ -15,9 +20,32 @@ export class PetComponent {
   newPet: Pet = new Pet();
   editPet: Pet | null = null;
   selected: Pet | null = null;
+
+  user: User | null = null;
+
   diets: Diet[] = [];
   newDiet: Diet = new Diet();
   editDiet: Diet | null = null;
+
+  shots: Shot[] = [];
+  newShot: Shot = new Shot();
+  editShot: Shot | null = null;
+
+  medications: Medication[] = [];
+  newMedication: Medication = new Medication();
+  editMedication: Medication | null = null;
+
+  medicalNotes: MedicalNote[] = [];
+  newMedicalNote: MedicalNote = new MedicalNote();
+  editMedicalNote: MedicalNote | null = null;
+
+  petComments: PetComment[] = [];
+  newPetComment: PetComment = new PetComment();
+  editPetComment: PetComment | null = null;
+
+  providers: User[] = [];
+  newUser: User = new User();
+  editUser: User | null = null;
 
   constructor(
     private petService: PetService,
@@ -151,8 +179,9 @@ export class PetComponent {
     });
   }
 
-  cancelEditDiet() {
+  cancelEditDiet(petId: number) {
     this.editDiet = null;
+    this.reload(petId);
   }
 
   deleteDiet(petId: number, dietId: number) {

@@ -286,7 +286,7 @@
                       <img *ngIf="medicalNote.user.imageUrl" src="{{medicalNote.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
                       <img *ngIf="!medicalNote.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
                       &ensp;{{medicalNote.user.username}}&ensp;{{medicalNote.createdAt}}
-                      <span *ngIf="medicalNote.updatedAt">&ensp;Updated:&ensp;{{medicalNote.updatedAt}}</span>
+                      <span *ngIf="medicalNote.updatedAt && (medicalNote.updatedAt != medicalNote.createdAt)">&ensp;Updated:&ensp;{{medicalNote.updatedAt}}</span>
                     </td>
                   </tr>
                   <tr *ngIf="!editMedicalNote">
@@ -310,7 +310,7 @@
                       <img *ngIf="editMedicalNote.user.imageUrl" src="{{editMedicalNote.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
                       <img *ngIf="!editMedicalNote.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
                       &ensp;{{editMedicalNote.user.username}}&ensp;{{editMedicalNote.createdAt}}
-                      <span *ngIf="editMedicalNote.updatedAt">&ensp;Updated:&ensp;{{editMedicalNote.updatedAt}}</span>
+                      <span *ngIf="editMedicalNote.updatedAt && (editMedicalNote.updatedAt != editMedicalNote.createdAt)">&ensp;Updated:&ensp;{{editMedicalNote.updatedAt}}</span>
                     </td>
                     <td></td>
                   </tr>
@@ -344,8 +344,6 @@
                 </tbody>
               </table>
 
-
-
           </div>
 
 
@@ -356,6 +354,28 @@
     <ngb-panel title="Discussion Board" id="config-panel-four">
       <ng-template ngbPanelContent>
         <div name="discussionBoard">
+          <table class="table table-striped" *ngFor="let petComment of selected.petComments">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!editPetComment && petComment.user">
+                <td>
+                  <img *ngIf="petComment.user.imageUrl" src="{{petComment.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                  <img *ngIf="!petComment.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
+                  &ensp;{{petComment.user.username}}&ensp;{{petComment.createdAt}}
+                  <span *ngIf="petComment.updatedAt && (petComment.updatedAt != petComment.createdAt)">&ensp;Updated:&ensp;{{petComment.updatedAt}}</span>
+                </td>
+              </tr>
+              <tr *ngIf="!editPetComment">
+                <td *ngIf="!editPetComment">{{petComment.body}}
+                  <!-- <span class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = petComment">Edit</button></span> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
         </div>
       </ng-template>

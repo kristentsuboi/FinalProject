@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.skilldistillery.pawrentsplace.entities.Diet;
 import com.skilldistillery.pawrentsplace.entities.MedicalNote;
 import com.skilldistillery.pawrentsplace.services.MedicalNoteService;
 
@@ -19,8 +20,14 @@ public class MedicalNoteController {
 
     @Autowired
     private MedicalNoteService medicalNoteService;
+    
+    @GetMapping("pets/{petId}/medicalNotes")
+	public List<MedicalNote> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, Principal principal) {
+		List<MedicalNote> medicalNotes = medicalNoteService.index(principal.getName(), petId);
+		return medicalNotes;
+	}
 
-    @GetMapping("medicalnote/{id}")
+    @GetMapping("medicalNotes/{id}")
     public MedicalNote show(HttpServletRequest req, 
     		HttpServletResponse res, 
     		Principal principal,
@@ -28,7 +35,7 @@ public class MedicalNoteController {
         return medicalNoteService.show(principal.getName(), id);
     }
 
-    @PostMapping("medicalnote")
+    @PostMapping("medicalNotes")
     public MedicalNote create(HttpServletRequest req, HttpServletResponse res, Principal principal, @RequestBody MedicalNote medicalNote) {
         try {
             return medicalNoteService.create(principal.getName(), medicalNote);
@@ -40,7 +47,7 @@ public class MedicalNoteController {
         return medicalNote;
     }
 
-    @PutMapping("medicalnote/{id}")
+    @PutMapping("medicalNotes/{id}")
     public MedicalNote update(HttpServletRequest req, 
     		HttpServletResponse res, 
     		Principal principal, 
@@ -49,7 +56,7 @@ public class MedicalNoteController {
         return medicalNoteService.update(principal.getName(), id, medicalNote);
     }
 
-    @DeleteMapping("medicalnote/{id}")
+    @DeleteMapping("medicalNotes/{id}")
     public void destroy(HttpServletRequest req, 
     		HttpServletResponse res, 
     		Principal principal,

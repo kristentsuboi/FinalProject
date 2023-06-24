@@ -83,16 +83,15 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<Medication> medications;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")
 	private List<PetComment> petComments;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"pet"})
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
-
-	@JsonIgnore
+	@JsonIgnoreProperties({"pet"})
 	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;
 	

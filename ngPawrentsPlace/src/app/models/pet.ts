@@ -1,4 +1,9 @@
 import { Diet } from "./diet";
+import { MedicalNote } from "./medical-note";
+import { Medication } from "./medication";
+import { PetComment } from "./pet-comment";
+import { Shot } from "./shot";
+import { User } from "./user";
 
 export class Pet {
 
@@ -18,7 +23,14 @@ export class Pet {
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
+  user: User | null;
   diets: Diet[];
+  shots: Shot[];
+  medications: Medication[];
+  medicalNotes: MedicalNote[];
+  petComments: PetComment[];
+  providers: User[];
+
 
   constructor(
     id: number = 0,
@@ -37,7 +49,13 @@ export class Pet {
     enabled: boolean = false,
     createdAt: string = '',
     updatedAt: string = '',
-    diets: Diet[] = []
+    user: User | null = null,
+    diets: Diet[] = [],
+    shots: Shot[] = [],
+    medications: Medication[] = [],
+    medicalNotes: MedicalNote[] = [],
+    petComments: PetComment[] = [],
+    providers: User[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -55,6 +73,12 @@ export class Pet {
     this.enabled = enabled;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.user = user;
     this.diets = diets;
+    this.shots = shots;
+    this.medications = medications;
+    this.medicalNotes = medicalNotes;
+    this.petComments = petComments;
+    this.providers = providers;
   }
 }

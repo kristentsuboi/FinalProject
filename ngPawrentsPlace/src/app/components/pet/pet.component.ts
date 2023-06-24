@@ -257,37 +257,37 @@ export class PetComponent {
     });
   }
 
-  // updateShot(petId: number, editShot: Shot): void {
-  //   console.log(editShot);
-  //   this.shotService.update(petId, editShot).subscribe({
-  //     next: (result) => {
-  //       this.editShot = null;
-  //       this.reload(petId);
-  //     },
-  //     error: (nojoy) => {
-  //       console.error('PetHttpComponent.updateShot(): error updating shot:');
-  //       console.error(nojoy);
-  //     },
-  //   });
-  // }
+  updateMedication(petId: number, editMedication: Medication): void {
+    console.log(editMedication);
+    this.medicationService.update(petId, editMedication).subscribe({
+      next: (result) => {
+        this.editMedication = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updateMedication(): error updating medication:');
+        console.error(nojoy);
+      },
+    });
+  }
 
-  // cancelEditShot(petId: number) {
-  //   this.editShot = null;
-  //   this.reload(petId);
-  // }
+  cancelEditMedication(petId: number) {
+    this.editMedication = null;
+    this.reload(petId);
+  }
 
-  // deleteShot(petId: number, shotId: number) {
-  //   this.shotService.destroy(petId, shotId).subscribe({
-  //     next: (result) => {
-  //       this.reload(petId);
-  //       this.editShot = null;
-  //     },
-  //     error: (nojoy) => {
-  //       console.error('PetHttpComponent.deleteShot(): error deleting shot:');
-  //       console.error(nojoy);
-  //     },
-  //   });
-  // }
+  deleteMedication(petId: number, medicationId: number) {
+    this.medicationService.destroy(petId, medicationId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editMedication = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deleteMedication(): error deleting medication:');
+        console.error(nojoy);
+      },
+    });
+  }
 
 
 }

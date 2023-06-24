@@ -81,7 +81,7 @@
     <ngb-panel title="Medical Information" id="config-panel-three">
       <ng-template ngbPanelContent>
         <div name="medicalInfo">
-          <div name="shottInfo">
+          <div name="shotInfo">
             <h5>Shot Record:</h5>
             <table class="table table-striped" *ngIf="selected.shots">
               <thead>
@@ -135,6 +135,61 @@
             </table>
           </div>
 
+          <div name="medicationInfo">
+            <h5>Medication:</h5>
+            <table class="table table-striped" *ngIf="selected.medications">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Date Last Administered</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Taken With Food</th>
+                  <th scope="col">Date Started</th>
+                  <th scope="col">Notes</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let medication of selected.medications">
+                  <td *ngIf="!editMedication">{{medication.name}}</td>
+                  <td *ngIf="!editMedication">{{medication.lastAdministered}}</td>
+                  <td *ngIf="!editMedication">{{medication.frequency}}</td>
+                  <td *ngIf="!editMedication">{{medication.withFood}}</td>
+                  <td *ngIf="!editMedication">{{medication.dateStarted}}</td>
+                  <td *ngIf="!editMedication">{{medication.notes}}</td>
+                  <td *ngIf="!editMedication"><button class="btn btn-outline-dark" (click)="editMedication = medication">Edit</button></td>
+                </tr>
+                <tr *ngIf="editShot">
+                  <td><input id="name" type="text" name="name" [(ngModel)]="editShot.name" size="12" /></td>
+                  <td><input id="amount" type="date" name="dateAdministered" [(ngModel)]="editShot.dateAdministered" /></td>
+                  <td><input id="frequency" type="text" name="frequency" [(ngModel)]="editShot.frequency" size="12" /></td>
+                  <td>auto-calc</td>
+                  <td><input id="notes" type="text" name="notes" [(ngModel)]="editShot.notes" size="12" /></td>
+                  <td><button class="btn btn-outline-dark" (click)="updateShot(selected.id, editShot)">Update</button>
+                  <button class="btn btn-outline-dark" (click)=cancelEditShot(selected.id)>Cancel</button>
+                  <button class="btn btn-outline-dark" (click)="deleteShot(selected.id, editShot.id)">Delete</button></td>
+                </tr>
+                <th *ngIf="!editShot" colspan="6">&ensp;Add Shot:</th>
+                <tr>
+                  <td *ngIf="!editShot"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newShot.name" size="12" /></td>
+                  <td *ngIf="!editShot"><input id="dateAdministered" type="date" name="dateAdministered" [(ngModel)]="newShot.dateAdministered" /></td>
+                  <td *ngIf="!editShot">
+                    <select id="frequency" name="frequency" placeholder="frequency" [(ngModel)]="newShot.frequency">
+                      <option value="initial: 2wks">initial: 2wks</option>
+                      <option value="initial: 4wks">initial: 4wks</option>
+                      <option value="semi-annual">semi-annual</option>
+                      <option value="annual">annual</option>
+                      <option value="every 2yrs">every 2yrs</option>
+                      <option value="every 3yrs">every 3yrs</option>
+                    </select>
+                  </td>
+                  <td *ngIf="!editShot">auto-calc</td>
+                  <td *ngIf="!editShot"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newShot.notes" size="12" /></td>
+                  <td *ngIf="!editShot"><button class="btn btn-outline-dark" (click)="addShot(selected.id, newShot)">Add</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
         </div>
       </ng-template>

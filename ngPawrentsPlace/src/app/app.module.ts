@@ -18,9 +18,9 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
-import { TitleCasePipe } from '@angular/common';
 import { BusinessComponent } from './components/business/business.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { ChatComponent } from './components/chat/chat.component';
     AccountComponent,
     PetComponent,
     BusinessComponent,
-    ChatComponent
+    ChatComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +49,7 @@ import { ChatComponent } from './components/chat/chat.component';
     NgbAccordionModule
   ],
   providers: [
-    AuthService,
-    TitleCasePipe
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

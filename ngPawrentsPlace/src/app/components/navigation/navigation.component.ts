@@ -5,10 +5,11 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent {
   public isCollapsed = false;
+
 
   constructor(private authService: AuthService) {
   }
@@ -35,5 +36,13 @@ export class NavigationComponent {
       },
     });
   }
+
+
+  constructor(private auth: AuthService) {}
+
+  checkLogin(): boolean {
+    return this.auth.checkLogin();
+  }
+
 
 }

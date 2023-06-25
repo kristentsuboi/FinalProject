@@ -58,7 +58,7 @@ export class PetComponent {
   ) {}
 
   ngOnInit(): void {
-    //check if route param for a todoid is present
+
     let idStr = this.route.snapshot.paramMap.get('id');
     if (!this.selected && idStr) {
       let id: number = Number.parseInt(idStr);

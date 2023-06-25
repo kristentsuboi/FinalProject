@@ -5,7 +5,8 @@
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
       <h5>{{ loggedInUser.email }}</h5>
-      <button class="btn btn-outline-dark">View Account</button>
+      <!-- <button class="btn btn-outline-dark" [routerLink]="['/account/{{loggedInUser.id}}']">View Account</button> -->
+      <a class="btn btn-outline-dark" [routerLink]="['/account', loggedInUser.id]">View Account</a>
     </div>
     <img *ngIf="loggedInUser.imageUrl" src="{{ loggedInUser.imageUrl }}" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
     <img *ngIf="!loggedInUser.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
@@ -55,45 +56,83 @@
   </table>
 </div>
 
-<div name="addPetForm">
-  <hr>
-  <h3 style="text-decoration: underline">Add A Pet:</h3>
+<br>
 
-  <label for="name">Name:&ensp;</label>
-  <input id="name" type="text" name="name" [(ngModel)]="newPet.name" required/><br>
+  <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="addPetAccordian">
+    <ngb-panel title="My Pet Care Providers" id="config-panel-one">
+      <ng-template ngbPanelContent>
+        <div id="userBusinesses">
 
-  <label for="species">Select Species:&ensp;</label>
-  <select id="species" name="species" [(ngModel)]="newPet.species" required>
-    <option value="Cat">Cat</option>
-    <option value="Dog">Dog</option>
-  </select><br>
-  <label for="breed">Breed:&ensp;</label>
-  <input id="breed" type="text" name="breed" [(ngModel)]="newPet.breed"/><br>
-  <label for="gender">Select Gender:&ensp;</label>
-  <select id="gender" name="gender" [(ngModel)]="newPet.gender" required>
-    <option value="female">female</option>
-    <option value="male">male</option>
-  </select><br>
-  <label for="birth">Birth:&ensp;</label>
-  <input id="birth" type="date" name="birth" [(ngModel)]="newPet.birth"/><br>
-  <label for="weight">Weight:&ensp;</label>
-  <input id="weight" type="number" name="weight" [(ngModel)]="newPet.weight" />
-  <label for="weight">pounds</label><br>
-  <label for="height">Height:&ensp;</label>
-  <input id="height" type="number" name="height" [(ngModel)]="newPet.height"/>
-  <label for="height">inches</label><br>
-  <label for="color">Color:&ensp;</label>
-  <input id="color" type="text" name="color" [(ngModel)]="newPet.color" /><br>
-  <label for="microchipped">Microchipped:&ensp;</label>
-  <select id="microchipped" name="microchipped" [(ngModel)]="newPet.microchipped" >
-    <option value="true">yes</option>
-    <option value="false">no</option>
-  </select><br>
-  <label for="allergies">Allergies:&ensp;</label>
-  <input id="allergies" type="text" name="allergies" [(ngModel)]="newPet.allergies" /><br>
-  <label for="imageUrl">Picture Link:&ensp;</label>
-  <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="newPet.imageUrl"/><br>
-  <label for="about">About:&ensp;</label><br>
-  <textarea id="about" name="about" [(ngModel)]="newPet.about"></textarea><br>
-  <input type="submit" value="Add Pet" (click)="addPet(newPet)" />
-</div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+     <ngb-panel title="Add A Pet" id="config-panel-two">
+      <ng-template ngbPanelContent>
+
+        <div name="addPetForm" style="width: max-content; margin: auto;">
+
+          <p>
+            <label for="name">Name:&ensp;</label>
+            <input id="name" type="text" name="name" [(ngModel)]="newPet.name" size="30" class="float-end" required/>
+          </p>
+          <p>
+            <label for="species">Select Species:&ensp;</label>
+            <select id="species" name="species" [(ngModel)]="newPet.species" style="width: 200px;" class="float-end" required>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+            </select>
+          </p>
+          <p>
+            <label for="breed">Breed:&ensp;</label>
+            <input id="breed" type="text" name="breed" [(ngModel)]="newPet.breed" size="30" class="float-end"/>
+          </p>
+          <p>
+            <label for="gender">Select Gender:&ensp;</label>
+            <select id="gender" name="gender" [(ngModel)]="newPet.gender" style="width: 205px;" class="float-end" required>
+              <option value="female">female</option>
+              <option value="male">male</option>
+            </select><br>
+          </p>
+          <p>
+            <label for="birth">Birth:&ensp;</label>
+            <input id="birth" type="date" name="birth" [(ngModel)]="newPet.birth" class="float-end"/>
+          </p>
+          <p>
+            <label for="weight">Weight (pounds):&ensp;</label>
+            <input id="weight" type="number" name="weight" min="0" max="9999" [(ngModel)]="newPet.weight" class="float-end"/>
+          </p>
+          <p>
+            <label for="height">Height (inches):&ensp;</label>
+            <input id="height" type="number" name="height" min="0" max="9999" [(ngModel)]="newPet.height" class="float-end"/>
+          </p>
+          <p>
+            <label for="color">Color:&ensp;</label>
+            <input id="color" type="text" name="color" [(ngModel)]="newPet.color" size="31" class="float-end"/>
+          </p>
+          <p>
+            <label for="microchipped">Microchipped:&ensp;</label>
+            <select id="microchipped" name="microchipped" [(ngModel)]="newPet.microchipped" style="width: 205px;" class="float-end">
+              <option value="true">yes</option>
+              <option value="false">no</option>
+            </select>
+          </p>
+          <p>
+            <label for="allergies">Allergies:&ensp;</label>
+            <input id="allergies" type="text" name="allergies" [(ngModel)]="newPet.allergies" size="28" class="float-end"/>
+          </p>
+          <p>
+            <label for="imageUrl">Picture Link:&ensp;</label>
+            <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="newPet.imageUrl" size="26" class="float-end"/>
+          </p>
+          <p>
+            <label for="about">About:&ensp;</label><br>
+            <textarea id="about" name="about" [(ngModel)]="newPet.about" cols="38"></textarea>
+          </p>
+            <input type="submit" value="Add Pet" (click)="addPet(newPet)" style="margin: auto;"/>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+
+

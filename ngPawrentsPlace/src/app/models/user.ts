@@ -1,3 +1,6 @@
+import { Address } from "./address";
+import { Business } from "./business";
+
 export class User {
 
 
@@ -11,6 +14,10 @@ export class User {
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
+  address: Address | null;
+  business: Business | null;
+  clients: User[];
+  businessesUsed: Business[];
 
   constructor(
   id: number = 0,
@@ -22,7 +29,11 @@ export class User {
   phone: string = '',
   imageUrl: string = '',
   createdAt: string = '',
-  updatedAt: string = ''
+  updatedAt: string = '',
+  address: Address | null = null,
+  business: Business | null = null,
+  clients: User[] = [],
+  businessesUsed: Business[] = []
   ) {
     this.id = id;
     this.username = username;
@@ -34,6 +45,10 @@ export class User {
     this.imageUrl = imageUrl;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.address = address;
+    this.business = business;
+    this.clients = clients;
+    this.businessesUsed = businessesUsed;
   }
 
 }

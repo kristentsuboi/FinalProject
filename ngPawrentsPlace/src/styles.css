@@ -1,5 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
-ngb-panel {
+ngb-accordian > ngb-panel {
+  color: gray;
   background-color: gray;
 }

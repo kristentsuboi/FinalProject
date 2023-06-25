@@ -19,6 +19,8 @@ import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
 import { TitleCasePipe } from '@angular/common';
+import { BusinessComponent } from './components/business/business.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { TitleCasePipe } from '@angular/common';
     AboutComponent,
     NotFoundComponent,
     AccountComponent,
-    PetComponent
+    PetComponent,
+    BusinessComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

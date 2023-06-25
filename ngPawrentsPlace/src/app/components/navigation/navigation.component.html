@@ -7,15 +7,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item" *ngIf="checkLogin()">
+        <li class="nav-item" *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/home']">Home</a>
         </li>
-        <li class="nav-item" *ngIf="checkLogin()">
-<<<<<<< Updated upstream
-          <a class="nav-link" [routerLink]="['/pets']">Profile</a>
-=======
+        <li class="nav-item" *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/about']">About</a>
->>>>>>> Stashed changes
         </li>
         <li class="nav-item" *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/register']">Register</a>

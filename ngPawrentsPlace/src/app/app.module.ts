@@ -43,10 +43,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
     BusinessComponent,
     ChatComponent,
-    FooterComponent
-
     FooterComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -55,9 +52,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     NgbModule,
 
-    NgbAccordionModule
-
-
+    NgbAccordionModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

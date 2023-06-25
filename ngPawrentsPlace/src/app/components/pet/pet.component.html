@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="container container-fluid">
+  <div class="container container-fluid" style="margin-bottom: 15px;">
   <br>
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="petAccordian">
     <ngb-panel title="Basic Information" id="config-panel-one">
@@ -36,11 +36,11 @@
 
           <p>
             <label for="name">Name:&ensp;</label>
-            <input id="name" type="text" name="name" [(ngModel)]="editPet.name" size="30" class="float-end" required/>
+            <input id="name" type="text" name="name" [(ngModel)]="editPet.name" size="30" class="float-end"/>
           </p>
           <p>
             <label for="species">Select Species:&ensp;</label>
-            <select id="species" name="species" [(ngModel)]="editPet.species" style="width: 200px;" class="float-end" required>
+            <select id="species" name="species" [(ngModel)]="editPet.species" style="width: 200px;" class="float-end">
               <option value="Cat">Cat</option>
               <option value="Dog">Dog</option>
             </select>
@@ -51,7 +51,7 @@
           </p>
           <p>
             <label for="gender">Select Gender:&ensp;</label>
-            <select id="gender" name="gender" [(ngModel)]="editPet.gender" style="width: 205px;" class="float-end" required>
+            <select id="gender" name="gender" [(ngModel)]="editPet.gender" style="width: 205px;" class="float-end">
               <option value="female">female</option>
               <option value="male">male</option>
             </select><br>

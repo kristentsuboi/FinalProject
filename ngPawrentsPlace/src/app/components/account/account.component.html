@@ -1,5 +1,5 @@
 <div id="userHeader" *ngIf="loggedInUser">
-  <div class="container container-fluid" style="height: 150px; margin: 15px">
+  <div class="container container-fluid" style="height: 150px; margin: 15px auto">
     <br>
     <div class="float-start">
       <h2>{{ loggedInUser.username }}</h2>
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="container container-fluid">
+<div class="container container-fluid" style="margin: 15px auto">
   <br>
   <div id="editForm" *ngIf="editUser">
     <hr>
@@ -20,15 +20,15 @@
   </div>
 </div>
 
-<div class="container container-fluid" *ngIf="loggedInUser">
+<div class="container container-fluid" style="margin: 15px auto" *ngIf="loggedInUser">
   <br>
   <div id="address">
     <hr>
     <h4>Address</h4>
     <br>
     <div *ngIf="loggedInUser.address && !editingAddress">
-      <p>{{loggedInUser.address.street}}</p>
-      <p>{{loggedInUser.address.city}}</p>
+      <p>{{loggedInUser.address.street | titlecase }}</p>
+      <p>{{loggedInUser.address.city  | titlecase }}</p>
       <p>{{loggedInUser.address.state}}</p>
       <p>{{loggedInUser.address.zipCode}}</p>
       <button class="btn btn-outline-dark" (click)="setEditAddress()">Edit Address</button>
@@ -56,7 +56,7 @@
       <button class="btn btn-outline-dark" (click)="deleteAddress(editingAddress.id)">Delete</button>
     </div>
 
-    <div *ngIf="!loggedInUser.address">
+    <div *ngIf="!loggedInUser.address" style="margin: 15px auto">
       <p>
         <label for="street">Street:&ensp;</label>
         <input id="street" name="street" [(ngModel)]="newAddress.street" />

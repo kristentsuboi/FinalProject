@@ -56,11 +56,50 @@
 </div>
 
 <br>
-
-  <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="addPetAccordian">
+<div id="accordian" style="margin-bottom: 15px;">
+  <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="providersAndAddPetAccordian">
     <ngb-panel title="My Pet Care Providers" id="config-panel-one">
       <ng-template ngbPanelContent>
-        <div id="userBusinesses">
+        <div id="userBusinesses" *ngIf="loggedInUser">
+
+          <table class="table table-striped" *ngFor="let business of loggedInUser.businessesUsed">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img *ngIf="business.imageUrl" src="{{business.imageUrl}}" alt="business picture" style="max-width: 35px">
+                  <img *ngIf="!business.imageUrl" src="http://pluspng.com/img-png/shop-png-black-and-white-shop-icon-it-s-an-icon-for-finding-local-shopping-the-logo-is-a-square-png-50-px-1600.png" alt="business picture" style="max-width: 35px">
+                  &ensp;{{business.name | titlecase }}&ensp;
+                  <span *ngFor="let service of business.serviceTypes">&ensp;{{service.name | titlecase }}&ensp;</span>
+                  <span class="float-end"><button class="btn btn-outline-dark">Remove</button></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" >&ensp;Add Care Provider:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  <label for="serviceType">Service Type:&ensp;</label>
+                  <select id="serviceType"></select>
+                  <label for="business">&ensp;Business:&ensp;</label>
+                  <select id="business"></select>
+                  <span class="float-end"><button class="btn btn-outline-dark">Add</button></span>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
 
         </div>
       </ng-template>
@@ -133,5 +172,5 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-
+</div>
 

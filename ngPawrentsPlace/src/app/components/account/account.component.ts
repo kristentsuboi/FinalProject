@@ -1,6 +1,7 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -11,6 +12,10 @@ import { User } from 'src/app/models/user';
 export class AccountComponent {
 
   loggedInUser: User | null = null;
+  editUser: User | null = null;
+
+  newAddress: Address = new Address();
+  editingAddress: Address | null = null;
 
   constructor(
     private authService: AuthService,
@@ -42,6 +47,36 @@ export class AccountComponent {
     }
   }
 
+  addAddress(userId: number, newAddress: Address) {
 
+  }
+
+  setEditAddress() {
+    if (this.loggedInUser) {
+    this.editingAddress = Object.assign({}, this.loggedInUser?.address);
+    }
+  }
+
+  cancelEditAddress() {
+    this.editingAddress = null;
+  }
+
+  editAddress(userId: number, addressId: number, editingAddress: Address) {
+
+  }
+
+  deleteAddress(addressId: number) {
+    if (this.loggedInUser) {
+    // this.addressService.destroy(addressId).subscribe({
+    //   next: (result) => {
+    //     this.router.navigateByUrl('account/' + this.loggedInUser.id);
+    //   },
+    //   error: (nojoy) => {
+    //     console.error('PetHttpComponent.deletePet(): error deleting pet:');
+    //     console.error(nojoy);
+    //   },
+    // });
+    }
+  }
 
 }

@@ -22,62 +22,80 @@
       <ng-template ngbPanelContent>
         <div name="basicInfo" *ngIf="!editPet">
           <h4></h4>
-          <!-- <p>ID: {{ selected.id }}</p> -->
           <blockquote *ngIf="selected.about">About: <em>{{ selected.about }}</em></blockquote>
-          <!-- <p>Species: {{ selected.species }}</p>
-          <p>Breed: {{ selected.breed }}</p> -->
-          <!-- <p>Gender: {{ selected.gender }}</p> -->
           <p>Birthday: {{ selected.birth }}</p>
           <p><span *ngIf="selected.weight">Weight: {{ selected.weight }} pounds</span><span *ngIf="selected.height && selected.weight">,&ensp;</span><span *ngIf="selected.height">Height: {{ selected.height }} inches </span></p>
           <p>Color: {{ selected.color }}</p>
           <p>Microchipped: {{ selected.microchipped }}</p>
           <p>Allergies: {{ selected.allergies }}</p>
           <p *ngIf="selected.updatedAt">Last Update: {{ selected.updatedAt }}</p>
-          <!-- <button class="btn btn-outline-dark" (click)="displayTable()">Back</button> -->
           <button class="btn btn-outline-dark" (click)="setEditPet()">Edit</button>
         </div>
 
-        <div name="editPetBasicsView" *ngIf="editPet">
-          <hr>
-          <!-- <h3 style="text-decoration: underline">Edit {{selected.name}}'s' Basic Information:</h3> -->
-          <label for="name">Name:&ensp;</label>
-          <input id="name" type="text" name="name" [(ngModel)]="editPet.name" required/><br>
-          <label for="species">Select Species:&ensp;</label>
-          <select id="species" name="species" [(ngModel)]="editPet.species" required>
-            <option value="Cat">Cat</option>
-            <option value="Dog">Dog</option>
-          </select><br>
-          <label for="breed">Breed:&ensp;</label>
-          <input id="breed" type="text" name="breed" [(ngModel)]="editPet.breed"/><br>
-          <label for="gender">Select Gender:&ensp;</label>
-          <select id="gender" name="gender" [(ngModel)]="editPet.gender" required>
-            <option value="female">female</option>
-            <option value="male">male</option>
-          </select><br>
-          <label for="birth">Birth:&ensp;</label>
-          <input id="birth" type="date" name="birth" [(ngModel)]="editPet.birth"/><br>
-          <label for="weight">Weight:&ensp;</label>
-          <input id="weight" type="number" name="weight" [(ngModel)]="editPet.weight" />
-          <label for="weight">pounds</label><br>
-          <label for="height">Height:&ensp;</label>
-          <input id="height" type="number" name="height" [(ngModel)]="editPet.height"/>
-          <label for="height">inches</label><br>
-          <label for="color">Color:&ensp;</label>
-          <input id="color" type="text" name="color" [(ngModel)]="editPet.color" /><br>
-          <label for="microchipped">Microchipped:&ensp;</label>
-          <select id="microchipped" name="microchipped" [(ngModel)]="editPet.microchipped" >
-            <option value="true">yes</option>
-            <option value="false">no</option>
-          </select><br>
-          <label for="allergies">Allergies:&ensp;</label>
-          <input id="allergies" type="text" name="allergies" [(ngModel)]="editPet.allergies" /><br>
-          <label for="imageUrl">Picture Link:&ensp;</label>
-          <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="editPet.imageUrl"/><br>
-          <label for="about">About:&ensp;</label><br>
-          <textarea id="about" name="about" [(ngModel)]="editPet.about"></textarea><br>
+        <div name="editPetBasicsView" *ngIf="editPet" style="width: max-content;">
+
+          <p>
+            <label for="name">Name:&ensp;</label>
+            <input id="name" type="text" name="name" [(ngModel)]="editPet.name" size="30" class="float-end" required/>
+          </p>
+          <p>
+            <label for="species">Select Species:&ensp;</label>
+            <select id="species" name="species" [(ngModel)]="editPet.species" style="width: 200px;" class="float-end" required>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+            </select>
+          </p>
+          <p>
+            <label for="breed">Breed:&ensp;</label>
+            <input id="breed" type="text" name="breed" [(ngModel)]="editPet.breed" size="30" class="float-end"/>
+          </p>
+          <p>
+            <label for="gender">Select Gender:&ensp;</label>
+            <select id="gender" name="gender" [(ngModel)]="editPet.gender" style="width: 205px;" class="float-end" required>
+              <option value="female">female</option>
+              <option value="male">male</option>
+            </select><br>
+          </p>
+          <p>
+            <label for="birth">Birth:&ensp;</label>
+            <input id="birth" type="date" name="birth" [(ngModel)]="editPet.birth" class="float-end"/>
+          </p>
+          <p>
+            <label for="weight">Weight (pounds):&ensp;</label>
+            <input id="weight" type="number" name="weight" min="0" max="9999" [(ngModel)]="editPet.weight" class="float-end"/>
+          </p>
+          <p>
+            <label for="height">Height (inches):&ensp;</label>
+            <input id="height" type="number" name="height" min="0" max="9999" [(ngModel)]="editPet.height" class="float-end"/>
+          </p>
+          <p>
+            <label for="color">Color:&ensp;</label>
+            <input id="color" type="text" name="color" [(ngModel)]="editPet.color" size="31" class="float-end"/>
+          </p>
+          <p>
+            <label for="microchipped">Microchipped:&ensp;</label>
+            <select id="microchipped" name="microchipped" [(ngModel)]="editPet.microchipped" style="width: 205px;" class="float-end">
+              <option value="true">yes</option>
+              <option value="false">no</option>
+            </select>
+          </p>
+          <p>
+            <label for="allergies">Allergies:&ensp;</label>
+            <input id="allergies" type="text" name="allergies" [(ngModel)]="editPet.allergies" size="28" class="float-end"/>
+          </p>
+          <p>
+            <label for="imageUrl">Picture Link:&ensp;</label>
+            <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="editPet.imageUrl" size="26" class="float-end"/>
+          </p>
+          <p>
+            <label for="about">About:&ensp;</label><br>
+            <textarea id="about" name="about" [(ngModel)]="editPet.about" cols="38"></textarea>
+          </p>
+          <span style="margin: auto;">
           <button class="btn btn-outline-dark" (click)="cancelEdit()">Cancel</button>
           <input class="btn btn-outline-dark" type="submit" value="Update Pet" (click)="updatePet(editPet)" />
           <button class="btn btn-outline-dark" (click)="deletePet(editPet.id)">Remove</button>
+          </span>
         </div>
 
       </ng-template>
@@ -327,7 +345,7 @@
                     <td>
                       <span class="float-end">
                         <button class="btn btn-outline-dark" (click)="updateMedicalNote(selected.id, editMedicalNote)">Update</button>
-                        <button class="btn btn-outline-dark" (click)=cancelEditMedicalNote(selected.id)>Cancel</button>
+                        <button class="btn btn-outline-dark" (click)="cancelEditMedicalNote(selected.id)">Cancel</button>
                         <button class="btn btn-outline-dark" (click)="deleteMedicalNote(selected.id, editMedicalNote.id)">Delete</button>
                       </span>
                     </td>
@@ -335,7 +353,7 @@
                 </tbody>
               </table>
 
-              <table class="table table-striped" *ngIf="!editMedication">
+              <table class="table table-striped" *ngIf="!editMedicalNote">
                 <thead>
                   <tr>
                     <th scope="col" >&ensp;Add Medical Note:</th>

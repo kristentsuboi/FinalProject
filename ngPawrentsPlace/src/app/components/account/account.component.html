@@ -1,1 +1,79 @@
-<p>account works!</p>
+<div id="userHeader" *ngIf="loggedInUser">
+  <div class="container container-fluid" style="height: 150px; margin: 15px">
+    <br>
+    <div class="float-start">
+      <h2>{{ loggedInUser.username }}</h2>
+      <h5>{{ loggedInUser.phone }}</h5>
+      <h5>{{ loggedInUser.email }}</h5>
+      <button class="btn btn-outline-dark" (click)="editUser = loggedInUser">Edit Account</button>
+    </div>
+    <img *ngIf="loggedInUser.imageUrl" src="{{ loggedInUser.imageUrl }}" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    <img *ngIf="!loggedInUser.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+  </div>
+</div>
+
+<div class="container container-fluid">
+  <br>
+  <div id="editForm" *ngIf="editUser">
+    <hr>
+
+  </div>
+</div>
+
+<div class="container container-fluid" *ngIf="loggedInUser">
+  <br>
+  <div id="address">
+    <hr>
+    <h4>Address</h4>
+    <br>
+    <div *ngIf="loggedInUser.address && !editingAddress">
+      <p>{{loggedInUser.address.street}}</p>
+      <p>{{loggedInUser.address.city}}</p>
+      <p>{{loggedInUser.address.state}}</p>
+      <p>{{loggedInUser.address.zipCode}}</p>
+      <button class="btn btn-outline-dark" (click)="setEditAddress()">Edit Address</button>
+    </div>
+
+    <div *ngIf="loggedInUser.address && editingAddress">
+      <p>
+        <label for="street">Street:&ensp;</label>
+        <input id="street" name="street" [(ngModel)]="editingAddress.street" />
+      </p>
+      <p>
+        <label for="city">City:&ensp;</label>
+        <input id="city" name="city" [(ngModel)]="editingAddress.city" />
+      </p>
+      <p>
+        <label for="state">State:&ensp;</label>
+        <input id="state" name="state" [(ngModel)]="editingAddress.state" />
+      </p>
+      <p>
+        <label for="zipCode">Zip Code:&ensp;</label>
+        <input id="zipCode" name="zipCode" [(ngModel)]="editingAddress.zipCode" />
+      </p>
+      <button class="btn btn-outline-dark" (click)="editAddress(loggedInUser.id, editingAddress.id, editingAddress)">Update</button>
+      <button class="btn btn-outline-dark" (click)="cancelEditAddress()">Cancel</button>
+      <button class="btn btn-outline-dark" (click)="deleteAddress(editingAddress.id)">Delete</button>
+    </div>
+
+    <div *ngIf="!loggedInUser.address">
+      <p>
+        <label for="street">Street:&ensp;</label>
+        <input id="street" name="street" [(ngModel)]="newAddress.street" />
+      </p>
+      <p>
+        <label for="city">City:&ensp;</label>
+        <input id="city" name="city" [(ngModel)]="newAddress.city" />
+      </p>
+      <p>
+        <label for="state">State:&ensp;</label>
+        <input id="state" name="state" [(ngModel)]="newAddress.state" />
+      </p>
+      <p>
+        <label for="zipCode">Zip Code:&ensp;</label>
+        <input id="zipCode" name="zipCode" [(ngModel)]="newAddress.zipCode" />
+      </p>
+      <button class="btn btn-outline-dark" (click)="addAddress(loggedInUser.id, newAddress)">Add Address</button>
+    </div>
+  </div>
+</div>

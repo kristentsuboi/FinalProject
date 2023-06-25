@@ -6,11 +6,11 @@ export class Address {
   zipCode: string;
 
   constructor(
-    id: number,
-  street: string,
-  city: string,
-  state: string,
-  zipCode: string
+    id: number = 0,
+    street: string = '',
+    city: string = '',
+    state: string = '',
+    zipCode: string = ''
   ) {
     this.id = id;
     this.street = street;

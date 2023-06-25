@@ -18,6 +18,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
+<<<<<<< Updated upstream
+=======
+import { TitleCasePipe } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -32,7 +37,8 @@ import { PetComponent } from './components/pet/pet.component';
     AboutComponent,
     NotFoundComponent,
     AccountComponent,
-    PetComponent
+    PetComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

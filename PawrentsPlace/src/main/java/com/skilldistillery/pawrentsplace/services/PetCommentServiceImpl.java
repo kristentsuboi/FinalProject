@@ -6,11 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.skilldistillery.pawrentsplace.entities.Pet;
 import com.skilldistillery.pawrentsplace.entities.PetComment;
+import com.skilldistillery.pawrentsplace.entities.User;
 import com.skilldistillery.pawrentsplace.repositories.PetCommentRepository;
 import com.skilldistillery.pawrentsplace.repositories.PetRepository;
+import com.skilldistillery.pawrentsplace.repositories.UserRepository;
 
 
 @Service 
@@ -20,6 +21,8 @@ public class PetCommentServiceImpl implements PetCommentService {
 	private PetCommentRepository petCommentRepo;
 	@Autowired
 	private PetRepository petRepo;
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<PetComment> index(String username, int petId) {
@@ -39,8 +42,10 @@ public class PetCommentServiceImpl implements PetCommentService {
 	@Override
 	public PetComment create(String username, int petId, PetComment comment) {
 		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
-		if (pet != null) {
+		User user = userRepo.findById(petId);
+		if (pet != null && user != null) {
 			comment.setPet(pet);
+			comment.setUser(user);
 			PetComment managedPetComment = petCommentRepo.saveAndFlush(comment);
 			return managedPetComment;
 		}
@@ -68,7 +73,7 @@ public class PetCommentServiceImpl implements PetCommentService {
 			ArrayList<PetComment> petComments = new ArrayList<>(pet.getPetComments());
 			for (PetComment petComment : petComments) {
 				if (petComment.getId() == petCommentId) {
-					pet.getMedications().remove(petComment);
+					pet.getPetComments().remove(petComment);
 				}
 			}
 			petRepo.saveAndFlush(pet);

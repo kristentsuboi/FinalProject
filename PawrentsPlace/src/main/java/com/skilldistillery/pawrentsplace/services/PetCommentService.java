@@ -7,9 +7,9 @@ import com.skilldistillery.pawrentsplace.entities.PetComment;
 
 public interface PetCommentService {
 	List<PetComment> index(String username, int petId);
-	PetComment show(String username, int medId);
+	PetComment show(String username, int petCommentId);
 	PetComment create(String username, int petId, PetComment comment);
-	PetComment update(String username, int medId, PetComment comment, int petId);
-	boolean delete(String username, int medId, int petId);
+	PetComment update(String username, int petCommentId, PetComment comment, int petId);
+	boolean delete(String username, int petCommentId, int petId);
 
 }

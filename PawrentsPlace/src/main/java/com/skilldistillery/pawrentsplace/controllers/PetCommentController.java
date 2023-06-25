@@ -8,15 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.pawrentsplace.entities.Medication;
 import com.skilldistillery.pawrentsplace.entities.PetComment;
+import com.skilldistillery.pawrentsplace.entities.Shot;
 import com.skilldistillery.pawrentsplace.services.PetCommentService;
 import com.skilldistillery.pawrentsplace.services.PetService;
 
@@ -63,8 +66,32 @@ public class PetCommentController {
 		return petComment;
 	}
 	
+	@PutMapping("pets/{petId}/petcomments/{petCommentId}")
+	public PetComment update(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @RequestBody PetComment petComment,
+			@PathVariable int petCommentId, Principal principal) {
+		PetComment updated = null;
+		try {
+			updated = petComService.update(principal.getName(), petCommentId, petComment, petId);
+			if (updated == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return updated;
+	}
 	
-	
+	@DeleteMapping("pets/{petId}/petcomments/{petCommentId}")
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId,
+			@PathVariable int petCommentId, Principal principal) {
+		boolean deleted = petComService.delete(principal.getName(), petCommentId, petId);
+		if (deleted) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(404);
+		}
+	}
 	
 
 }

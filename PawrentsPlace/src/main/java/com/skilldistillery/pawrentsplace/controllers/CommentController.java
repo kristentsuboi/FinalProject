@@ -83,5 +83,12 @@ public class CommentController {
 			res.setStatus(404);
 		}
 	}
+	
+//	@GetMapping("account/{userId}/comments/{commentId}/replies")
+//	public List<Comment> showReplies(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId, @PathVariable int commentId,
+//			Principal principal) {
+//		List<Comment> replies = commentService.showReplies(principal.getName(), commentId, userId);
+//		return replies;
+//	}
 
 }

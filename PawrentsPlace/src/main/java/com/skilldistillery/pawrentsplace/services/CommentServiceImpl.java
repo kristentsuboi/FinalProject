@@ -81,4 +81,18 @@ public class CommentServiceImpl implements CommentService {
 		
 	}
 
+//	@Override
+//	public List<Comment> showReplies(String username, int commentId, int userId) {
+//		List<Comment> allComments = commentRepo.findByUser_Id(userId);
+//		List<Comment> replies = null;
+//		for (Comment comment: allComments) {
+//			if (comment.getReplies() != null) {
+//				replies.add(comment);
+//				return replies;
+//			}
+//		}
+//		
+//		return null;
+//	}
+
 }

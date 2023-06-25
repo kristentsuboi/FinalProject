@@ -10,5 +10,6 @@ public interface CommentService {
 	Comment create(String username, int userId, Comment comment);
 	Comment update(String username, int commentId, Comment comment, int userId);
 	boolean delete(String username, int commentId, int userId);
+//	List<Comment> showReplies(String username, int commentId, int userId);
 
 }

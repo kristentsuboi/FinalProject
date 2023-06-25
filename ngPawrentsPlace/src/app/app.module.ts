@@ -18,8 +18,12 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
+
 import { BusinessComponent } from './components/business/business.component';
 import { ChatComponent } from './components/chat/chat.component';
+
+import { TitleCasePipe } from '@angular/common';
+
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
@@ -36,9 +40,13 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     AccountComponent,
     PetComponent,
+
     BusinessComponent,
     ChatComponent,
     FooterComponent
+
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,11 +54,12 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
+
     NgbAccordionModule
+
+
   ],
-  providers: [
-    AuthService
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

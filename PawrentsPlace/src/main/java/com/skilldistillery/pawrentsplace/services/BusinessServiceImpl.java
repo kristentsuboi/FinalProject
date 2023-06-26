@@ -52,4 +52,11 @@ public class BusinessServiceImpl implements BusinessService {
         }
         return false;
     }
+
+	@Override
+	public List<Business> findByServiceType(List<Business> service) {
+		List<Business> businesses = businessRepo.findByServiceTypes(service);
+		return businesses;
+		
+	}
 }

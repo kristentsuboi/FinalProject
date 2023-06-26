@@ -10,4 +10,5 @@ public interface BusinessService {
     Business create(Business business);
     Business update(int id, Business business);
     boolean delete(int id);
+    List<Business> findByServiceType(List<Business> serviceTypes);
 }

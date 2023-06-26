@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -76,7 +76,7 @@ public class User {
 	private List<Pet> pets;
 	
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"user", "providers", "petComments", "medicalNotes"})
 	@ManyToMany
 	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
 	private List<Pet> petClients;

@@ -1,5 +1,6 @@
 import { Address } from "./address";
 import { Business } from "./business";
+import { Pet } from "./pet";
 
 export class User {
 
@@ -16,7 +17,7 @@ export class User {
   updatedAt: string;
   address: Address | null;
   business: Business | null;
-  clients: User[];
+  petClients: Pet[];
   businessesUsed: Business[];
 
   constructor(
@@ -32,7 +33,7 @@ export class User {
   updatedAt: string = '',
   address: Address | null = null,
   business: Business | null = null,
-  clients: User[] = [],
+  petClients: Pet[] = [],
   businessesUsed: Business[] = []
   ) {
     this.id = id;
@@ -47,7 +48,7 @@ export class User {
     this.updatedAt = updatedAt;
     this.address = address;
     this.business = business;
-    this.clients = clients;
+    this.petClients = petClients;
     this.businessesUsed = businessesUsed;
   }
 

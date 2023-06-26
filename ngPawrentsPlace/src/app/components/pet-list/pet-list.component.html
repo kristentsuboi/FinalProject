@@ -91,11 +91,15 @@
               <tr >
                 <td>
                   <label for="serviceType">Service Type:&ensp;</label>
-                  <select id="serviceType">
-                    <option  *ngFor="let service of serviceTypes" value="{{service.name}}">{{service.name}}</option>
+                  <select id="serviceType" [(ngModel)]="addBusiness.id">
+                    <!-- (onChange)="getBusinesses()" -->
+                    <option  *ngFor="let service of serviceTypes" name="id" value="{{service.id}}">{{service.name}}</option>
                   </select>
+                  <input class="button btn-outline-dark" type="submit" value="Find Businesses" (click)="getBusinesses(addBusiness.id)"/>
                   <label for="business">&ensp;Business:&ensp;</label>
-                  <select id="business"></select>
+                  <select id="business">
+                    <option  *ngFor="let business of typedBusinesses" value="{{business.name}}" >{{business.name | titlecase}}</option>
+                  </select>
                   <span class="float-end"><button class="btn btn-outline-dark">Add</button></span>
                 </td>
 

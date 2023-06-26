@@ -14,7 +14,9 @@ export class NavigationComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.getLoggedInUser();
+    // if(this.checkLogin()) {
+    // this.getLoggedInUser();
+    // }
   }
 
   checkLogin(): boolean {
@@ -22,15 +24,15 @@ export class NavigationComponent implements OnInit {
   }
 
   getLoggedInUser() {
-    this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        console.log(user);
-        this.loggedInUser = user;
-      },
-      error: function (theError) {
-        console.error('NavigationComponent.getLoggedInUser(): Error loading user.');
-        console.error(theError);
-      },
-    });
+  //   this.authService.getLoggedInUser().subscribe({
+  //     next: (user) => {
+  //       console.log(user);
+  //       this.loggedInUser = user;
+  //     },
+  //     error: function (theError) {
+  //       console.error('NavigationComponent.getLoggedInUser(): Error loading user.');
+  //       console.error(theError);
+  //     },
+  //   });
   }
 }

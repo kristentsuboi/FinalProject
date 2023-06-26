@@ -10,6 +10,7 @@ public interface BusinessRepository extends JpaRepository<Business, Integer> {
 	
     List<Business> findByIdAndEmployees(int businessId, User employeeId);
     List<Business> findByServiceTypesId(int serviceTypeId);
+    Business findById(int businessId);
 //    List<ServiceType> findByServiceTypeId(int serviceTypeId);
     
 }

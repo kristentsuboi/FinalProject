@@ -20,7 +20,7 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public Business findById(int id) {
-        return businessRepo.findById(id).orElse(null);
+        return businessRepo.findById(id);
     }
 
     @Override

@@ -11,5 +11,8 @@ public interface AddressService {
 	public Address create(String username, Address address);
 	public Address update(String username, int addressId, Address address);
 	public boolean delete(String username, int addressId); 
+	public Address create(int businessId, Address address);
+	public Address update(int businessId, int addressId, Address address);
+	public boolean delete(int businessId, int addressId); 
 
 }

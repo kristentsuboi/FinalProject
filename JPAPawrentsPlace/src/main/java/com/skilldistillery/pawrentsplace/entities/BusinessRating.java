@@ -36,12 +36,13 @@ public class BusinessRating {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	@JsonIgnoreProperties({"businessRatings"})
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="business_id")
 	@MapsId(value = "businessId")
 	private Business business;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")

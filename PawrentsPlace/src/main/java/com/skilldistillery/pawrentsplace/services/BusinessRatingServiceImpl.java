@@ -27,9 +27,8 @@ public class BusinessRatingServiceImpl implements BusinessRatingService {
 
 	@Override
 	public List<BusinessRating> index(int businessId) {
-		Optional<Business> businessOpt = businessRepo.findById(businessId);
-		if(businessOpt.isPresent()) {
-			Business business = businessOpt.get();
+		Business business = businessRepo.findById(businessId);
+		if(business != null) {
 			return business.getBusinessRatings();
 		};
 		return null;

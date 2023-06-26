@@ -25,6 +25,9 @@ import { ChatComponent } from './components/chat/chat.component';
 import { TitleCasePipe } from '@angular/common';
 
 import { FooterComponent } from './components/footer/footer.component';
+import { LastestPostComponent } from './components/lastest-post/lastest-post.component';
+import { TeamComponent } from './components/team/team.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { FooterComponent } from './components/footer/footer.component';
     BusinessComponent,
     ChatComponent,
     FooterComponent,
+    LastestPostComponent,
+    TeamComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

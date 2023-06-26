@@ -87,5 +87,12 @@ export class BusinessService {
     return this.http.delete<void>(this.url + '/' + businessId, this.getHttpOptions());
   }
 
+  addBusinessToUserList(userId: number, businessId: number){
+
+  }
+
+  removeBusinessFromUserList(userId: number, businessId: number){
+
+  }
 
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -198,6 +199,23 @@ public class User {
 
 	public void setBusinessesUsed(List<Business> businessesUsed) {
 		this.businessesUsed = businessesUsed;
+	}
+	
+	public void addBusinessUsed(Business business) {
+		if (businessesUsed == null) {
+			businessesUsed = new ArrayList<>();
+		}
+		if (!businessesUsed.contains(business)) {
+			businessesUsed.add(business);
+			business.addClient(this);
+		}
+	}
+	
+	public void removeBusinessUsed(Business business) {
+		if (businessesUsed != null && businessesUsed.contains(business)) {
+			businessesUsed.remove(business);
+			business.removeClient(this);
+		}
 	}
 	
 	public List<MedicalNote> getMedicalNotes() {

@@ -563,8 +563,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Veterinarians ', 'we take care of your dog', NULL);
-INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Grooming', 'we make your dog looks beautiful', NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Veterinary', 'NULL', NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Boarding', 'NULL', NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (3, 'Grooming', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (4, 'Walking', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (5, 'Sitting', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (6, 'Training', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (7, 'Photography', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (8, 'Transportation', NULL, NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (9, 'Other', NULL, NULL);
 
 COMMIT;
 

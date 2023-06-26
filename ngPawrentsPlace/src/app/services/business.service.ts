@@ -27,19 +27,31 @@ export class BusinessService {
     return options;
   }
 
-  index(id: number): Observable<Business[]> {
-    return this.http.get<Business[]>(this.url + '/' + id + "/businesss", this.getHttpOptions()).pipe(
+  index(): Observable<Business[]> {
+    return this.http.get<Business[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('BusinessService.index(): error retrieving businesss: ' + err)
+          () => new Error('BusinessService.index(): error retrieving business: ' + err)
         );
       })
     );
   }
 
-  create(userId: number, business: Business): Observable<Business> {
-    return this.http.post<Business>(this.url + '/' + userId + '/businesss', business, this.getHttpOptions()).pipe(
+
+  show(id: number): Observable<Business[]> {
+    return this.http.get<Business[]>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('BusinessService.show(): error retrieving businesses: ' + err)
+        );
+      })
+    );
+  }
+
+  create(business: Business): Observable<Business> {
+    return this.http.post<Business>(this.url, business, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
@@ -49,8 +61,8 @@ export class BusinessService {
     );
   }
 
-  update(userId: number, editBusiness: Business): Observable<Business> {
-    return this.http.put<Business>(this.url + '/' + userId + '/businesss/' + editBusiness.id, editBusiness, this.getHttpOptions()).pipe(
+  update(editBusiness: Business): Observable<Business> {
+    return this.http.put<Business>(this.url + '/' + editBusiness.id, editBusiness, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError(
@@ -60,8 +72,8 @@ export class BusinessService {
     );
   }
 
-  destroy(userId: number, businessId: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + userId + '/businesss/' + businessId, this.getHttpOptions());
+  destroy(businessId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + businessId, this.getHttpOptions());
   }
 
 

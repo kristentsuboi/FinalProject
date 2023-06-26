@@ -32,16 +32,15 @@
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
         <li class="nav-item" *ngIf="checkLogin()">
-          <a class="nav-link" [routerLink]="['/pets']">My Pets</a>
+          <a *ngIf="loggedInUser && (loggedInUser.role === 'parent')" class="nav-link" [routerLink]="['/pets']">My Pets</a>
         </li>
-
-        <!-- <li class="nav-item" *ngIf="checkLogin()">
+        <li class="nav-item" *ngIf="checkLogin()">
+          <a *ngIf="loggedInUser && (loggedInUser.role === 'provider')" class="nav-link" [routerLink]="['/clients']">My Clients</a>
+        </li>
+        <li class="nav-item" *ngIf="checkLogin()">
           <a *ngIf="loggedInUser" class="nav-link" [routerLink]="['/account', loggedInUser.id]">Account</a>
-        </li> -->
-
-
+        </li>
         <li class="nav-item" *ngIf="!checkLogin()">
-
           <a class="nav-link" [routerLink]="['/register']">Register</a>
         </li>
       </ul>

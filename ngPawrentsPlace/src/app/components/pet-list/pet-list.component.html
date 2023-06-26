@@ -91,7 +91,9 @@
               <tr >
                 <td>
                   <label for="serviceType">Service Type:&ensp;</label>
-                  <select id="serviceType"></select>
+                  <select id="serviceType">
+                    <option  *ngFor="let service of serviceTypes" value="{{service.name}}">{{service.name}}</option>
+                  </select>
                   <label for="business">&ensp;Business:&ensp;</label>
                   <select id="business"></select>
                   <span class="float-end"><button class="btn btn-outline-dark">Add</button></span>

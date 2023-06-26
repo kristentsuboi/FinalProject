@@ -52,13 +52,13 @@ public class PetComment {
 	private User user;
 
 
-	@JsonIgnoreProperties({"mainComment", "replies"})
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "replying_to_id")
 	private PetComment mainComment;
 
 
-	@JsonIgnoreProperties({"mainComment", "replies"})
+	@JsonIgnore
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
 

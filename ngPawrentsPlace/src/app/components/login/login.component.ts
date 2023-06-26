@@ -24,6 +24,7 @@ export class LoginComponent {
     this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser) => {
             this.router.navigateByUrl('/pets');
+            user = new User();
           },
           error: (problem) => {
             console.error('LoginComponent.login(): Error logging in user.');

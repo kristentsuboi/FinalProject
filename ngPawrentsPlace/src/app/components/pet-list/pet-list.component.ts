@@ -1,9 +1,11 @@
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceType } from 'src/app/models/service-type';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { PetService } from 'src/app/services/pet.service';
+import { ServiceTypeService } from 'src/app/services/service-type.service';
 
 @Component({
   selector: 'app-pet-list',
@@ -18,9 +20,12 @@ export class PetListComponent {
 
   loggedInUser: User | null = null;
 
+  serviceTypes: ServiceType[] = [];
+
   constructor(
     private petService: PetService,
     private authService: AuthService,
+    private serviceTypeService: ServiceTypeService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -47,6 +52,7 @@ export class PetListComponent {
       }
     } else {
       this.getLoggedInUser();
+      this.getServiceTypes();
       this.reload();
     }
   }
@@ -82,6 +88,18 @@ export class PetListComponent {
     let rmngTime = ((timeDiff / (1000 * 3600 * 24))/365.25) - Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
     let months = Math.floor(rmngTime * 12);
     return (years + ' years, ' + months + ' months old');
+  }
+
+  getServiceTypes(): void {
+    this.serviceTypeService.index().subscribe({
+      next: (result) => {
+        this.serviceTypes = result;
+      },
+      error: (nojoy) => {
+        console.error('PetListHttpComponent.getServiceTypes(): error indexing servcie types:');
+        console.error(nojoy);
+      },
+    });
   }
 
   addPet(newPet: Pet): void {

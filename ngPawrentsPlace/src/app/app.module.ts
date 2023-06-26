@@ -28,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LastestPostComponent } from './components/lastest-post/lastest-post.component';
 import { TeamComponent } from './components/team/team.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ForumComponent } from './components/forum/forum.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ContactComponent } from './components/contact/contact.component';
     LastestPostComponent,
     TeamComponent,
     ContactComponent,
+    ForumComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ public class BusinessRatingController {
 	
 	
 	@GetMapping("business/{businessId}/ratings")
-	public List<BusinessRating> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int businessId) {
+	public List<BusinessRating> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int businessId, Principal principal) {
 		List<BusinessRating> businessRatings = businessRatingService.index(businessId);
 		return businessRatings;
 	}

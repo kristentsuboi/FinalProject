@@ -16,7 +16,9 @@ export class NavigationComponent {
   loggedInUser: User | null = null;
 
   ngOnInit() {
-    this.getLoggedInUser();
+    // if(this.checkLogin()) {
+    // this.getLoggedInUser();
+    // }
   }
 
   checkLogin():boolean {
@@ -24,16 +26,16 @@ export class NavigationComponent {
   }
 
   getLoggedInUser() {
-    this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        console.log(user);
-        this.loggedInUser = user;
-      },
-      error: function (theError) {
-        console.error('NavigationComponent.getLoggedInUser(): Error loading user.');
-        console.error(theError);
-      },
-    });
+  //   this.authService.getLoggedInUser().subscribe({
+  //     next: (user) => {
+  //       console.log(user);
+  //       this.loggedInUser = user;
+  //     },
+  //     error: function (theError) {
+  //       console.error('NavigationComponent.getLoggedInUser(): Error loading user.');
+  //       console.error(theError);
+  //     },
+  //   });
   }
 
 }

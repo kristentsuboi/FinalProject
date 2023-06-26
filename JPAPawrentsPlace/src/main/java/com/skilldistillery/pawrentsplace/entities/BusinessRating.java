@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="business_rating")
@@ -35,11 +36,16 @@ public class BusinessRating {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-
+	@JsonIgnoreProperties({"businessRatings"})
 	@ManyToOne
 	@JoinColumn(name="business_id")
-	@MapsId(value = "business_id")
+	@MapsId(value = "businessId")
 	private Business business;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
+	private User user;
 	
 	public BusinessRating() {
 		super();

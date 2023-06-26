@@ -39,12 +39,23 @@ export class BusinessService {
   }
 
 
-  show(id: number): Observable<Business[]> {
-    return this.http.get<Business[]>(this.url + '/' + id, this.getHttpOptions()).pipe(
+  show(id: number): Observable<Business> {
+    return this.http.get<Business>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () => new Error('BusinessService.show(): error retrieving businesses: ' + err)
+        );
+      })
+    );
+  }
+
+  showByServiceType(serviceTypeId: number): Observable<Business[]> {
+    return this.http.get<Business[]>(this.url + '/serviceType/' + serviceTypeId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('BusinessService.showByServcieType(): error retrieving businesses: ' + err)
         );
       })
     );

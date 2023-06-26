@@ -18,9 +18,16 @@ import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { PetComponent } from './components/pet/pet.component';
-import { TitleCasePipe } from '@angular/common';
+
 import { BusinessComponent } from './components/business/business.component';
 import { ChatComponent } from './components/chat/chat.component';
+
+import { TitleCasePipe } from '@angular/common';
+
+import { FooterComponent } from './components/footer/footer.component';
+import { LastestPostComponent } from './components/lastest-post/lastest-post.component';
+import { TeamComponent } from './components/team/team.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +43,13 @@ import { ChatComponent } from './components/chat/chat.component';
     NotFoundComponent,
     AccountComponent,
     PetComponent,
+
     BusinessComponent,
-    ChatComponent
+    ChatComponent,
+    FooterComponent,
+    LastestPostComponent,
+    TeamComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,12 +57,10 @@ import { ChatComponent } from './components/chat/chat.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgbAccordionModule
+
+    NgbAccordionModule,
   ],
-  providers: [
-    AuthService,
-    TitleCasePipe
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

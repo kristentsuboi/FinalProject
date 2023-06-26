@@ -60,8 +60,11 @@ public class Business {
 	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> clients;
 	
+	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "service_provided_by_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "service_type_id"))
+	@JoinTable(name = "service_provided_by_business", 
+	joinColumns = @JoinColumn(name = "business_id"), 
+	inverseJoinColumns = @JoinColumn(name = "service_type_id"))
 	private List<ServiceType> serviceTypes;
 
 

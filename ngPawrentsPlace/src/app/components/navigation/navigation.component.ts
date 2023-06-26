@@ -1,19 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   public isCollapsed = false;
-
-  constructor(private authService: AuthService) {
-  }
-
   loggedInUser: User | null = null;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     // if(this.checkLogin()) {
@@ -21,7 +19,7 @@ export class NavigationComponent {
     // }
   }
 
-  checkLogin():boolean {
+  checkLogin(): boolean {
     return this.authService.checkLogin();
   }
 
@@ -37,5 +35,4 @@ export class NavigationComponent {
   //     },
   //   });
   }
-
 }

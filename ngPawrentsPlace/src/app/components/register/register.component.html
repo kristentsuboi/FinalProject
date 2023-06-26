@@ -1,34 +1,44 @@
+<div name="addTodoForm" class="container m-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h3 style="text-decoration: underline" class="text-center mb-4">Registration Form</h3>
 
-<div name="addTodoForm">
-  <h3 style="text-decoration: underline">Registration Form</h3>
+      <div class="mb-3">
+        <label for="username" class="form-label">Create Username:</label>
+        <input id="username" type="text" name="username" [(ngModel)]="user.username" class="form-control" required/>
+      </div>
 
+      <div class="mb-3">
+        <label for="password" class="form-label">Create Password:</label>
+        <input id="password" type="password" name="password" [(ngModel)]="user.password" class="form-control" required/>
+      </div>
 
-  <label for="email">Create Username:&ensp;</label>
-  <input id="username" type="text" name="username" [(ngModel)]="user.username" required/><br>
+      <div class="mb-3">
+        <label for="role" class="form-label">Select Role:</label>
+        <select id="role" name="role" [(ngModel)]="user.role" class="form-select" required>
+          <option value="Pawrent">Pawrent</option>
+          <option value="Provider">Provider</option>
+        </select>
+      </div>
 
+      <div class="mb-3">
+        <label for="email" class="form-label">Enter E-mail:</label>
+        <input id="email" type="email" name="email" [(ngModel)]="user.email" class="form-control" required/>
+      </div>
 
-  <label for="email">Create Password:&ensp;</label>
-  <input id="password" type="password" name="password" [(ngModel)]="user.password" required/><br>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Enter Phone:</label>
+        <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" class="form-control" required/>
+      </div>
 
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Profile Picture Link:</label>
+        <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="user.imageUrl" class="form-control"/>
+      </div>
 
-  <label for="role">Select Role:&ensp;</label>
-  <select id="role" name="role" [(ngModel)]="user.role" required="">
-    <option value="Pawrent">Pawrent</option>
-    <option value="Provider">Provider</option>
-  </select><br>
-
-
-  <label for="email">Enter E-mail:&ensp;</label>
-  <input id="email" type="email" name="email" [(ngModel)]="user.email" required/><br>
-
-
-  <label for="phone">Enter Phone:&ensp;</label>
-  <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" required/><br>
-
-
-  <label for="imageUrl">Profile Picture Link:&ensp;</label>
-  <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="user.imageUrl"/><br>
-
-
-  <input type="submit" value="Register" (click)="register(user)" />
+      <div class="text-center">
+        <input type="submit" value="Register" (click)="register(user)" class="btn btn-primary">
+      </div>
+    </div>
   </div>
+</div>

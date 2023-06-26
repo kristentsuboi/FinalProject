@@ -3,8 +3,11 @@ package com.skilldistillery.pawrentsplace.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.skilldistillery.pawrentsplace.entities.Business;
+import com.skilldistillery.pawrentsplace.entities.ServiceType;
 import com.skilldistillery.pawrentsplace.services.BusinessService;
 
 @RestController
@@ -27,9 +30,9 @@ public class BusinessController {
         return businessService.findById(id);
     }
     
-    @GetMapping("business/{service}")
-    public List<Business> findBusinessByServiceType(@PathVariable List<Business> service) {
-        return businessService.findByServiceType(service);
+    @GetMapping("business/serviceType/{serviceTypeId}")
+    public List<Business> getBusinessesByServiceTypeId(@PathVariable Integer serviceTypeId) {
+        return businessService.findByServiceTypeId(serviceTypeId);
     }
 
     @PostMapping("business")

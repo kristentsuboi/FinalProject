@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.skilldistillery.pawrentsplace.entities.Business;
+import com.skilldistillery.pawrentsplace.entities.ServiceType;
 import com.skilldistillery.pawrentsplace.entities.User;
 import com.skilldistillery.pawrentsplace.repositories.BusinessRepository;
 import com.skilldistillery.pawrentsplace.repositories.UserRepository;
@@ -53,10 +54,13 @@ public class BusinessServiceImpl implements BusinessService {
         return false;
     }
 
-	@Override
-	public List<Business> findByServiceType(List<Business> service) {
-		List<Business> businesses = businessRepo.findByServiceTypes(service);
-		return businesses;
-		
-	}
+    @Override
+    public List<Business> findByServiceTypeId(int serviceType) {
+        return businessRepo.findByServiceTypesId(serviceType);
+   }
+    
+//    @Override
+//    public List<ServiceType> findByServiceTypeId(int serviceType) {
+//        return businessRepo.findByServiceTypeId(serviceType);
+//    }
 }

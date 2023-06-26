@@ -1,1 +1,58 @@
-<p>client works</p>
+<div id="userHeader" *ngIf="logged">
+  <div class="container container-fluid" style="height: 150px; margin: 15px">
+    <br>
+    <div class="float-start">
+      <h2>{{ logged.username }}</h2>
+      <h5>{{ logged.phone }}</h5>
+      <h5>{{ logged.email }}</h5>
+      <a class="btn btn-outline-dark" [routerLink]="['/clients', logged.id]">View Account</a>
+      <a class="btn btn-outline-dark" *ngIf="logged.business" [routerLink]="['/business', logged.business.id]">View Employer</a>
+      <img *ngIf="logged.imageUrl" src="{{ logged.imageUrl }}" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+      <img *ngIf="!logged.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
+    </div>
+  </div>
+</div>
+
+
+<div id="listView" name="listView" *ngIf="logged" style="margin-top: 20px;">
+  <br>
+  <br>
+  <hr>
+  <h4 style="text-align: center;">My Clients</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody
+      *ngFor="let client of logged?.petClients; let i = index" [attr.data-index]="i" >
+      <tr style="vertical-align: middle; font-size: larger" >
+        <td>
+          <img *ngIf="client.imageUrl" src="{{ client.imageUrl }}" alt="{{client.name}} Picture" style="max-width: 75px;">
+          <img *ngIf="!client.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{client.name}} Picture" style="max-width: 75px;">
+        </td>
+        <td>
+          {{client.name | titlecase }}
+        </td>
+        <td>
+          <span>{{client.species | titlecase }}</span><span *ngIf="client.breed">: {{client.breed | titlecase }}</span>
+        </td>
+        <td>
+          <span *ngIf="client.birth"> {{calculateAge(client.birth)}}</span>
+        </td>
+        <td>
+          <span class="float-end">
+          <button type="button" id="selectClientBtn" class="btn btn-outline-dark" (click)="displayClient(client)">View Profile</button>
+          </span>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

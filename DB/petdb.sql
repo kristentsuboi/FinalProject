@@ -423,6 +423,7 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (1, '
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (2, '321 owner st', 'fayetteville', 'NC', '28304');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (3, '456 admin st', 'bloomsburg', 'PA', '17815');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (4, '123 test address', 'test city', 'NC', '17815');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip_code`) VALUES (5, '123 grooming st', 'grooming city', 'NC', '28306');
 
 COMMIT;
 
@@ -432,7 +433,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `business` (`id`, `name`, `about`, `phone`, `image_url`, `address_id`) VALUES (1, 'fatastic pets', '24h vets', '1234325555', NULL, 1);
+INSERT INTO `business` (`id`, `name`, `about`, `phone`, `image_url`, `address_id`) VALUES (1, 'fantastic pets', '24h vets', '1234325555', NULL, 1);
+INSERT INTO `business` (`id`, `name`, `about`, `phone`, `image_url`, `address_id`) VALUES (2, 'beautiful pet grooming service', 'top-notch grooming service', '4325678485', NULL, 2);
 
 COMMIT;
 
@@ -559,7 +561,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'vet clinic', 'we take care of your dog', NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Veterinarians ', 'we take care of your dog', NULL);
+INSERT INTO `service_type` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Grooming', 'we make your dog looks beautiful', NULL);
 
 COMMIT;
 
@@ -570,6 +573,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `service_provided_by_business` (`service_type_id`, `business_id`) VALUES (1, 1);
+INSERT INTO `service_provided_by_business` (`service_type_id`, `business_id`) VALUES (2, 2);
 
 COMMIT;
 

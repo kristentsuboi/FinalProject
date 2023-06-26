@@ -6,5 +6,8 @@ import com.skilldistillery.pawrentsplace.entities.User;
 import java.util.List;
 
 public interface BusinessRepository extends JpaRepository<Business, Integer> {
+	
     List<Business> findByIdAndEmployees(int businessId, User employeeId);
+    List<Business> findByServiceTypes(List<Business> serviceTypes);
+    
 }

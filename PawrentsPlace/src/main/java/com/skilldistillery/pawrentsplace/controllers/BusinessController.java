@@ -26,6 +26,11 @@ public class BusinessController {
     public Business getBusinessById(@PathVariable int id) {
         return businessService.findById(id);
     }
+    
+    @GetMapping("business/{service}")
+    public List<Business> findBusinessByServiceType(@PathVariable List<Business> service) {
+        return businessService.findByServiceType(service);
+    }
 
     @PostMapping("business")
     public Business createBusiness(@RequestBody Business business) {

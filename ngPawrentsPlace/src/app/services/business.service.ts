@@ -39,12 +39,23 @@ export class BusinessService {
   }
 
 
-  show(id: number): Observable<Business[]> {
-    return this.http.get<Business[]>(this.url + '/' + id, this.getHttpOptions()).pipe(
+  show(id: number): Observable<Business> {
+    return this.http.get<Business>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () => new Error('BusinessService.show(): error retrieving businesses: ' + err)
+        );
+      })
+    );
+  }
+
+  showByServiceType(serviceTypeId: number): Observable<Business[]> {
+    return this.http.get<Business[]>(this.url + '/serviceType/' + serviceTypeId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('BusinessService.showByServcieType(): error retrieving businesses: ' + err)
         );
       })
     );
@@ -76,5 +87,12 @@ export class BusinessService {
     return this.http.delete<void>(this.url + '/' + businessId, this.getHttpOptions());
   }
 
+  addBusinessToUserList(userId: number, businessId: number): Observable<void> {
+    return this.http.get<void>(this.url + '/' + businessId + '/add/' + userId, this.getHttpOptions());
+  }
+
+  removeBusinessFromUserList(userId: number, businessId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + businessId + '/remove/' + userId, this.getHttpOptions());
+  }
 
 }

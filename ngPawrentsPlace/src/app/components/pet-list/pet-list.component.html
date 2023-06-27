@@ -62,20 +62,20 @@
       <ng-template ngbPanelContent>
         <div id="userBusinesses" *ngIf="loggedInUser">
 
-          <table class="table table-striped" *ngFor="let business of loggedInUser.businessesUsed">
+          <table class="table table-striped" >
             <thead>
               <tr>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let business of loggedInUser.businessesUsed">
                 <td>
                   <img *ngIf="business.imageUrl" src="{{business.imageUrl}}" alt="business picture" style="max-width: 35px">
                   <img *ngIf="!business.imageUrl" src="http://pluspng.com/img-png/shop-png-black-and-white-shop-icon-it-s-an-icon-for-finding-local-shopping-the-logo-is-a-square-png-50-px-1600.png" alt="business picture" style="max-width: 35px">
-                  &ensp;{{business.name | titlecase }}&ensp;
+                  <button class="btn btn-outline-dark" style="margin-left: 10px;" [routerLink]="['/business', business.id]">{{business.name | titlecase }}</button>
                   <span *ngFor="let service of business.serviceTypes">&ensp;{{service.name | titlecase }}&ensp;</span>
-                  <span class="float-end"><button class="btn btn-outline-dark">Remove</button></span>
+                  <span class="float-end"><button class="btn btn-outline-dark" (click)="removeBusinessUsed(loggedInUser.id, business.id)">Remove</button></span>
                 </td>
               </tr>
             </tbody>
@@ -91,12 +91,16 @@
               <tr >
                 <td>
                   <label for="serviceType">Service Type:&ensp;</label>
-                  <select id="serviceType">
-                    <option  *ngFor="let service of serviceTypes" value="{{service.name}}">{{service.name}}</option>
+                  <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
+                    <!-- (onChange)="getBusinesses()" -->
+                    <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
                   </select>
+                  <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>
                   <label for="business">&ensp;Business:&ensp;</label>
-                  <select id="business"></select>
-                  <span class="float-end"><button class="btn btn-outline-dark">Add</button></span>
+                  <select id="business" name="id" [(ngModel)]="addBusiness.id">
+                    <option  *ngFor="let business of typedBusinesses" value="{{business.id}}">{{business.name | titlecase}}</option>
+                  </select>
+                  <span class="float-end"><input type="submit" class="btn btn-outline-dark" (click)="addBusinessUsed(loggedInUser.id, addBusiness.id)" value="Add"/></span>
                 </td>
 
               </tr>

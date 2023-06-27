@@ -28,7 +28,8 @@ public class PetServiceImpl implements PetService {
 
 	@Override
 	public Pet show(String username, int petId) {
-		return petRepo.findByUser_UsernameAndId(username, petId);
+		//return petRepo.findByUser_UsernameAndId(username, petId);
+		return petRepo.findById(petId);
 	}
 
 	@Override

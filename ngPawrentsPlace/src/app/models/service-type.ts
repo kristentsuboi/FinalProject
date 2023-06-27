@@ -6,7 +6,7 @@ export class ServiceType {
 
   constructor(
     id: number = 0,
-    name: string = "",
+    name: string = "Please Choose",
     description: string = "",
     imageUrl: string = ""
   ){

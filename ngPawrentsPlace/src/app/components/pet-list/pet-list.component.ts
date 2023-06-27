@@ -1,9 +1,11 @@
 import { Pet } from './../../models/pet';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Business } from 'src/app/models/business';
 import { ServiceType } from 'src/app/models/service-type';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { BusinessService } from 'src/app/services/business.service';
 import { PetService } from 'src/app/services/pet.service';
 import { ServiceTypeService } from 'src/app/services/service-type.service';
 
@@ -20,12 +22,17 @@ export class PetListComponent {
 
   loggedInUser: User | null = null;
 
+  selectedServiceType: ServiceType = new ServiceType();
   serviceTypes: ServiceType[] = [];
+
+  typedBusinesses: Business[] = [];
+  addBusiness: Business = new Business();
 
   constructor(
     private petService: PetService,
     private authService: AuthService,
     private serviceTypeService: ServiceTypeService,
+    private businessService: BusinessService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -82,12 +89,14 @@ export class PetListComponent {
   }
 
   calculateAge(birthdateStr: string): string {
-    let birthdate =  new Date(birthdateStr);
+    let birthdate = new Date(birthdateStr);
     let timeDiff = Math.abs(Date.now() - birthdate.getTime());
-    let years = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
-    let rmngTime = ((timeDiff / (1000 * 3600 * 24))/365.25) - Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    let years = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+    let rmngTime =
+      timeDiff / (1000 * 3600 * 24) / 365.25 -
+      Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
     let months = Math.floor(rmngTime * 12);
-    return (years + ' years, ' + months + ' months old');
+    return years + ' years, ' + months + ' months old';
   }
 
   getServiceTypes(): void {
@@ -96,7 +105,59 @@ export class PetListComponent {
         this.serviceTypes = result;
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.getServiceTypes(): error indexing servcie types:');
+        console.error(
+          'PetListHttpComponent.getServiceTypes(): error indexing service types:' +
+            nojoy
+        );
+        console.error(nojoy);
+      },
+    });
+  }
+
+  getBusinesses(serviceTypeId: number) {
+    this.businessService.showByServiceType(serviceTypeId).subscribe({
+      next: (result) => {
+        this.typedBusinesses = result;
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error(
+          'PetListHttpComponent.getBusinesses(): error getting businesses by type:' +
+            nojoy
+        );
+        console.error(nojoy);
+      },
+    });
+  }
+
+  addBusinessUsed(userId: number, businessId: number) {
+    this.businessService.addBusinessToUserList(userId, businessId).subscribe({
+      next: (result) => {
+        this.addBusiness = new Business();
+        this.getLoggedInUser();
+        this.getServiceTypes();
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error(
+          'PetListHttpComponent.addBusinessUsed(): error adding business:' + nojoy
+        );
+        console.error(nojoy);
+      },
+    });
+  }
+
+  removeBusinessUsed(userId: number, businessId: number) {
+    this.businessService.removeBusinessFromUserList(userId, businessId).subscribe({
+      next: (result) => {
+        this.getLoggedInUser();
+        this.getServiceTypes();
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error(
+          'PetListHttpComponent.removeBusinessUsed(): error removing business:' + nojoy
+        );
         console.error(nojoy);
       },
     });
@@ -112,7 +173,9 @@ export class PetListComponent {
         this.router.navigateByUrl('pets/' + result.id);
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.addTodo(): error creating pet:');
+        console.error(
+          'PetListHttpComponent.addTodo(): error creating pet:' + nojoy
+        );
         console.error(nojoy);
       },
     });

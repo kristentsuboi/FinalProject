@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -76,7 +77,7 @@ public class User {
 	private List<Pet> pets;
 	
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"user", "providers", "petComments", "medicalNotes"})
 	@ManyToMany
 	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
 	private List<Pet> petClients;
@@ -198,6 +199,23 @@ public class User {
 
 	public void setBusinessesUsed(List<Business> businessesUsed) {
 		this.businessesUsed = businessesUsed;
+	}
+	
+	public void addBusinessUsed(Business business) {
+		if (businessesUsed == null) {
+			businessesUsed = new ArrayList<>();
+		}
+		if (!businessesUsed.contains(business)) {
+			businessesUsed.add(business);
+			business.addClient(this);
+		}
+	}
+	
+	public void removeBusinessUsed(Business business) {
+		if (businessesUsed != null && businessesUsed.contains(business)) {
+			businessesUsed.remove(business);
+			business.removeClient(this);
+		}
 	}
 	
 	public List<MedicalNote> getMedicalNotes() {

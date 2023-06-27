@@ -14,6 +14,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
   register(user: User): Observable<User> {
     // Create POST request to register a new account
     return this.http.post<User>(this.url + 'register', user).pipe(
@@ -21,6 +31,29 @@ export class AuthService {
         console.log(err);
         return throwError(
           () => new Error('AuthService.register(): error registering user.')
+        );
+      })
+    );
+  }
+
+  update(user: User): Observable<User> {
+    user.petClients = [];
+    return this.http.put<User>(this.url + 'account/' + user.id, user, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AuthService.update(): error updating user.')
+        );
+      })
+    );
+  }
+
+  disable(userId: number): Observable<User> {
+    return this.http.put<User>(this.url + 'disable/' + userId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AuthService.disable(): error disabling user.')
         );
       })
     );

@@ -53,6 +53,59 @@ export class AccountComponent {
     });
   }
 
+  setEditUser() {
+    if (this.loggedInUser) {
+    this.editUser = Object.assign({}, this.loggedInUser);
+    }
+  }
+
+  cancelEditUser() {
+    this.editUser = null;
+    this.reload();
+  }
+
+  updateUser(editUser: User) {
+    console.log(editUser);
+    this.authService.update(editUser).subscribe({
+      next: (result) => {
+        this.editUser = null;
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error('AccountHttpComponent.updateUser(): error updating user:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  disableUser(userId: number) {
+    this.authService.disable(userId).subscribe({
+      next: (result) => {
+        this.editUser = null;
+        this.authService.logout();
+      },
+      error: (nojoy) => {
+        console.error('AccountHttpComponent.updateUser(): error updating user:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  login(user: User): void {
+    console.log('Logging in user:');
+    console.log(user);
+    this.authService.login(user.username, user.password).subscribe({
+          next: (loggedInUser) => {
+              this.router.navigateByUrl('/account/' + loggedInUser.id);
+          },
+          error: (problem) => {
+            console.error('LoginComponent.login(): Error logging in user.');
+            console.error(problem);
+          }
+        });
+      }
+
+
   addAddress(userId: number, newAddress: Address): void {
     console.log(newAddress);
     this.addressService.createForUser(userId, newAddress).subscribe({

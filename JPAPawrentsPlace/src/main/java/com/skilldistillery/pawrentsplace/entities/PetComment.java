@@ -41,12 +41,12 @@ public class PetComment {
 	@Column(name = "image_url")
 	private String imageUrl;
 
-
+	@JsonIgnoreProperties(value={"user"}, allowSetters=true)
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 	
-	@JsonIgnoreProperties({"medicalNotes", "pets", "petComments"})
+	@JsonIgnoreProperties(value={"medicalNotes", "pets", "petComments", "petClients"}, allowSetters=true)
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

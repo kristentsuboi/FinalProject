@@ -27,6 +27,31 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
+	public User update(int userId, User user) {
+		user.setEnabled(true);
+		User managedUser = userRepo.findById(userId);
+		if (managedUser != null) {
+			managedUser.setRole(user.getRole());
+			managedUser.setEmail(user.getEmail());
+			managedUser.setPhone(user.getPhone());
+			managedUser.setImageUrl(user.getImageUrl());
+			return userRepo.saveAndFlush(managedUser);
+		}
+		return null;
+	}
+	
+	@Override
+	public boolean disable(int userId) {
+		User managedUser = userRepo.findById(userId);
+		if (managedUser != null) {
+			managedUser.setEnabled(false);
+			userRepo.saveAndFlush(managedUser);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public User getUserByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}

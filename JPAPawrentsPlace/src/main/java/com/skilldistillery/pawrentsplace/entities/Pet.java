@@ -63,7 +63,7 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	@JsonIgnoreProperties({"pets", "business", "comments", "businessesUsed", "medicalNotes", "petComments"})
+	@JsonIgnoreProperties({"pets", "business", "comments", "businessesUsed", "medicalNotes", "petComments", "petClients"})
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private User user;
@@ -84,11 +84,11 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<PetComment> petComments;
 	
-	@JsonIgnoreProperties({"pet"})
+	@JsonIgnoreProperties(value={"pet", "user"}, allowSetters=true)
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
-	@JsonIgnoreProperties({"pet"})
+	@JsonIgnoreProperties({"pets", "petClients"})
 	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;
 	

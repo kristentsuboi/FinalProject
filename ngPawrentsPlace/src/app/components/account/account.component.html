@@ -5,7 +5,7 @@
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
       <h5>{{ loggedInUser.email }}</h5>
-      <button class="btn btn-outline-dark" (click)="editUser = loggedInUser">Edit Account</button>
+      <button class="btn btn-outline-dark" (click)="setEditUser()">Edit Account</button>
     </div>
     <img *ngIf="loggedInUser.imageUrl" src="{{ loggedInUser.imageUrl }}" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
     <img *ngIf="!loggedInUser.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{loggedInUser.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
@@ -16,7 +16,41 @@
   <br>
   <div id="editForm" *ngIf="editUser">
     <hr>
+    <div name="editUserForm" class="container m-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
 
+          <div class="mb-3">
+            <label for="role" class="form-label">Role:</label>
+            <select id="role" name="role" [(ngModel)]="editUser.role" class="form-select" required>
+              <option value="parent">Pawrent</option>
+              <option value="provider">Provider</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail:</label>
+            <input id="email" type="email" name="email" [(ngModel)]="editUser.email" class="form-control" required/>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input id="phone" type="text" name="phone" [(ngModel)]="editUser.phone" class="form-control" required/>
+          </div>
+
+          <div class="mb-3">
+            <label for="imageUrl" class="form-label">Profile Picture Link:</label>
+            <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="editUser.imageUrl" class="form-control"/>
+          </div>
+
+          <div class="text-center">
+            <input type="submit" value="Update" (click)="updateUser(editUser)" class="btn btn-outline-dark">
+            <button class="btn btn-outline-dark" (click)="cancelEditUser()">Cancel</button>
+            <button class="btn btn-outline-dark" (click)="disableUser(editUser.id)">Disable Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

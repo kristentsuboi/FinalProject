@@ -49,7 +49,7 @@ public class BusinessController {
     
     @DeleteMapping("business/{businessId}/remove/{userId}")
     public void removeBusinessClient(@PathVariable int businessId, @PathVariable int userId, Principal principal) {
-        businessService.addClient(businessId, userId, principal.getName());
+        businessService.removeClient(businessId, userId, principal.getName());
     }
 
     @PostMapping("business")

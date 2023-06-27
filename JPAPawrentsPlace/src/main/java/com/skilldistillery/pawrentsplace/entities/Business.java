@@ -16,14 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -46,7 +39,7 @@ public class Business {
 	@OneToMany(mappedBy="business")
 	private List<User> employees;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"business", "user"})
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;

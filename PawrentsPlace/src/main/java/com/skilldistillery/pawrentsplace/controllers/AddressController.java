@@ -61,7 +61,7 @@ public class AddressController {
     @PostMapping("business/{businessId}/address")
     public Address createForBusiness(HttpServletRequest req, HttpServletResponse res, @PathVariable int businessId, @RequestBody Address address, Principal principal) {
         try {
-            return addressService.create(principal.getName(), address);
+            return addressService.create(businessId, address);
         } catch (Exception e) {
             e.printStackTrace();
             res.setStatus(400);
@@ -77,7 +77,7 @@ public class AddressController {
     		@PathVariable int businessId,
     		@PathVariable int addressId,
             @RequestBody Address address) {
-        return addressService.update(principal.getName(), addressId, address);
+        return addressService.update(businessId, addressId, address);
     }
 
     @DeleteMapping("business/{businessId}/address/{addressId}")
@@ -86,7 +86,7 @@ public class AddressController {
     		Principal principal,
     		@PathVariable int businessId,
     		@PathVariable int addressId) {
-        addressService.delete(principal.getName(), addressId);
+        addressService.delete(businessId, addressId);
     }
     
     

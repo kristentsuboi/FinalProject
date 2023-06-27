@@ -78,6 +78,19 @@ export class AccountComponent {
     });
   }
 
+  disableUser(userId: number) {
+    this.authService.disable(userId).subscribe({
+      next: (result) => {
+        this.editUser = null;
+        this.authService.logout();
+      },
+      error: (nojoy) => {
+        console.error('AccountHttpComponent.updateUser(): error updating user:');
+        console.error(nojoy);
+      },
+    });
+  }
+
   login(user: User): void {
     console.log('Logging in user:');
     console.log(user);
@@ -92,9 +105,6 @@ export class AccountComponent {
         });
       }
 
-  disableUser(userId: number) {
-
-  }
 
   addAddress(userId: number, newAddress: Address): void {
     console.log(newAddress);

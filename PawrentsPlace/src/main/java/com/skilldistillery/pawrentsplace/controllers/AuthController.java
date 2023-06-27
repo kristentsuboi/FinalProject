@@ -47,6 +47,17 @@ public class AuthController {
 	  return user;
 	}
 	
+	@PutMapping("disable/{userId}")
+	public void disable(@PathVariable int userId, HttpServletResponse res) {
+		boolean deleted = authService.disable(userId);
+		  if (deleted) {
+		    res.setStatus(204);
+		   }
+		   else {
+		    res.setStatus(404);
+		   }
+	}
+	
 	@GetMapping("authenticate")
 	public User authenticate(Principal principal, HttpServletResponse res) {
 	  if (principal == null) { // no Authorization header sent

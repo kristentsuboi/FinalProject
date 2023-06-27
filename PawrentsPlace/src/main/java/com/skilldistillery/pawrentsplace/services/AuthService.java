@@ -7,5 +7,6 @@ public interface AuthService {
 	public User register(User user);
 	User update(int userId, User user);
 	public User getUserByUsername(String username);
+	boolean disable(int userId);
 
 }

@@ -48,6 +48,17 @@ export class AuthService {
     );
   }
 
+  disable(userId: number): Observable<User> {
+    return this.http.put<User>(this.url + 'disable/' + userId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AuthService.disable(): error disabling user.')
+        );
+      })
+    );
+  }
+
   login(username: string, password: string): Observable<User> {
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);

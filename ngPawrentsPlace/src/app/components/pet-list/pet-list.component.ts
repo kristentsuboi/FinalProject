@@ -22,6 +22,7 @@ export class PetListComponent {
 
   loggedInUser: User | null = null;
 
+  selectedServiceType: ServiceType = new ServiceType();
   serviceTypes: ServiceType[] = [];
 
   typedBusinesses: Business[] = [];
@@ -88,12 +89,14 @@ export class PetListComponent {
   }
 
   calculateAge(birthdateStr: string): string {
-    let birthdate =  new Date(birthdateStr);
+    let birthdate = new Date(birthdateStr);
     let timeDiff = Math.abs(Date.now() - birthdate.getTime());
-    let years = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
-    let rmngTime = ((timeDiff / (1000 * 3600 * 24))/365.25) - Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    let years = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+    let rmngTime =
+      timeDiff / (1000 * 3600 * 24) / 365.25 -
+      Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
     let months = Math.floor(rmngTime * 12);
-    return (years + ' years, ' + months + ' months old');
+    return years + ' years, ' + months + ' months old';
   }
 
   getServiceTypes(): void {
@@ -102,7 +105,10 @@ export class PetListComponent {
         this.serviceTypes = result;
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.getServiceTypes(): error indexing service types:' + nojoy);
+        console.error(
+          'PetListHttpComponent.getServiceTypes(): error indexing service types:' +
+            nojoy
+        );
         console.error(nojoy);
       },
     });
@@ -115,7 +121,25 @@ export class PetListComponent {
         this.reload();
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.getBusinesses(): error getting businesses by type:' + nojoy);
+        console.error(
+          'PetListHttpComponent.getBusinesses(): error getting businesses by type:' +
+            nojoy
+        );
+        console.error(nojoy);
+      },
+    });
+  }
+
+  addBusinessUsed(userId: number, businessId: number) {
+    this.businessService.addBusinessToUserList(userId, businessId).subscribe({
+      next: (result) => {
+        this.addBusiness = new Business();
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error(
+          'PetListHttpComponent.addBusinessUsed(): error adding business:' + nojoy
+        );
         console.error(nojoy);
       },
     });
@@ -131,7 +155,9 @@ export class PetListComponent {
         this.router.navigateByUrl('pets/' + result.id);
       },
       error: (nojoy) => {
-        console.error('PetListHttpComponent.addTodo(): error creating pet:' + nojoy);
+        console.error(
+          'PetListHttpComponent.addTodo(): error creating pet:' + nojoy
+        );
         console.error(nojoy);
       },
     });

@@ -58,6 +58,36 @@ public class BusinessServiceImpl implements BusinessService {
     public List<Business> findByServiceTypeId(int serviceType) {
         return businessRepo.findByServiceTypesId(serviceType);
    }
+
+	@Override
+	public boolean addClient(int businessId, int userId, String username) {
+		 Business business = businessRepo.findById(businessId);
+		 User user = userRepo.findById(userId);
+	        if ((business != null) && (user != null) && (username == user.getUsername())) {
+	        	business.addClient(user);
+	        	user.addBusinessUsed(business);
+	        	businessRepo.saveAndFlush(business);
+	        	userRepo.saveAndFlush(user);
+	        	return true;
+	        }
+		return false;
+	}
+
+	@Override
+	public boolean removeClient(int businessId, int userId, String username) {
+		 Business business = businessRepo.findById(businessId);
+		 User user = userRepo.findById(userId);
+	        if ((business != null) && (user != null) && (username == user.getUsername())) {
+	        	business.removeClient(user);
+	        	user.removeBusinessUsed(business);
+	        	businessRepo.saveAndFlush(business);
+	        	userRepo.saveAndFlush(user);
+	        	return true;
+	        }
+		return false;		
+	}
+    
+    
     
 //    @Override
 //    public List<ServiceType> findByServiceTypeId(int serviceType) {

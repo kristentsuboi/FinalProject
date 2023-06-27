@@ -63,7 +63,7 @@ public class BusinessServiceImpl implements BusinessService {
 	public boolean addClient(int businessId, int userId, String username) {
 		 Business business = businessRepo.findById(businessId);
 		 User user = userRepo.findById(userId);
-	        if ((business != null) && (user != null) && (username == user.getUsername())) {
+	        if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
 	        	business.addClient(user);
 	        	user.addBusinessUsed(business);
 	        	businessRepo.saveAndFlush(business);
@@ -77,7 +77,7 @@ public class BusinessServiceImpl implements BusinessService {
 	public boolean removeClient(int businessId, int userId, String username) {
 		 Business business = businessRepo.findById(businessId);
 		 User user = userRepo.findById(userId);
-	        if ((business != null) && (user != null) && (username == user.getUsername())) {
+	        if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
 	        	business.removeClient(user);
 	        	user.removeBusinessUsed(business);
 	        	businessRepo.saveAndFlush(business);

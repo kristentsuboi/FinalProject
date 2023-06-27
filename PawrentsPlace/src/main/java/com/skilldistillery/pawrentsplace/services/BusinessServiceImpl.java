@@ -38,8 +38,11 @@ public class BusinessServiceImpl implements BusinessService {
     public Business update(int id, Business business) {
         Business existingBusiness = findById(id);
         if (existingBusiness != null) {
-            business.setId(id);
-            return businessRepo.save(business);
+            existingBusiness.setName(business.getName());
+            existingBusiness.setAbout(business.getAbout());
+            existingBusiness.setPhone(business.getPhone());
+            existingBusiness.setImageUrl(business.getImageUrl());
+            return businessRepo.saveAndFlush(existingBusiness);
         }
         return null;
     }

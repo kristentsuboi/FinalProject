@@ -14,6 +14,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
   register(user: User): Observable<User> {
     // Create POST request to register a new account
     return this.http.post<User>(this.url + 'register', user).pipe(
@@ -27,7 +37,8 @@ export class AuthService {
   }
 
   update(user: User): Observable<User> {
-    return this.http.put<User>(this.url + 'update/' + user.id, user).pipe(
+    user.petClients = [];
+    return this.http.put<User>(this.url + 'account/' + user.id, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

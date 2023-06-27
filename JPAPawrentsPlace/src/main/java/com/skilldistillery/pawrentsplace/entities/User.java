@@ -21,8 +21,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
+@JsonInclude(Include.NON_NULL)
 public class User {
 
 	@Id
@@ -77,7 +80,7 @@ public class User {
 	private List<Pet> pets;
 	
 
-	@JsonIgnoreProperties({"user", "providers", "petComments", "medicalNotes"})
+	@JsonIgnoreProperties(value={"user", "providers", "petComments", "medicalNotes"}, allowSetters=true)
 	@ManyToMany
 	@JoinTable(name = "pet_provider", joinColumns = @JoinColumn(name = "provider_id"), inverseJoinColumns = @JoinColumn(name = "pet_id"))
 	private List<Pet> petClients;

@@ -33,13 +33,17 @@ public class AuthController {
 	  return user;
 	}
 	 
-	@PutMapping("update/{userId}")
+	@PutMapping("account/{userId}")
 	public User update(@PathVariable int userId, @RequestBody User user, HttpServletResponse res) {
 	  if (user == null) {
 	     res.setStatus(400);
 	     return null;
 	  }
 	  user = authService.update(userId, user);
+	  if (user == null) {
+		     res.setStatus(400);
+		     return null;
+		  }
 	  return user;
 	}
 	

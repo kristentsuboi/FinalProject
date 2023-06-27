@@ -78,6 +78,20 @@ export class AccountComponent {
     });
   }
 
+  login(user: User): void {
+    console.log('Logging in user:');
+    console.log(user);
+    this.authService.login(user.username, user.password).subscribe({
+          next: (loggedInUser) => {
+              this.router.navigateByUrl('/account/' + loggedInUser.id);
+          },
+          error: (problem) => {
+            console.error('LoginComponent.login(): Error logging in user.');
+            console.error(problem);
+          }
+        });
+      }
+
   disableUser(userId: number) {
 
   }

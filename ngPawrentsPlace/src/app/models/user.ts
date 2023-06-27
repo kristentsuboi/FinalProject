@@ -1,6 +1,7 @@
 import { Address } from "./address";
 import { Business } from "./business";
 import { Pet } from "./pet";
+import { PetComment } from "./pet-comment";
 
 export class User {
 
@@ -19,6 +20,7 @@ export class User {
   business: Business | null;
   petClients: Pet[];
   businessesUsed: Business[];
+  petComments: PetComment[];
 
   constructor(
   id: number = 0,
@@ -34,7 +36,8 @@ export class User {
   address: Address | null = null,
   business: Business | null = null,
   petClients: Pet[] = [],
-  businessesUsed: Business[] = []
+  businessesUsed: Business[] = [],
+  petComments: PetComment[] = []
   ) {
     this.id = id;
     this.username = username;
@@ -50,6 +53,7 @@ export class User {
     this.business = business;
     this.petClients = petClients;
     this.businessesUsed = businessesUsed;
+    this.petComments = petComments;
   }
 
 }

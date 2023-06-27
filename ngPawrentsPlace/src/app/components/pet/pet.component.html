@@ -402,8 +402,8 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr *ngIf="!editPetComment && petComment.user && !petComment.mainComment">
+            <tbody *ngIf="petComment.user">
+              <tr *ngIf="!editPetComment && !petComment.mainComment">
 
                 <td>
                   <img *ngIf="petComment.user.imageUrl" src="{{petComment.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
@@ -414,7 +414,7 @@
               </tr>
               <tr *ngIf="!editPetComment && !petComment.mainComment">
                 <td *ngIf="!editPetComment">{{petComment.body}}
-                  <!-- <span class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = petComment">Edit</button></span> -->
+                  <span *ngIf="loggedInUser.id === petComment.user.id" class="float-end"><button class="btn btn-outline-dark" (click)="editPetComment = petComment">Edit</button></span>
                 </td>
               </tr>
 

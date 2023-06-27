@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'clients', component: ClientListComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'account/:id', component: AccountComponent },
+  { path: 'business', component: BusinessComponent },
   { path: 'business/:id', component: BusinessComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'pets/:id', component: PetComponent },

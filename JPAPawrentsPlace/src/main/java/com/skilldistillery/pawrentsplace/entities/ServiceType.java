@@ -1,5 +1,6 @@
 package com.skilldistillery.pawrentsplace.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -75,6 +76,23 @@ public class ServiceType {
 	public void setBusinesses(List<Business> businesses) {
 		this.businesses = businesses;
 	}
+	public void addBusiness(Business business) {
+		if (businesses == null) {
+			businesses = new ArrayList<>();
+		}
+		if (!businesses.contains(business)) {
+			businesses.add(business);
+			business.addServiceType(this);
+		}
+	}
+	
+	public void removeBusiness(Business business) {
+		if (businesses != null && businesses.contains(business)) {
+			businesses.remove(business);
+			business.removeServiceType(this);
+		}
+	}
+	
 
 	@Override
 	public String toString() {

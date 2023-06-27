@@ -131,7 +131,18 @@ export class PetListComponent {
   }
 
   addBusinessUsed(userId: number, businessId: number) {
-
+    this.businessService.addBusinessToUserList(userId, businessId).subscribe({
+      next: (result) => {
+        this.addBusiness = new Business();
+        this.reload();
+      },
+      error: (nojoy) => {
+        console.error(
+          'PetListHttpComponent.addBusinessUsed(): error adding business:' + nojoy
+        );
+        console.error(nojoy);
+      },
+    });
   }
 
   addPet(newPet: Pet): void {

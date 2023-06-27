@@ -87,12 +87,12 @@ export class BusinessService {
     return this.http.delete<void>(this.url + '/' + businessId, this.getHttpOptions());
   }
 
-  addBusinessToUserList(userId: number, businessId: number){
-
+  addBusinessToUserList(userId: number, businessId: number): Observable<void> {
+    return this.http.get<void>(this.url + '/' + businessId + '/add/' + userId, this.getHttpOptions());
   }
 
-  removeBusinessFromUserList(userId: number, businessId: number){
-
+  removeBusinessFromUserList(userId: number, businessId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + businessId + '/remove/' + userId, this.getHttpOptions());
   }
 
 }

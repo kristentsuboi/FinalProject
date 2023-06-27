@@ -54,7 +54,7 @@ public class CommentController {
 		return commentService.show(principal.getName(), commentId);
 	}
 	
-	@PostMapping("account/comment")
+	@PostMapping("account/comments")
 	public Comment createComment(
 			HttpServletRequest req, 
 			HttpServletResponse res, 

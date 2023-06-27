@@ -46,6 +46,14 @@ export class ForumComponent {
     });
   }
 
+  validateForm(): void {
+    if (this.newComment.body.length < 5) {
+      alert('Please enter a question with at least 5 character.');
+    } else {
+      this.addNewComment(this.newComment);
+    }
+  }
+
   reload() {
     this.commentService.index().subscribe({
       next: (todoList) => {
@@ -58,11 +66,27 @@ export class ForumComponent {
     });
   }
 
-  addComment(newComment: Comment): void {
+  addNewComment(newComment: Comment): void {
     console.log(newComment);
     this.commentService.create(newComment).subscribe({
       next: (createdComment) => {
         this.newComment = new Comment();
+        this.reload();
+      },
+      error: (error) => {
+        console.error('ForumComponent.addComment(): Error creating comment');
+        console.error(error);
+      },
+    });
+  }
+
+  addComment(newComment: Comment): void {
+    console.log(newComment);
+    newComment.mainComment = this.selected
+    this.commentService.create(newComment).subscribe({
+      next: (createdComment) => {
+        this.newComment = new Comment();
+        this.selected?.replies.push(createdComment)
         this.reload();
       },
       error: (error) => {

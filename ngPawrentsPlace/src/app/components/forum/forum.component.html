@@ -6,70 +6,234 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
+<div class="container m-3">
+
+  <aside class="aside">
+
+    <div class="col-sm-4 col-md-3 sidebar">
+
+      <div class="list-group">
+
+        <a href="#" class="list-group-item active">
+          Seach By Topic
+          <span class="pull-right" id="slide-submenu">
+            <i class="fa fa-times"></i>
+          </span>
+        </a>
+
+        <a href="#" class="list-group-item">
+          <i class="fa fa-envelope"></i> Welcome Center
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-comment-o"></i> General Pet Discussion
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-search"></i> Health and Wellness
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-user"></i> Training and Behavior
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-envelope"></i> Food and Nutrition
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-envelope"></i> Adoption and Rescue
+        </a>
+        <a href="#" class="list-group-item">
+          <i class="fa fa-envelope"></i> Volunteering
+        </a>
+
+
+        <div class="m-1 text-center" *ngIf="!selected">
+          <a class="list-group-item active">
+            Ask a Question
+            <span class="pull-right" id="slide-submenu">
+              <i class="fa fa-times"></i>
+            </span>
+          </a>
+          <div class="d-inline-block">
+            <label for="subject">Subject:</label>
+            <select id="subject" class="form-control m-1" placeholder="Subject">
+              <option>Welcome Center</option>
+              <option>General Pet Discussion</option>
+              <option>Health and Wellness</option>
+              <option>Training and Behavior</option>
+              <option>Food and Nutrition</option>
+              <option>Adoption and Rescue</option>
+              <option>Volunteering</option>
+              <option>Other</option>
+            </select>
+            <label for="question">Question:</label>
+            <textarea id="question" class="form-control m-1" name="body" [(ngModel)]="newComment.body"></textarea>
+            <button class="btn btn-success m-1" (click)="validateForm()">Ask a Question</button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+
+  </aside>
+
+
+
   <div class="row">
+
+
+    <!-- <FROM HERE></FROM> -->
+
+
+
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div *ngFor="let comment of comments" (click)="selected = comment">
+      <div *ngIf="!comment.mainComment">
       <div id="commentSection" *ngIf="!selected">
         <table class="table table-striped">
+
           <thead>
             <tr>
+              <th>User</th>
               <th>The Paw Square</th>
               <th>Date Published</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr *ngFor="let comment of comments" (click)="selected = comment">
+            <tr>
+
               <td>
-                <strong>Topic: </strong>{{ comment.topic }}
-                <br />
-                THIS SUBJECT HAS BEEN HARDCODED
-                <br />
-                {{ comment.body }}
+                <div class="d-flex justify-content-center align-items-center">
+                  <div>
+                    <img src="assets/images/logo.png" style="border-radius: 50%; height: 100px; width: 100px" />
+                  </div>
+                  <br>
+                </div>
               </td>
 
-              <td>{{ comment.createdAt }}</td>
+              <td>
+                <strong>User: </strong> {{comment.user?.username}}
+                <br>
+                <strong>Topic: </strong>{{ comment.topic }}
+                <br />
+                <strong>Subject:</strong> This is an example subject
+                <br />
+                <strong>Question: </strong>{{ comment.body }}
+              </td>
+
+              <td>
+                {{ comment.createdAt }}
+              </td>
             </tr>
           </tbody>
+
         </table>
       </div>
     </div>
+    </div>
+
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div id="selectedSection" *ngIf="selected">
         <table class="table table-striped">
+
+
           <thead>
             <tr>
-              <th>Question</th>
+              <th>User</th>
+              <th>The Paw Square</th>
               <th>Date Published</th>
             </tr>
           </thead>
+
+
           <tbody>
             <tr>
+
+              <td>
+                <div class="d-flex justify-content-center align-items-center">
+                  <div>
+                    <img src="assets/images/logo.png" style="border-radius: 50%; height: 100px; width: 100px" />
+                  </div>
+                  <div>
+                    <P>USERNAME</P>
+                  </div>
+                  <br>
+                </div>
+              </td>
+
               <td>
                 <strong>Topic: </strong>{{ selected.topic }}
                 <br />
-                THIS SUBJECT HAS BEEN HARDCODED
+                <strong>Subject:</strong> This is an example subject
                 <br />
-                {{ selected.body }}
+                <strong>Question: </strong>{{ selected.body }}
               </td>
-              <td>{{ selected.createdAt }}</td>
+
+              <td>
+                {{ selected.createdAt }}
+              </td>
             </tr>
           </tbody>
+
+
         </table>
+
+
+        <div class="d-flex justify-content-end bg-light">
+          <div class="col-lg-11 col-md-11 col-sm-8 col-xs-11 m-2" style="height: 100%;">
+            <div *ngFor="let reply of selected.replies">
+              <table class="table table-striped m-5">
+
+                <thead>
+                  <tr>
+                    <th>replied by USERNAME</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      {{ reply.body }}
+                      <br>
+                      posted on: {{ reply.createdAt }}
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+
 
         <h3>Add a Reply</h3>
 
         <form>
           <div class="form-group">
             <label for="replyBody">Body</label>
-            <textarea class="form-control" id="replyBody"></textarea>
+            <textarea
+              class="form-control"
+              name="body"
+              [(ngModel)]="newComment.body"
+            ></textarea>
           </div>
 
           <div>
-
             <span class="m-2">
-              <button type="submit" class="btn btn-primary" (click)="addComment(newComment)">Submit Reply</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="addComment(newComment)"
+              >
+                Submit Reply
+              </button>
             </span>
 
             <span>
@@ -77,11 +241,12 @@
                 Back to Forum List
               </button>
             </span>
-
           </div>
         </form>
         <br />
       </div>
+
+
     </div>
   </div>
 </div>

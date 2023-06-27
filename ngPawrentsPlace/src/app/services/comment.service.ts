@@ -19,28 +19,33 @@ export class CommentService {
       Authorization: 'Basic ' + credentials,
       'X-Requested-With': 'XMLHttpRequest',
     });
-    return {"headers": headers};
+    return { headers: headers };
   }
 
   index(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.url,  this.getHttpOptions()).pipe(
+    return this.http.get<Comment[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log('Error fetching Comment list' + err);
         return throwError(
-          () => new Error('CommentService.index(): error retrieving comments: ' + err)
+          () =>
+            new Error(
+              'CommentService.index(): error retrieving comments: ' + err
+            )
         );
       })
     );
   }
 
+
   create(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.url, comment).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('CommentService.create(): error creating comment')
-        );
-      })
-    );
+    return this.http.post<Comment>(this.url, comment, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('CommentService.create(): error creating comment')
+          );
+        })
+      );
   }
 }

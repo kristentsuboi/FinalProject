@@ -13,6 +13,7 @@ import { MedicalNoteService } from 'src/app/services/medical-note.service';
 import { MedicationService } from 'src/app/services/medication.service';
 import { PetService } from 'src/app/services/pet.service';
 import { ShotService } from 'src/app/services/shot.service';
+import { PetCommentService } from 'src/app/services/pet-comment.service';
 
 @Component({
   selector: 'app-pet',
@@ -53,6 +54,7 @@ export class PetComponent {
     private shotService: ShotService,
     private medicationService: MedicationService,
     private medicalNoteService: MedicalNoteService,
+    private petCommentService: PetCommentService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -359,6 +361,53 @@ export class PetComponent {
       },
       error: (nojoy) => {
         console.error('PetHttpComponent.deleteMedicalNote(): error deleting medicalNote:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  addPetComment(petId: number, newPetComment: PetComment): void {
+    console.log(newPetComment);
+    this.petCommentService.create(petId, newPetComment).subscribe({
+      next: (result) => {
+        this.newPetComment = new PetComment();
+        this.reload(petId);
+
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addPetcomment(): error creating petComment:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  updatePetComment(petId: number, editPetComment: PetComment): void {
+    console.log(editPetComment);
+    this.petCommentService.update(petId, editPetComment).subscribe({
+      next: (result) => {
+        this.editPetComment = null;
+        this.reload(petId);
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.updatePetComment(): error updating petComment:');
+        console.error(nojoy);
+      },
+    });
+  }
+
+  cancelEditPetComment(petId: number) {
+    this.editPetComment = null;
+    this.reload(petId);
+  }
+
+  deletePetComment(petId: number, petCommentId: number) {
+    this.petCommentService.destroy(petId, petCommentId).subscribe({
+      next: (result) => {
+        this.reload(petId);
+        this.editPetComment = null;
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.deletePetComment(): error deleting petComment:');
         console.error(nojoy);
       },
     });

@@ -1,5 +1,5 @@
 <div id="userHeader" *ngIf="loggedInUser">
-  <div class="container container-fluid" style="height: 150px; margin: 15px">
+  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px">
     <br>
     <div class="float-start">
       <h2>{{ loggedInUser.username }}</h2>
@@ -56,7 +56,7 @@
 </div>
 
 <br>
-<div id="accordian" style="margin-bottom: 15px;">
+<div id="accordian" class="container container-fluid" style="margin-bottom: 15px;">
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="providersAndAddPetAccordian">
     <ngb-panel title="My Pet Care Providers" id="config-panel-one">
       <ng-template ngbPanelContent>

@@ -20,7 +20,7 @@
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="petAccordian">
     <ngb-panel title="Basic Information" id="config-panel-one">
       <ng-template ngbPanelContent>
-        <div name="basicInfo" *ngIf="!editPet">
+        <div name="basicInfo" *ngIf="!editPet && selected.user">
           <h4></h4>
           <blockquote *ngIf="selected.about">About: <em>{{ selected.about }}</em></blockquote>
           <p>Birthday: {{ selected.birth }}</p>
@@ -29,8 +29,24 @@
           <p>Microchipped: {{ selected.microchipped }}</p>
           <p>Allergies: {{ selected.allergies }}</p>
           <p *ngIf="selected.updatedAt">Last Update: {{ selected.updatedAt }}</p>
-          <button class="btn btn-outline-dark" (click)="setEditPet()">Edit</button>
+          <button class="btn btn-outline-dark" (click)="setEditPet()" *ngIf="loggedInUser.role == 'parent' && loggedInUser.id === selected.user.id">Edit</button>
         </div>
+
+        <div *ngIf="selected.user && loggedInUser.role == 'provider'">
+          <hr>
+          <h4> Owner Information: </h4>
+          <p>{{selected.user.username}}</p>
+          <p>{{selected.user.phone}}</p>
+          <p> {{selected.user.email}}</p>
+        </div>
+
+
+
+
+
+
+
+
 
         <div name="editPetBasicsView" *ngIf="editPet" style="width: max-content;">
 
@@ -387,7 +403,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngIf="!editPetComment && petComment.user">
+              <tr *ngIf="!editPetComment && petComment.user && !petComment.mainComment">
+
                 <td>
                   <img *ngIf="petComment.user.imageUrl" src="{{petComment.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
                   <img *ngIf="!petComment.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
@@ -395,11 +412,35 @@
                   <span *ngIf="petComment.updatedAt && (petComment.updatedAt != petComment.createdAt)">&ensp;Updated:&ensp;{{petComment.updatedAt}}</span>
                 </td>
               </tr>
-              <tr *ngIf="!editPetComment">
+              <tr *ngIf="!editPetComment && !petComment.mainComment">
                 <td *ngIf="!editPetComment">{{petComment.body}}
                   <!-- <span class="float-end"><button class="btn btn-outline-dark" (click)="editMedicalNote = petComment">Edit</button></span> -->
                 </td>
               </tr>
+
+
+              <table id="replyTable" *ngFor="let reply of petComment.replies" class="table table-striped">
+
+                <tr>
+
+                  <td *ngIf="reply.user">
+                    <img *ngIf="reply.user.imageUrl" src="{{reply.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                    <img *ngIf="!reply.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
+                    &ensp;{{reply.user.username}}&ensp;{{reply.createdAt}}
+                    <span *ngIf="reply.updatedAt && (reply.updatedAt != reply.createdAt)">&ensp;Updated:&ensp;{{reply.updatedAt}}</span>
+                  </tr>
+                <tr>
+
+                  <td>{{reply.body}}
+
+
+                  </td>
+                </tr>
+
+              </table>
+
+
+
             </tbody>
           </table>
 

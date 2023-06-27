@@ -1,3 +1,4 @@
+import { Address } from "./address";
 import { ServiceType } from "./service-type";
 
 export class Business {
@@ -7,6 +8,8 @@ export class Business {
   phone: string;
   imageUrl: string;
   serviceTypes: ServiceType[];
+  address: Address | null;
+
 
   constructor(
   id: number = 0,
@@ -14,7 +17,8 @@ export class Business {
   about: string = "",
   phone: string = "",
   imageUrl: string = "",
-  serviceTypes: ServiceType[] = []
+  serviceTypes: ServiceType[] = [],
+  address: Address | null = null
   ){
     this.id = id;
     this.name = name;
@@ -22,5 +26,6 @@ export class Business {
     this.phone = phone;
     this.imageUrl = imageUrl;
     this.serviceTypes = serviceTypes;
+    this.address = address;
   }
 }

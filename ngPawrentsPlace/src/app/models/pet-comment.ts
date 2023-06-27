@@ -9,6 +9,8 @@ export class PetComment {
   imageUrl: string;
   user: User | null;
   pet: Pet | null;
+  mainComment: PetComment | null;
+  replies: PetComment[];
 
   constructor(
     id: number = 0,
@@ -17,8 +19,11 @@ export class PetComment {
     updatedAt: string = "",
     imageUrl: string = "",
     user: User | null = null,
-    pet: Pet | null = null
+    pet: Pet | null = null,
+    mainComment: PetComment | null = null,
+  replies: PetComment[] = []
   ){
+
     this.id = id;
     this.body = body;
     this.createdAt = createdAt;
@@ -26,5 +31,7 @@ export class PetComment {
     this.imageUrl = imageUrl;
     this.user = user;
     this.pet = pet;
+    this.mainComment = mainComment;
+    this.replies = replies;
   }
 }

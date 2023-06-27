@@ -63,7 +63,7 @@ public class Pet {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"pets", "business", "comments", "businessesUsed", "medicalNotes", "petComments"})
 	@ManyToOne
 	@JoinColumn(name="owner_id")
 	private User user;

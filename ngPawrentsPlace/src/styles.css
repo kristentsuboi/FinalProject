@@ -4,3 +4,13 @@ ngb-accordian > ngb-panel {
   color: gray;
   background-color: gray;
 }
+
+
+
+#replyTable{
+  width: 80%;
+  align-self: flex-end;
+  margin-left: 10%;
+
+
+}

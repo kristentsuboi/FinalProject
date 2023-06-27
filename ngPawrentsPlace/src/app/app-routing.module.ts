@@ -12,12 +12,14 @@ import { BusinessComponent } from './components/business/business.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
+import { ForumComponent } from './components/forum/forum.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'clients', component: ClientListComponent },
+  { path: 'forum', component: ForumComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'account/:id', component: AccountComponent },
   { path: 'business', component: BusinessComponent },

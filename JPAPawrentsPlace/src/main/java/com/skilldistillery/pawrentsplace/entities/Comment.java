@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Comment {
@@ -41,18 +42,19 @@ public class Comment {
 	private String topic;
 
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"comments", "businessesUsed", "medicalNotes",
+		"petComments", "address", "business", "pets", "petClients"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"mainComment", "replies"})
 	@ManyToOne
 	 @JoinColumn(name = "replying_to_id")
 	 private Comment mainComment;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"mainComment", "replies"})
 	 @OneToMany(mappedBy = "mainComment")
 	 private List<Comment> replies;
 

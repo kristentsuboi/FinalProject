@@ -54,7 +54,7 @@ public class Business {
 	@JoinTable(name = "owner_uses_business", joinColumns = @JoinColumn(name = "business_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> clients;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"businesses"})
 	@ManyToMany
 	@JoinTable(name = "service_provided_by_business", 
 	joinColumns = @JoinColumn(name = "business_id"), 
@@ -124,6 +124,26 @@ public class Business {
 		this.address = address;
 
 	}
+	
+	
+	
+	public void addServiceType(ServiceType service) {
+		if (serviceTypes == null) {
+			serviceTypes = new ArrayList<>();
+		}
+		if (!serviceTypes.contains(service)) {
+			serviceTypes.add(service);
+			service.addBusiness(this);
+		}
+	}
+	
+	public void removeServiceType(ServiceType service) {
+		if (serviceTypes != null && serviceTypes.contains(service)) {
+			serviceTypes.remove(service);
+			service.removeBusiness(this);
+		}
+	}
+	
 	
 
 	public List<BusinessRating> getBusinessRatings() {

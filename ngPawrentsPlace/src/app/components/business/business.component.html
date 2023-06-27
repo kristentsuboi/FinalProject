@@ -35,6 +35,44 @@
       </div>
     </div>
   </div>
+  <div *ngIf="!selected">
+
+    <div *ngIf="newBusiness">
+      <form>
+        Name:
+        <input type="text" name="name" [(ngModel)]="newBusiness.name" ><br>
+        About:
+        <input type="text"  name="about" [(ngModel)]="newBusiness.about"><br>
+        Phone:
+        <input type="text"  name="phone" [(ngModel)]="newBusiness.phone"><br>
+        Image Url:
+        <input type="text"  name="imageUrl" [(ngModel)]="newBusiness.imageUrl"><br>
+
+
+        <label for="serviceType">Service Type:&ensp;</label>
+
+          <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
+            <!-- (onChange)="getBusinesses()" -->
+            <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
+          </select>
+
+          <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
+
+
+        </form>
+      </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
 <div *ngIf="selected">
 
 
@@ -101,9 +139,26 @@
           <input id="zipCode" name="zipCode" [(ngModel)]="newAddress.zipCode" />
         </p>
         <button class="btn btn-outline-dark" (click)="addAddress(selected.id, newAddress)">Add Address</button>
+
+
       </div>
     </div>
   </div>
+<div *ngIf="selected">
+
+  <div class="map-container" *ngIf="selected.address">
+    ::{{selected.address.zipCode}}::
+    <!-- src="https://www.google.com/maps?q={{selected.address.zipCode}}&z=9&output=embed" -->
+    <iframe
+   [src]="sanitizeUrl(selected.address.zipCode)"
+    width="500" height="350" frameborder="0" style="border: 0"
+    allowfullscreen> </iframe>
+  </div>
+  <a class="btn btn-outline-dark" [routerLink]="['/clients']">Back to Clients</a>
+  </div>
+
+
+
 
 
 

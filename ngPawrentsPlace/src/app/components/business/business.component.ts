@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ServiceTypeService } from './../../services/service-type.service';
+import { Component, OnInit, Sanitizer } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { Business } from 'src/app/models/business';
+import { ServiceType } from 'src/app/models/service-type';
 import { User } from 'src/app/models/user';
 import { AddressService } from 'src/app/services/address.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,12 +22,17 @@ export class BusinessComponent {
   editingAddress: Address | null = null;
   newAddress: Address | null = null;
   editBusiness: Business | null = null;
+  newBusiness: Business = new Business();
+  selectedServiceType: ServiceType = new ServiceType();
+  serviceTypes: ServiceType[] = [];
 
   constructor(private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private businessService: BusinessService,
-    private addressService: AddressService){}
+    private addressService: AddressService,
+    private sanitizer: DomSanitizer,
+    private serviceTypeService: ServiceTypeService){}
 
 
 
@@ -39,9 +47,10 @@ export class BusinessComponent {
          this.reload(id);
         }
       } else {
-        this.router.navigateByUrl('home');
+        this.router.navigateByUrl('business');
       }
       this.getLoggedInUser();
+      this.getServiceTypes();
     }
 
 
@@ -98,6 +107,28 @@ export class BusinessComponent {
         }
       })
     }
+
+
+
+    addBusiness(newBusiness: Business): void {
+      console.log(newBusiness);
+      newBusiness.serviceTypes.push(this.selectedServiceType)
+      this.businessService.create(newBusiness).subscribe({
+        next: (result) => {
+          this.newBusiness = new Business();
+          this.reload(result.id);
+          this.selected = result;
+        },
+        error: (nojoy) => {
+          console.error('BusinessComponent.addBuiness(): error creating business:');
+          console.error(nojoy);
+        },
+      });
+    }
+
+
+
+
 
     editAddress(businessId: number, addressId: number, editingAddress: Address) {
       console.log(editingAddress);
@@ -179,6 +210,27 @@ export class BusinessComponent {
       })
     }
 
+
+    sanitizeUrl(zipCode: string){
+     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps?q='+zipCode+'&z=9&output=embed')
+      // "'https://www.google.com/maps?q='+selected.address.zipCode+'&z=9&output=embed'"
+    }
+
+    getServiceTypes(): void {
+      this.serviceTypeService.index().subscribe({
+        next: (result) => {
+          this.serviceTypes = result;
+          console.log(this.serviceTypes)
+        },
+        error: (nojoy) => {
+          console.error(
+            'PetListHttpComponent.getServiceTypes(): error indexing service types:' +
+              nojoy
+          );
+          console.error(nojoy);
+        },
+      });
+    }
 
 
 

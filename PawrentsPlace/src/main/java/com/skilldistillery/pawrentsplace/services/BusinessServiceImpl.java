@@ -31,7 +31,7 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public Business create(Business business) {
-        return businessRepo.save(business);
+        return businessRepo.saveAndFlush(business);
     }
 
     @Override

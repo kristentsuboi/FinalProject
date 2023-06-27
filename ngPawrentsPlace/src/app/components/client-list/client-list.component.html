@@ -6,6 +6,7 @@
       <h5>{{ logged.phone }}</h5>
       <h5>{{ logged.email }}</h5>
       <a class="btn btn-outline-dark" [routerLink]="['/clients', logged.id]">View Account</a>
+      <a class="btn btn-outline-dark" *ngIf="!logged.business" [routerLink]="['/business']">Add Employer</a>
       <a class="btn btn-outline-dark" *ngIf="logged.business" [routerLink]="['/business', logged.business.id]">View Employer</a>
       <img *ngIf="logged.imageUrl" src="{{ logged.imageUrl }}" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
       <img *ngIf="!logged.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>

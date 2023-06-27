@@ -21,17 +21,6 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private UserRepository userRepo;
 
-//	@Override
-//	public List<Comment> index(String username, int userId) {
-//		User user = userRepo.findById(userId);
-//		if (user != null) {
-//			return commentRepo.findByUser_Id(userId);
-//
-//		}
-//		return null;
-//	}
-	
-	
 
 	@Override
 	public Comment show(String username, int commentId) {
@@ -39,21 +28,20 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment create(String username, int userId, Comment comment) {
-		User user = userRepo.findById(userId);
+	public Comment create(String username, Comment comment) {
+		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			comment.setUser(user);
-			Comment managedComment = commentRepo.saveAndFlush(comment);
-			return managedComment;
+			return commentRepo.saveAndFlush(comment);
 		}
 
 		return null;
 	}
 
 	@Override
-	public Comment update(String username, int userId, Comment comment, int commentId) {
-		User managedUser = userRepo.findByUsername(username);
-		Comment managedComment = commentRepo.findById(commentId);
+	public Comment update(String username, int userId, Comment comment) {
+		
+		Comment managedComment = commentRepo.findByUser_UsernameAndId(username, userId);
 		if (managedComment != null) {
 			managedComment.setBody(comment.getBody());
 			managedComment.setImageUrl(comment.getImageUrl());
@@ -64,23 +52,13 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public boolean delete(String username, int commentId, int userId) {
-		User user = userRepo.findById(userId);
-		Comment deleted = commentRepo.findById(commentId);
-		if (deleted != null) {
-			ArrayList<Comment> comments = new ArrayList<>(user.getComments());
-			for (Comment comment : comments) {
-				if (comment.getId() == commentId) {
-					user.getComments().remove(comment);
-				}
-			}
-			userRepo.saveAndFlush(user);
-			commentRepo.delete(deleted);
+	public boolean delete(String username, int tid) {
+		Comment existingComment = commentRepo.findByUser_UsernameAndId(username, tid);
+		if (existingComment != null) {
+			commentRepo.delete(existingComment);
 			return true;
-		} else {
-			return false;
 		}
-		
+		return false; 
 	}
 
 	@Override
@@ -88,18 +66,5 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepo.findAll();
 	}
 
-//	@Override
-//	public List<Comment> showReplies(String username, int commentId, int userId) {
-//		List<Comment> allComments = commentRepo.findByUser_Id(userId);
-//		List<Comment> replies = null;
-//		for (Comment comment: allComments) {
-//			if (comment.getReplies() != null) {
-//				replies.add(comment);
-//				return replies;
-//			}
-//		}
-//		
-//		return null;
-//	}
 
 }

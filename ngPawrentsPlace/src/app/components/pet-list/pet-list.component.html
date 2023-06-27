@@ -93,7 +93,7 @@
                   <label for="serviceType">Service Type:&ensp;</label>
                   <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
                     <!-- (onChange)="getBusinesses()" -->
-                    <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
+                    <option *ngFor="let service of serviceTypes" value="{{service.id}}">{{service.name}}</option>
                   </select>
                   <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>
                   <label for="business">&ensp;Business:&ensp;</label>

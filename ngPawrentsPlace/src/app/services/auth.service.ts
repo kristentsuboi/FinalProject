@@ -26,6 +26,17 @@ export class AuthService {
     );
   }
 
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.url + 'update/' + user.id, user).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AuthService.update(): error updating user.')
+        );
+      })
+    );
+  }
+
   login(username: string, password: string): Observable<User> {
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);

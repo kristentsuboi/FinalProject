@@ -30,6 +30,9 @@
         <li class="nav-item" *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/forum']">Forum</a>
+        </li>
         <li class="nav-item" *ngIf="checkLogin()">
           <a *ngIf="loggedInUser && (loggedInUser.role === 'parent')" class="nav-link" [routerLink]="['/pets']">My Pets</a>
         </li>

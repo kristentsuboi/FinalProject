@@ -1,22 +1,33 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Comment } from '../models/comment';
+import { environment } from 'src/environments/environment.development';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentService {
-  url = 'http://api.skilldistillery.com:8080/comments/data/comment';
+  url = environment.baseUrl + 'api/account/comments';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
+
+  getHttpOptions() {
+    const credentials = this.auth.getCredentials();
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + credentials,
+      'X-Requested-With': 'XMLHttpRequest',
+    });
+    return {"headers": headers};
+  }
 
   index(): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.url + '?sorted=true').pipe(
+    return this.http.get<Comment[]>(this.url,  this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.log('Error fetching Comment list' + err);
         return throwError(
-          new Error('CommentService.index(): error retrieving comments: ' + err)
+          () => new Error('CommentService.index(): error retrieving comments: ' + err)
         );
       })
     );

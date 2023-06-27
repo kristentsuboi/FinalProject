@@ -21,15 +21,17 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private UserRepository userRepo;
 
-	@Override
-	public List<Comment> index(String username, int userId) {
-		User user = userRepo.findById(userId);
-		if (user != null) {
-			return commentRepo.findByUser_Id(userId);
-
-		}
-		return null;
-	}
+//	@Override
+//	public List<Comment> index(String username, int userId) {
+//		User user = userRepo.findById(userId);
+//		if (user != null) {
+//			return commentRepo.findByUser_Id(userId);
+//
+//		}
+//		return null;
+//	}
+	
+	
 
 	@Override
 	public Comment show(String username, int commentId) {
@@ -79,6 +81,11 @@ public class CommentServiceImpl implements CommentService {
 			return false;
 		}
 		
+	}
+
+	@Override
+	public List<Comment> getAllComments() {
+		return commentRepo.findAll();
 	}
 
 //	@Override

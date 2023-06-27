@@ -1,1 +1,87 @@
-<p>forum works!</p>
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div id="commentSection" *ngIf="!selected">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>The Paw Square</th>
+              <th>Date Published</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let comment of comments" (click)="selected = comment">
+              <td>
+                <strong>Topic: </strong>{{ comment.topic }}
+                <br />
+                THIS SUBJECT HAS BEEN HARDCODED
+                <br />
+                {{ comment.body }}
+              </td>
+
+              <td>{{ comment.createdAt }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div id="selectedSection" *ngIf="selected">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Date Published</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Topic: </strong>{{ selected.topic }}
+                <br />
+                THIS SUBJECT HAS BEEN HARDCODED
+                <br />
+                {{ selected.body }}
+              </td>
+              <td>{{ selected.createdAt }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Add a Reply</h3>
+
+        <form>
+          <div class="form-group">
+            <label for="replyBody">Body</label>
+            <textarea class="form-control" id="replyBody"></textarea>
+          </div>
+
+          <div>
+
+            <span class="m-2">
+              <button type="submit" class="btn btn-primary" (click)="addComment(newComment)">Submit Reply</button>
+            </span>
+
+            <span>
+              <button class="btn btn-primary" (click)="selected = null">
+                Back to Forum List
+              </button>
+            </span>
+
+          </div>
+        </form>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@ export class ForumComponent {
     this.loadComments();
   }
 
-  types = [
+  topic = [
     'Health and Wellness',
     'Training',
     'Adoption and Rescue',
@@ -46,12 +46,24 @@ export class ForumComponent {
     });
   }
 
+  reload() {
+    this.commentService.index().subscribe({
+      next: (todoList) => {
+        this.comments = todoList;
+      },
+      error: (someError) => {
+        console.error('TodoListComponent.reload(): error getting todo list');
+        console.error(someError);
+      },
+    });
+  }
+
   addComment(newComment: Comment): void {
     console.log(newComment);
     this.commentService.create(newComment).subscribe({
       next: (createdComment) => {
-        this.loadComments();
-        this.selected = createdComment;
+        this.newComment = new Comment();
+        this.reload();
       },
       error: (error) => {
         console.error('ForumComponent.addComment(): Error creating comment');

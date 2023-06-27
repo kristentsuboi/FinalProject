@@ -5,7 +5,8 @@ import java.util.List;
 import com.skilldistillery.pawrentsplace.entities.Comment;
 
 public interface CommentService {
-	List<Comment> index(String username, int userId);
+//	List<Comment> index(String username, int userId);
+	List<Comment> getAllComments();
 	Comment show(String username, int commentId);
 	Comment create(String username, int userId, Comment comment);
 	Comment update(String username, int commentId, Comment comment, int userId);

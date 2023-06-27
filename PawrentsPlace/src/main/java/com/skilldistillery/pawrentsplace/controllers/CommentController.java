@@ -29,12 +29,24 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@GetMapping("account/{userId}/comments")
-	public List<Comment> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId,
-			Principal principal) {
-		List<Comment> comments = commentService.index(principal.getName(), userId);
-		return comments;
-	}
+//	@GetMapping("account/{userId}/comments")
+//	public List<Comment> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId,
+//			Principal principal) {
+//		List<Comment> comments = commentService.index(principal.getName(), userId);
+//		return comments;
+//	}
+	
+//	@GetMapping("account/comments")
+//	public List<Comment> index(HttpServletRequest req, HttpServletResponse res, @PathVariable
+//			Principal principal) {
+//		List<Comment> comments = commentService.findAll();
+//		return comments;
+//	}
+	
+	 @GetMapping("account/comments")
+	    public List<Comment> getAllComments() {
+	        return commentService.getAllComments();
+	    }
 	
 	@GetMapping("account/{userId}/comments/{commentId}")
 	public Comment show(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId,
@@ -84,11 +96,5 @@ public class CommentController {
 		}
 	}
 	
-//	@GetMapping("account/{userId}/comments/{commentId}/replies")
-//	public List<Comment> showReplies(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId, @PathVariable int commentId,
-//			Principal principal) {
-//		List<Comment> replies = commentService.showReplies(principal.getName(), commentId, userId);
-//		return replies;
-//	}
 
 }

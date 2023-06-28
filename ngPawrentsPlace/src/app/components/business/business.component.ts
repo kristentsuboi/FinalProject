@@ -25,6 +25,8 @@ export class BusinessComponent {
   newBusiness: Business = new Business();
   selectedServiceType: ServiceType = new ServiceType();
   serviceTypes: ServiceType[] = [];
+  typedBusinesses: Business[] = [];
+ addBusinessProvider: Business = new Business();
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -214,6 +216,38 @@ export class BusinessComponent {
     sanitizeUrl(zipCode: string){
      return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps?q='+zipCode+'&z=9&output=embed')
       // "'https://www.google.com/maps?q='+selected.address.zipCode+'&z=9&output=embed'"
+    }
+
+    getBusinesses(serviceTypeId: number) {
+      this.businessService.showByServiceType(serviceTypeId).subscribe({
+        next: (result) => {
+          this.typedBusinesses = result;
+        },
+        error: (nojoy) => {
+          console.error(
+            'PetListHttpComponent.getBusinesses(): error getting businesses by type:' +
+              nojoy
+          );
+          console.error(nojoy);
+        },
+      });
+    }
+    addBusinessEmployer(userId: number, businessId: number) {
+      this.businessService.addEmployeetoProvider(userId, businessId).subscribe({
+        next: (result) => {
+          this.addBusinessProvider = new Business();
+          this.getLoggedInUser();
+          this.getServiceTypes();
+          this.reload(this.addBusinessProvider.id);
+          this.router.navigateByUrl('/business/' + businessId)
+        },
+        error: (nojoy) => {
+          console.error(
+            'BusinessComponent.addBusinessUsed(): error adding business:' + nojoy
+          );
+          console.error(nojoy);
+        },
+      });
     }
 
     getServiceTypes(): void {

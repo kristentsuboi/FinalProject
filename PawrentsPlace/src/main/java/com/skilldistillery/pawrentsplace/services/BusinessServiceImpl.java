@@ -12,86 +12,111 @@ import com.skilldistillery.pawrentsplace.repositories.UserRepository;
 @Service
 public class BusinessServiceImpl implements BusinessService {
 
-    @Autowired
-    private BusinessRepository businessRepo;
-    
-    @Autowired
-    private UserRepository userRepo;
+	@Autowired
+	private BusinessRepository businessRepo;
 
-    @Override
-    public Business findById(int id) {
-        return businessRepo.findById(id);
-    }
+	@Autowired
+	private UserRepository userRepo;
 
-    @Override
-    public List<Business> findAll() {
-        return businessRepo.findAll();
-    }
+	@Override
+	public Business findById(int id) {
+		return businessRepo.findById(id);
+	}
 
+	@Override
+	public List<Business> findAll() {
+		return businessRepo.findAll();
+	}
 
-    @Override
-    public Business create(Business business) {
-        return businessRepo.saveAndFlush(business);
-    }
+	@Override
+	public Business create(Business business) {
+		return businessRepo.saveAndFlush(business);
+	}
 
-    @Override
-    public Business update(int id, Business business) {
-        Business existingBusiness = findById(id);
-        if (existingBusiness != null) {
-            existingBusiness.setName(business.getName());
-            existingBusiness.setAbout(business.getAbout());
-            existingBusiness.setPhone(business.getPhone());
-            existingBusiness.setImageUrl(business.getImageUrl());
-            return businessRepo.saveAndFlush(existingBusiness);
-        }
-        return null;
-    }
+	@Override
+	public Business update(int id, Business business) {
+		Business existingBusiness = findById(id);
+		if (existingBusiness != null) {
+			existingBusiness.setName(business.getName());
+			existingBusiness.setAbout(business.getAbout());
+			existingBusiness.setPhone(business.getPhone());
+			existingBusiness.setImageUrl(business.getImageUrl());
+			return businessRepo.saveAndFlush(existingBusiness);
+		}
+		return null;
+	}
 
-    @Override
-    public boolean delete(int id) {
-        Business existingBusiness = findById(id);
-        if (existingBusiness != null) {
-            businessRepo.delete(existingBusiness);
-            return true;
-        }
-        return false;
-    }
+	@Override
+	public boolean delete(int id) {
+		Business existingBusiness = findById(id);
+		if (existingBusiness != null) {
+			businessRepo.delete(existingBusiness);
+			return true;
+		}
+		return false;
+	}
 
-    @Override
-    public List<Business> findByServiceTypeId(int serviceType) {
-        return businessRepo.findByServiceTypesId(serviceType);
-   }
+	@Override
+	public List<Business> findByServiceTypeId(int serviceType) {
+		return businessRepo.findByServiceTypesId(serviceType);
+	}
 
 	@Override
 	public boolean addClient(int businessId, int userId, String username) {
-		 Business business = businessRepo.findById(businessId);
-		 User user = userRepo.findById(userId);
-	        if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
-	        	business.addClient(user);
-	        	user.addBusinessUsed(business);
-	        	businessRepo.saveAndFlush(business);
-	        	userRepo.saveAndFlush(user);
-	        	return true;
-	        }
+		Business business = businessRepo.findById(businessId);
+		User user = userRepo.findById(userId);
+		if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
+			business.addClient(user);
+			user.addBusinessUsed(business);
+			businessRepo.saveAndFlush(business);
+			userRepo.saveAndFlush(user);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean removeClient(int businessId, int userId, String username) {
-		 Business business = businessRepo.findById(businessId);
-		 User user = userRepo.findById(userId);
-	        if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
-	        	business.removeClient(user);
-	        	user.removeBusinessUsed(business);
-	        	businessRepo.saveAndFlush(business);
-	        	userRepo.saveAndFlush(user);
-	        	return true;
-	        }
-		return false;		
+		Business business = businessRepo.findById(businessId);
+		User user = userRepo.findById(userId);
+		if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
+			business.removeClient(user);
+			user.removeBusinessUsed(business);
+			businessRepo.saveAndFlush(business);
+			userRepo.saveAndFlush(user);
+			return true;
+		}
+		return false;
 	}
-    
-    
-    
+
+	@Override
+	public boolean addEmployee(int businessId, int userId, String username) {
+		User user = userRepo.findById(userId);
+		Business business = businessRepo.findById(businessId);
+		if (business != null && user != null) {
+			user.setBusiness(business);
+			business.addEmployee(user);
+			userRepo.saveAndFlush(user);
+			businessRepo.saveAndFlush(business);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean removeEmployee(int businessId, int userId, String username) {
+		User user = userRepo.findById(userId);
+		Business business = businessRepo.findById(businessId);
+		if (business != null && user != null) {
+			user.setBusiness(null);
+			business.removeEmployee(user);
+			userRepo.saveAndFlush(user);
+			businessRepo.saveAndFlush(business);
+			return true;
+		}
+		return false;
+	}
+
 //    @Override
 //    public List<ServiceType> findByServiceTypeId(int serviceType) {
 //        return businessRepo.findByServiceTypeId(serviceType);

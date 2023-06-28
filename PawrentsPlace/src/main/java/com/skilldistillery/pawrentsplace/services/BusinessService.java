@@ -14,5 +14,7 @@ public interface BusinessService {
     List<Business> findByServiceTypeId(int serviceType);
     boolean addClient(int businessId, int userId, String username);
     boolean removeClient(int businessId, int userId, String username);
+    boolean addEmployee(int businessId, int userId, String username);
+    boolean removeEmployee(int businessId, int userId, String username);
 //    List<ServiceType> findByServiceTypeId(int serviceType);
 }

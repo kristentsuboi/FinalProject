@@ -22,6 +22,7 @@ export class LogoutComponent {
     this.auth.logout();
     if (!this.auth.checkLogin()) {
       this.router.navigateByUrl('/home');
+      user = new User();
     }
     else {
       console.error('LogoutComponent.logout(): Error logging out user.');

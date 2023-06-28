@@ -24,6 +24,7 @@ export class NavigationComponent implements OnInit {
   }
 
   getLoggedInUser() {
+
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         console.log(user);
@@ -35,4 +36,4 @@ export class NavigationComponent implements OnInit {
       },
     });
   }
-}
+  }

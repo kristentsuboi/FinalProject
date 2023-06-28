@@ -255,6 +255,23 @@ public class User {
 		this.petClients = petClients;
 	}
 
+	public void addPetClient(Pet pet) {
+		if (petClients == null) {
+			petClients = new ArrayList<>();
+		}
+		if (!petClients.contains(pet)) {
+			petClients.add(pet);
+			pet.addProvider(this);
+		}
+	}
+	
+	public void removePetClient(Pet pet) {
+		if (petClients != null && petClients.contains(pet)) {
+			petClients.remove(pet);
+			pet.removeProvider(this);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

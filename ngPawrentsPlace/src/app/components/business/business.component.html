@@ -37,29 +37,57 @@
   </div>
   <div *ngIf="!selected">
 
-    <div *ngIf="newBusiness">
-      <form>
-        Name:
-        <input type="text" name="name" [(ngModel)]="newBusiness.name" ><br>
-        About:
-        <input type="text"  name="about" [(ngModel)]="newBusiness.about"><br>
-        Phone:
-        <input type="text"  name="phone" [(ngModel)]="newBusiness.phone"><br>
-        Image Url:
-        <input type="text"  name="imageUrl" [(ngModel)]="newBusiness.imageUrl"><br>
+    <div *ngIf="newBusiness && loggedInUser">
+      <h3>Select existing business or create new business</h3>
+     <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" >&ensp;Add An Existing Employer:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <label for="serviceType">Service Type:&ensp;</label>
+            <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
+              <!-- (onChange)="getBusinesses()" -->
+              <option *ngFor="let service of serviceTypes" value="{{service.id}}">{{service.name}}</option>
+            </select>
+            <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>
+            <label for="business">&ensp;Business:&ensp;</label>
+            <select id="business" name="id" [(ngModel)]="addBusinessProvider.id">
+              <option  *ngFor="let business of typedBusinesses" value="{{business.id}}">{{business.name | titlecase}}</option>
+            </select>
+            <span class="float-end"><input type="submit" class="btn btn-outline-dark" (click)="addBusinessEmployer(loggedInUser.id, addBusinessProvider.id)" value="Add"/></span>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <h6><strong>Add New Employer</strong></h6>
+    <form>
+      Name:
+      <input type="text" name="name" [(ngModel)]="newBusiness.name" ><br>
+      About:
+      <input type="text"  name="about" [(ngModel)]="newBusiness.about"><br>
+      Phone:
+      <input type="text"  name="phone" [(ngModel)]="newBusiness.phone"><br>
+      Image Url:
+      <input type="text"  name="imageUrl" [(ngModel)]="newBusiness.imageUrl"><br>
 
 
-        <label for="serviceType">Service Type:&ensp;</label>
+      <label for="serviceType">Service Type:&ensp;</label>
 
-          <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
-            <!-- (onChange)="getBusinesses()" -->
-            <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
-          </select>
+        <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
+          <!-- (onChange)="getBusinesses()" -->
+          <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
+        </select>
 
-          <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
+        <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
 
 
-        </form>
+
+      </form>
       </div>
 
 

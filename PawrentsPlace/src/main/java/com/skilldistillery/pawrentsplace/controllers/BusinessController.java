@@ -42,12 +42,20 @@ public class BusinessController {
         return businessService.findByServiceTypeId(serviceTypeId);
     }
     
-    @GetMapping("business/{businessId}/add/{userId}")
+    @GetMapping("business/{businessId}/addClient/{userId}")
     public void addBusinessClient(@PathVariable int businessId, @PathVariable int userId, Principal principal) {
         businessService.addClient(businessId, userId, principal.getName());
     }
+    @GetMapping("business/{businessId}/addEmployee/{userId}")
+    public void addBusinessEmployee(@PathVariable int businessId, @PathVariable int userId, Principal principal) {
+    	businessService.addEmployee(businessId, userId, principal.getName());
+    }
     
-    @DeleteMapping("business/{businessId}/remove/{userId}")
+    @DeleteMapping("business/{businessId}/removeEmployee/{userId}")
+    public void removeBusinessEmployee(@PathVariable int businessId, @PathVariable int userId, Principal principal) {
+    	businessService.removeEmployee(businessId, userId, principal.getName());
+    }
+    @DeleteMapping("business/{businessId}/removeClient/{userId}")
     public void removeBusinessClient(@PathVariable int businessId, @PathVariable int userId, Principal principal) {
         businessService.removeClient(businessId, userId, principal.getName());
     }

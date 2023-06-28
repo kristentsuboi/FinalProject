@@ -88,11 +88,18 @@ export class BusinessService {
   }
 
   addBusinessToUserList(userId: number, businessId: number): Observable<void> {
-    return this.http.get<void>(this.url + '/' + businessId + '/add/' + userId, this.getHttpOptions());
+    return this.http.get<void>(this.url + '/' + businessId + '/addClient/' + userId, this.getHttpOptions());
+  }
+
+  addEmployeetoProvider(userId: number, businessId: number): Observable<void> {
+    return this.http.get<void>(this.url + '/' + businessId + '/addEmployee/' + userId, this.getHttpOptions());
+  }
+  removeEmployeetoProvider(userId: number, businessId: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + businessId + '/removeEmployee/' + userId, this.getHttpOptions());
   }
 
   removeBusinessFromUserList(userId: number, businessId: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + businessId + '/remove/' + userId, this.getHttpOptions());
+    return this.http.delete<void>(this.url + '/' + businessId + '/removeClient/' + userId, this.getHttpOptions());
   }
 
 }

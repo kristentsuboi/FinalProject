@@ -127,6 +127,22 @@ public class Business {
 	
 	
 	
+	public void addEmployee(User user) {
+		if (employees == null) {
+			employees = new ArrayList<>();
+		}
+		if (!employees.contains(user)) {
+			employees.add(user);
+			user.setBusiness(this);;
+		}
+	}
+	
+	public void removeEmployee(User user) {
+		if (employees != null && employees.contains(user)) {
+			employees.remove(user);
+			user.setBusiness(null);
+		}
+	}
 	public void addServiceType(ServiceType service) {
 		if (serviceTypes == null) {
 			serviceTypes = new ArrayList<>();

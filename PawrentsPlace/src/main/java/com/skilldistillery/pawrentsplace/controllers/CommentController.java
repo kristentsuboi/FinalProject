@@ -78,7 +78,7 @@ public class CommentController {
 	}
 
 	
-	@PutMapping("account/comment/{id}")
+	@PutMapping("account/comments/{id}")
 	public Comment update(
 			HttpServletRequest req, 
 			HttpServletResponse res, 
@@ -88,7 +88,7 @@ public class CommentController {
 		return commentService.update(principal.getName(), id, comment);
 	}
 	
-	@DeleteMapping("account/comment/{tid}")
+	@DeleteMapping("account/comments/{tid}")
 	public void destroy(
 			HttpServletRequest req, 
 			HttpServletResponse res, 

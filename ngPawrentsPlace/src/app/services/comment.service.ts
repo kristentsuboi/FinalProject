@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class CommentService {
-  url = environment.baseUrl + 'api/account/comments';
+  url = environment.baseUrl + 'api/account/comments/';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
@@ -48,4 +48,10 @@ export class CommentService {
         })
       );
   }
+
+
+  destroy(commentId: number): Observable<void> {
+    return this.http.delete<void>(this.url + commentId, this.getHttpOptions());
+  }
+
 }

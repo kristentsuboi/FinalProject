@@ -15,6 +15,8 @@ export class ForumComponent {
 
   constructor(private commentService: CommentService) {}
 
+
+
   ngOnInit(): void {
     this.loadComments();
   }
@@ -80,7 +82,7 @@ export class ForumComponent {
     });
   }
 
-  addComment(newComment: Comment): void {
+  replyToComment(newComment: Comment): void {
     console.log(newComment);
     newComment.mainComment = this.selected
     this.commentService.create(newComment).subscribe({
@@ -92,6 +94,18 @@ export class ForumComponent {
       error: (error) => {
         console.error('ForumComponent.addComment(): Error creating comment');
         console.error(error);
+      },
+    });
+  }
+
+  deleteComment(commentId: number) {
+    this.commentService.destroy(commentId).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('CommentListComponent.deleteTodo(): error deleting'); 
+        console.error(fail);
       },
     });
   }

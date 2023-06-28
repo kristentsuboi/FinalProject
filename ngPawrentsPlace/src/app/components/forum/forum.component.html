@@ -86,7 +86,7 @@
   <div class="row">
 
 
-    <!-- <FROM HERE></FROM> -->
+    <!-- Forum question starts here -->
 
 
 
@@ -124,6 +124,11 @@
                 <strong>Subject:</strong> This is an example subject
                 <br />
                 <strong>Question: </strong>{{ comment.body }}
+                <div *ngIf="comment.user?.username">
+                  <button class="btn btn-default m-1">Edit</button>
+                  <button class="btn btn-danger m-1" (click)="deleteComment(comment.id)">Delete</button>
+                  console.log('{{comment.id}}')
+                </div>
               </td>
 
               <td>
@@ -161,7 +166,7 @@
                     <img src="assets/images/logo.png" style="border-radius: 50%; height: 100px; width: 100px" />
                   </div>
                   <div>
-                    <P>USERNAME</P>
+                    {{selected.user?.username}}
                   </div>
                   <br>
                 </div>
@@ -173,6 +178,8 @@
                 <strong>Subject:</strong> This is an example subject
                 <br />
                 <strong>Question: </strong>{{ selected.body }}
+                <button class="btn btn-default m-1">Edit</button>
+                <button class="btn btn-danger m-1" (click)="deleteComment(selected.id)">Delete</button>
               </td>
 
               <td>
@@ -192,7 +199,7 @@
 
                 <thead>
                   <tr>
-                    <th>replied by USERNAME</th>
+                    <th>replied by {{reply.user?.username}}</th>
                   </tr>
                 </thead>
 
@@ -230,7 +237,7 @@
               <button
                 type="submit"
                 class="btn btn-primary"
-                (click)="addComment(newComment)"
+                (click)="replyToComment(newComment)"
               >
                 Submit Reply
               </button>

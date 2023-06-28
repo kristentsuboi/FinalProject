@@ -89,7 +89,7 @@ public class Pet {
 	@OneToMany(mappedBy="pet")
 	private List<MedicalNote> medicalNotes;
 	
-	@JsonIgnoreProperties({"pets", "petClients"})
+	@JsonIgnoreProperties({"pets", "petClients", "comments", "businessesUsed", "medicalNotes", "petComments"})
 	@ManyToMany(mappedBy="petClients")
 	private List<User> providers;
 	

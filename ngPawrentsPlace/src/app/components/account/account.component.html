@@ -1,6 +1,6 @@
 <div id="userHeader" *ngIf="loggedInUser">
-  <div class="container container-fluid" style="height: 150px; margin: 15px auto">
-    <br>
+  <br>
+  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
     <div class="float-start">
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="container container-fluid" style="margin: 15px auto">
+<div class="container container-fluid" style="margin: 15px auto; width: 85%">
   <br>
   <div id="editForm" *ngIf="editUser">
     <hr>
@@ -54,7 +54,7 @@
   </div>
 </div>
 
-<div class="container container-fluid" style="margin: 15px auto" *ngIf="loggedInUser">
+<div class="container container-fluid" style="margin: 15px auto; width: 85%" *ngIf="loggedInUser">
   <br>
   <div id="address">
     <hr>

@@ -1,6 +1,6 @@
 <div id="userHeader" *ngIf="loggedInUser">
-  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px">
-    <br>
+  <br>
+  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
     <div class="float-start">
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px;">
+<div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px; width: 85%" class="container container-fluid">
   <br>
   <br>
   <hr>
@@ -56,7 +56,7 @@
 </div>
 
 <br>
-<div id="accordian" class="container container-fluid" style="margin-bottom: 15px;">
+<div id="accordian" class="container container-fluid" style="margin-bottom: 15px; width: 85%">
   <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" id="providersAndAddPetAccordian">
     <ngb-panel title="My Pet Care Providers" id="config-panel-one">
       <ng-template ngbPanelContent>
@@ -93,6 +93,7 @@
                   <label for="serviceType">Service Type:&ensp;</label>
                   <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
                     <!-- (onChange)="getBusinesses()" -->
+                    <option default hidden disabled>{{selectedServiceType.id}}</option>
                     <option *ngFor="let service of serviceTypes" value="{{service.id}}">{{service.name}}</option>
                   </select>
                   <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>

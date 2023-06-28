@@ -58,6 +58,7 @@
             <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>
             <label for="business">&ensp;Business:&ensp;</label>
             <select id="business" name="id" [(ngModel)]="addBusinessProvider.id">
+              <option default hidden disabled>{{addBusinessProvider.id}}</option>
               <option  *ngFor="let business of typedBusinesses" value="{{business.id}}">{{business.name | titlecase}}</option>
             </select>
             <span class="float-end"><input type="submit" class="btn btn-outline-dark" (click)="addBusinessEmployer(loggedInUser.id, addBusinessProvider.id)" value="Add"/></span>

@@ -2,7 +2,7 @@ import { Address } from "./address";
 import { ServiceType } from "./service-type";
 
 export class Business {
-  id: number;
+  id: string;
   name: string;
   about: string;
   phone: string;
@@ -12,7 +12,7 @@ export class Business {
 
 
   constructor(
-  id: number = 0,
+  id: string = 'select',
   name: string = "",
   about: string = "",
   phone: string = "",

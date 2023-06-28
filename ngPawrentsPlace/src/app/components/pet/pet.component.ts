@@ -391,6 +391,7 @@ export class PetComponent {
     this.petCommentService.update(petId, editPetComment).subscribe({
       next: (result) => {
         this.editPetComment = null;
+        this.editPetCommentReply = null;
         this.reload(petId);
       },
       error: (nojoy) => {
@@ -400,9 +401,21 @@ export class PetComponent {
     });
   }
 
+setEditPetCommentReply(reply: PetComment){
+  this.editPetCommentReply = Object.assign({}, reply)
+
+}
+
+
+
+
+
+
   cancelEditPetComment(petId: number) {
     this.editPetComment = null;
+    this.editPetCommentReply = null;
     this.reload(petId);
+
   }
 
   deletePetComment(petId: number, petCommentId: number) {
@@ -410,6 +423,8 @@ export class PetComponent {
       next: (result) => {
         this.reload(petId);
         this.editPetComment = null;
+        this.editPetCommentReply = null;
+
       },
       error: (nojoy) => {
         console.error('PetHttpComponent.deletePetComment(): error deleting petComment:');
@@ -418,21 +433,23 @@ export class PetComponent {
     });
   }
 
-  addReply(commentId: number){
-    // console.log(commentId);
-    // this.petCommentService.create(commentId, newPetComment).subscribe({
-    //   next: (result) => {
-    //     this.newPetComment = new PetComment();
-    //     this.reload(petId);
+  addReply(petId: number, commentId: number, petCommentReply: PetComment){
+    console.log(commentId);
+    this.petCommentService.addReply(petId, commentId, petCommentReply).subscribe({
+      next: (result) => {
+        this.newPetCommentReply = new PetComment();
+        this.reload(petId);
 
-    //   },
-    //   error: (nojoy) => {
-    //     console.error('PetHttpComponent.addPetcomment(): error creating petComment:');
-    //     console.error(nojoy);
-    //   },
-    // });
+      },
+      error: (nojoy) => {
+        console.error('PetHttpComponent.addPetcommentReply(): error creating petCommentReply:');
+        console.error(nojoy);
+      },
+    });
 
   }
+
+
 
 
 }

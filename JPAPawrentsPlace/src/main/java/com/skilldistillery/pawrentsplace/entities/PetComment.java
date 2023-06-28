@@ -59,7 +59,7 @@ public class PetComment {
 	private PetComment mainComment;
 
 
-	@JsonIgnoreProperties({"pet", "mainComment", "replies"})
+	@JsonIgnoreProperties({"pet", "replies"})
 	@OneToMany(mappedBy = "mainComment")
 	private List<PetComment> replies;
 

@@ -67,5 +67,17 @@ export class PetCommentService {
     return this.http.delete<void>(this.url + '/' + petId + '/petcomments/' + petCommentId, this.getHttpOptions());
   }
 
+  addReply(petId: number, petCommentId: number, petComment: PetComment): Observable<PetComment> {
+    return this.http.post<PetComment>(this.url + '/' + petId + '/petcomments/' + petCommentId, petComment, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('PetCommentService.createReply(): error creating petCommentReply: ' + err)
+        );
+      })
+    );
+  }
+
+
 
 }

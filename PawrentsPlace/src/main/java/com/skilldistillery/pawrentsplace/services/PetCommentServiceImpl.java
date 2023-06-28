@@ -42,10 +42,11 @@ public class PetCommentServiceImpl implements PetCommentService {
 	@Override
 	public PetComment create(String username, int petId, PetComment comment) {
 		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
-		User user = userRepo.findById(petId);
+		User user = userRepo.findByUsername(username);
 		if (pet != null && user != null) {
 			comment.setPet(pet);
 			comment.setUser(user);
+			userRepo.saveAndFlush(user);
 			PetComment managedPetComment = petCommentRepo.saveAndFlush(comment);
 			return managedPetComment;
 		}
@@ -88,7 +89,9 @@ public class PetCommentServiceImpl implements PetCommentService {
 	@Override
 	public PetComment createReply(String username, int petId,int mainCommentId, PetComment commentReply) {
 		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
-		User user = userRepo.findById(petId);
+		User user = userRepo.findByUsername(username);
+		
+		System.out.println(username);
 		PetComment mainComment = petCommentRepo.findById(mainCommentId);
 		if (pet != null && user != null && mainComment != null) {
 		
@@ -96,7 +99,8 @@ public class PetCommentServiceImpl implements PetCommentService {
 			commentReply.setUser(user);
 			commentReply.setMainComment(mainComment);
 			mainComment.addReply(commentReply);
-			petCommentRepo.saveAndFlush(mainComment);
+			userRepo.saveAndFlush(user);
+		    petCommentRepo.saveAndFlush(mainComment);
 			PetComment managedPetComment = petCommentRepo.saveAndFlush(commentReply);
 			
 			return managedPetComment;

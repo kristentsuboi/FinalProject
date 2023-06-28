@@ -93,5 +93,22 @@ public class PetCommentController {
 		}
 	}
 	
+	@PostMapping("pets/{petId}/petcomments/{petCommentId}")
+	public PetComment createReply(HttpServletRequest req, HttpServletResponse res, @PathVariable int petId, @PathVariable int petCommentId,
+			@RequestBody PetComment petCommentReply, Principal principal) {
+		try {
+			petCommentReply = petComService.createReply(principal.getName(), petId, petCommentId, petCommentReply);
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(petCommentReply.getId());
+			res.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			petCommentReply = null;
+		}
+		return petCommentReply;
+	}
+	
 
 }

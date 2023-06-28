@@ -399,11 +399,7 @@
          <div *ngIf="!editPetComment">
 
            <table class="table table-striped" *ngFor="let petComment of selected.petComments">
-             <thead>
-               <tr>
-                 <th scope="col"></th>
-                </tr>
-              </thead>
+
               <tbody *ngIf="petComment.user">
                 <tr *ngIf="!editPetComment && !petComment.mainComment">
 
@@ -419,16 +415,24 @@
                     <span *ngIf="loggedInUser.id === petComment.user.id" class="float-end"><button class="btn btn-outline-dark" (click)="editPetComment = petComment">Edit</button></span>
                   </td>
                 </tr>
+                <table id= "addReply" *ngIf="!editPetComment && !petComment.mainComment"><br>
 
-
-                <table id="replyTable" *ngFor="let reply of petComment.replies" class="table table-striped">
                   <tr>
+
                     <td>
                       <input type="text" name="body" [(ngModel)]="newPetCommentReply.body" placeholder= "add reply">
-                      <span class="float-end"><button class="btn btn-outline-dark" (click)="addReply(petComment.id)">Reply</button></span>
+                      <span class="float-end"><button class="btn btn-outline-dark" (click)="addReply(selected.id, petComment.id, newPetCommentReply)">Reply</button></span>
                     </td>
                   </tr>
-                  <tr>
+                  <br>
+
+                </table>
+
+
+                <table id="replyTable" *ngFor="let reply of petComment.replies" class="table">
+
+
+                  <tr *ngIf="!editPetCommentReply">
 
                     <td *ngIf="reply.user">
                       <img *ngIf="reply.user.imageUrl" src="{{reply.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
@@ -436,14 +440,44 @@
                       &ensp;{{reply.user.username}}&ensp;{{reply.createdAt}}
                       <span *ngIf="reply.updatedAt && (reply.updatedAt != reply.createdAt)">&ensp;Updated:&ensp;{{reply.updatedAt}}</span>
                     </tr>
-                    <tr>
+                    <tr *ngIf="!editPetCommentReply">
 
                       <td *ngIf="reply.user">{{reply.body}}
-                        <span *ngIf="loggedInUser.id === reply.user.id" class="float-end"><button class="btn btn-outline-dark" (click)="editPetCommentReply = reply">Edit</button></span>
+                        <span *ngIf="loggedInUser.id === reply.user.id" class="float-end"><button class="btn btn-outline-dark" (click)="setEditPetCommentReply(reply)">Edit</button></span>
 
                       </td>
                     </tr>
 
+                  </table>
+
+                  <table class="table table-striped" *ngIf="editPetCommentReply && editPetCommentReply.mainComment">
+                    <thead *ngIf="editPetCommentReply.mainComment.id === petComment.id">
+                      <tr >
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="editPetCommentReply.mainComment.id === petComment.id">
+                      <tr *ngIf="editPetCommentReply.user">
+                        <td>
+                          <img *ngIf="editPetCommentReply.user.imageUrl" src="{{editPetCommentReply.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
+                          <img *ngIf="!editPetCommentReply.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
+                          &ensp;{{editPetCommentReply.user.username}}&ensp;{{editPetCommentReply.createdAt}}
+                          <span *ngIf="editPetCommentReply.updatedAt && (editPetCommentReply.updatedAt != editPetCommentReply.createdAt)">&ensp;Updated:&ensp;{{editPetCommentReply.updatedAt}}</span>
+                        </td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><input id="notes" type="text" name="notes" [(ngModel)]="editPetCommentReply.body" /></td>
+                        <td>
+                          <span class="float-end">
+                            <button class="btn btn-outline-dark" (click)="updatePetComment(selected.id, editPetCommentReply)">Update</button>
+                            <button class="btn btn-outline-dark" (click)="cancelEditPetComment(selected.id)">Cancel</button>
+                            <button class="btn btn-outline-dark" (click)="deletePetComment(selected.id, editPetCommentReply.id)">Delete</button>
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
 
 
@@ -477,6 +511,22 @@
                     <button class="btn btn-outline-dark" (click)="deletePetComment(selected.id, editPetComment.id)">Delete</button>
                   </span>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-striped" *ngIf="!editPetComment">
+            <thead>
+              <tr>
+                <th scope="col" >&ensp;Add Comment:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  <input id="notes" type="text" name="notes" [(ngModel)]="newPetComment.body" />
+                  <span class="float-end"><button class="btn btn-outline-dark" (click)="addPetComment(selected.id, newPetComment)">Add</button></span>
+                </td>
+
               </tr>
             </tbody>
           </table>

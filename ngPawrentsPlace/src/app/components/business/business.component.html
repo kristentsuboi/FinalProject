@@ -3,23 +3,25 @@
     <div class="container container-fluid" style="height: 150px; margin: 15px auto; width: 85%">
       <br>
       <div class="float-start" *ngIf="loggedInUser && selected">
-        <h2>{{selected.name}}</h2>
+        <h2>{{selected.name | titlecase}}</h2>
         <h5>{{ selected.about}}</h5>
         <!-- <h5>{{ selected.email }}</h5> -->
         <h5>{{ selected.phone }}</h5>
-        <p *ngFor=" let service of selected.serviceTypes">{{service.name}}</p><br>
+        <p *ngFor=" let service of selected.serviceTypes">{{service.name}}</p>
         <button *ngIf="!editBusiness" class="btn btn-outline-dark" (click)="setEditBusiness()">Edit Business Information</button>
+        <br>
       </div>
         <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-        <img *ngIf="!selected.imageUrl" src="http://pluspng.com/img-png/shop-png-black-and-white-shop-icon-it-s-an-icon-for-finding-local-shopping-the-logo-is-a-square-png-50-px-1600.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-
-
+        <img *ngIf="!selected.imageUrl" src="http://pluspng.com/img-png/shop-png-black-and-white-shop-icon-it-s-an-icon-for-finding-local-shopping-the-logo-is-a-square-png-50-px-1600.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;">
     </div>
   </div>
 
-
   <div *ngIf="editBusiness" style="margin: auto; width: 85%">
-    <div>
+    <div class="container-fluid">
+      <br>
+      <br>
+      <hr>
+      <h5>Edit Business:</h5>
          <form>
             Name:
             <input type="text" name="name" [(ngModel)]="editBusiness.name" ><br>
@@ -37,7 +39,6 @@
    </div>
 
   <div *ngIf="!selected" style="margin: auto; width: 85%">
-
     <div *ngIf="newBusiness && loggedInUser">
       <h3>Select existing business or create new business</h3>
      <table class="table table-striped">
@@ -61,64 +62,40 @@
             </select>
             <span class="float-end"><input type="submit" class="btn btn-outline-dark" (click)="addBusinessEmployer(loggedInUser.id, addBusinessProvider.id)" value="Add"/></span>
           </td>
-
         </tr>
       </tbody>
     </table>
-    <h6><strong>Add New Employer</strong></h6>
-    <form>
-      Name:
-      <input type="text" name="name" [(ngModel)]="newBusiness.name" ><br>
-      About:
-      <input type="text"  name="about" [(ngModel)]="newBusiness.about"><br>
-      Phone:
-      <input type="text"  name="phone" [(ngModel)]="newBusiness.phone"><br>
-      Image Url:
-      <input type="text"  name="imageUrl" [(ngModel)]="newBusiness.imageUrl"><br>
-
-
-      <label for="serviceType">Service Type:&ensp;</label>
-
-        <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
-          <option default hidden disabled>{{selectedServiceType.id}}</option>
-          <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
-        </select>
-
-        <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
-
-
-
-      </form>
+        <h6><strong>Add New Employer</strong></h6>
+        <form>
+          Name:
+          <input type="text" name="name" [(ngModel)]="newBusiness.name" ><br>
+          About:
+          <input type="text"  name="about" [(ngModel)]="newBusiness.about"><br>
+          Phone:
+          <input type="text"  name="phone" [(ngModel)]="newBusiness.phone"><br>
+          Image Url:
+          <input type="text"  name="imageUrl" [(ngModel)]="newBusiness.imageUrl"><br>
+          <label for="serviceType">Service Type:&ensp;</label>
+          <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
+            <option default hidden disabled>{{selectedServiceType.id}}</option>
+            <option *ngFor="let service of serviceTypes; let i = index" [attr.data-index]="i" value="{{service.id}}">{{service.name}}</option>
+          </select>
+          <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
+        </form>
       </div>
-
-
-
   </div>
 
 
-<div *ngIf="selected">
-
-
-</div>
-  <div class="container container-fluid" style="margin: 15px auto">
+  <div class="container container-fluid" style="margin: 15px auto; width: 85%" *ngIf="selected" >
     <br>
-    <!-- <div id="editForm" *ngIf="editUser"> -->
-
-
-    </div>
-
-
-  <div class="container container-fluid" style="margin: 15px auto" *ngIf="selected" >
     <br>
     <div id="address">
       <hr>
       <h4>Address</h4>
       <br>
-      <div *ngIf="selected.address">
-        <p>{{selected.address.street | titlecase }}</p>
-        <p>{{selected.address.city  | titlecase }}</p>
-        <p>{{selected.address.state}}</p>
-        <p>{{selected.address.zipCode}}</p>
+      <div *ngIf="selected.address && !editingAddress">
+        <h6>{{selected.address.street | titlecase }}</h6>
+        <h6>{{selected.address.city  | titlecase }}, {{selected.address.state}}&ensp;{{selected.address.zipCode}}</h6>
         <button class="btn btn-outline-dark" (click)="setEditAddress()">Edit Address</button>
       </div>
 

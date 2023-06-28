@@ -178,8 +178,6 @@ export class BusinessComponent {
     setEditAddress() {
       if (this.selected) {
       this.editingAddress = Object.assign({}, this.selected.address);
-
-
       }
     }
 
@@ -188,13 +186,9 @@ export class BusinessComponent {
       this.reload(businessId);
     }
 
-
-
-
     setEditBusiness(){
       if(this.selected){
         this.editBusiness = Object.assign({}, this.selected);
-
       }
     }
 

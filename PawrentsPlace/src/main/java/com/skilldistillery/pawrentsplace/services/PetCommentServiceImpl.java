@@ -84,5 +84,25 @@ public class PetCommentServiceImpl implements PetCommentService {
 		}
 		
 	}
+	
+	@Override
+	public PetComment createReply(String username, int petId,int mainCommentId, PetComment commentReply) {
+		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
+		User user = userRepo.findById(petId);
+		PetComment mainComment = petCommentRepo.findById(mainCommentId);
+		if (pet != null && user != null && mainComment != null) {
+		
+			commentReply.setPet(pet);
+			commentReply.setUser(user);
+			commentReply.setMainComment(mainComment);
+			mainComment.addReply(commentReply);
+			petCommentRepo.saveAndFlush(mainComment);
+			PetComment managedPetComment = petCommentRepo.saveAndFlush(commentReply);
+			
+			return managedPetComment;
+		}
+
+		return null;
+	}
 
 }

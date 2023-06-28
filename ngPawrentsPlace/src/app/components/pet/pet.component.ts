@@ -44,8 +44,13 @@ export class PetComponent {
   newPetComment: PetComment = new PetComment();
   editPetComment: PetComment | null = null;
 
+  newPetCommentReply: PetComment = new PetComment();
+  editPetCommentReply: PetComment | null = null;
+
   newUser: User = new User();
   editUser: User | null = null;
+
+
 
   constructor(
     private petService: PetService,
@@ -411,6 +416,22 @@ export class PetComponent {
         console.error(nojoy);
       },
     });
+  }
+
+  addReply(commentId: number){
+    // console.log(commentId);
+    // this.petCommentService.create(commentId, newPetComment).subscribe({
+    //   next: (result) => {
+    //     this.newPetComment = new PetComment();
+    //     this.reload(petId);
+
+    //   },
+    //   error: (nojoy) => {
+    //     console.error('PetHttpComponent.addPetcomment(): error creating petComment:');
+    //     console.error(nojoy);
+    //   },
+    // });
+
   }
 
 

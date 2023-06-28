@@ -1,6 +1,7 @@
 package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -137,6 +138,23 @@ public class PetComment {
 
 	public void setReplies(List<PetComment> replies) {
 		this.replies = replies;
+	}
+	
+	public void addReply(PetComment reply) {
+		if (replies == null) {
+			replies = new ArrayList<>();
+		}
+		if (!replies.contains(reply)) {
+			replies.add(reply);
+			reply.setMainComment(this);
+		}
+	}
+	
+	public void removeReply(PetComment reply) {
+		if (replies != null && replies.contains(reply)) {
+			replies.remove(reply);
+			reply.setMainComment(null);
+		}
 	}
 
 	@Override

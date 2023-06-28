@@ -11,5 +11,6 @@ public interface PetCommentService {
 	PetComment create(String username, int petId, PetComment comment);
 	PetComment update(String username, int petCommentId, PetComment comment, int petId);
 	boolean delete(String username, int petCommentId, int petId);
+	PetComment createReply(String username, int petId, int mainCommentId, PetComment commentReply);
 
 }

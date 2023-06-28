@@ -39,7 +39,7 @@ export class BusinessService {
   }
 
 
-  show(id: number): Observable<Business> {
+  show(id: string): Observable<Business> {
     return this.http.get<Business>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -87,18 +87,18 @@ export class BusinessService {
     return this.http.delete<void>(this.url + '/' + businessId, this.getHttpOptions());
   }
 
-  addBusinessToUserList(userId: number, businessId: number): Observable<void> {
+  addBusinessToUserList(userId: number, businessId: string): Observable<void> {
     return this.http.get<void>(this.url + '/' + businessId + '/addClient/' + userId, this.getHttpOptions());
   }
 
-  addEmployeetoProvider(userId: number, businessId: number): Observable<void> {
+  addEmployeetoProvider(userId: number, businessId: string): Observable<void> {
     return this.http.get<void>(this.url + '/' + businessId + '/addEmployee/' + userId, this.getHttpOptions());
   }
-  removeEmployeetoProvider(userId: number, businessId: number): Observable<void> {
+  removeEmployeetoProvider(userId: number, businessId: string): Observable<void> {
     return this.http.delete<void>(this.url + '/' + businessId + '/removeEmployee/' + userId, this.getHttpOptions());
   }
 
-  removeBusinessFromUserList(userId: number, businessId: number): Observable<void> {
+  removeBusinessFromUserList(userId: number, businessId: string): Observable<void> {
     return this.http.delete<void>(this.url + '/' + businessId + '/removeClient/' + userId, this.getHttpOptions());
   }
 

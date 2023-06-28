@@ -46,7 +46,7 @@ export class BusinessComponent {
         if (isNaN(id)) {
           this.router.navigateByUrl('**');
         } else {
-         this.reload(id);
+         this.reload(idStr);
         }
       } else {
         this.router.navigateByUrl('business');
@@ -56,7 +56,7 @@ export class BusinessComponent {
     }
 
 
-    reload(buinessId: number) {
+    reload(buinessId: string) {
 
       this.businessService.show(buinessId).subscribe({
         next: (business) => {
@@ -98,7 +98,7 @@ export class BusinessComponent {
       });
     }
 
-    getBusiness(businessId: number){
+    getBusiness(businessId: string){
       this.businessService.show(businessId).subscribe({
         next: (business) => {
           this.selected = business;
@@ -132,7 +132,7 @@ export class BusinessComponent {
 
 
 
-    editAddress(businessId: number, addressId: number, editingAddress: Address) {
+    editAddress(businessId: string, addressId: number, editingAddress: Address) {
       console.log(editingAddress);
       this.addressService.updateForBusiness(businessId, editingAddress).subscribe({
         next: (result) => {
@@ -146,7 +146,7 @@ export class BusinessComponent {
       });
     }
 
-    deleteAddress(addressId: number, businessId: number) {
+    deleteAddress(addressId: number, businessId: string) {
       if (this.loggedInUser) {
       this.addressService.destroyForBusiness(businessId, addressId).subscribe({
         next: (result) => {
@@ -161,9 +161,9 @@ export class BusinessComponent {
       }
     }
 
-    addAddress(businessId: number, newAddress: Address): void {
+    addAddress(businessId: string, newAddress: Address): void {
       console.log(newAddress);
-      this.addressService.createForUser(businessId, newAddress).subscribe({
+      this.addressService.createForBusiness(businessId, newAddress).subscribe({
         next: (result) => {
           this.newAddress = new Address();
           this.reload(businessId);
@@ -181,7 +181,7 @@ export class BusinessComponent {
       }
     }
 
-    cancelEditAddress(businessId: number) {
+    cancelEditAddress(businessId: string) {
       this.editingAddress = null;
       this.reload(businessId);
     }
@@ -192,7 +192,7 @@ export class BusinessComponent {
       }
     }
 
-    cancelEditBusiness(businessId: number) {
+    cancelEditBusiness(businessId: string) {
       this.editBusiness = null;
       this.reload(businessId);
     }
@@ -231,13 +231,13 @@ export class BusinessComponent {
         },
       });
     }
-    addBusinessEmployer(userId: number, businessId: number) {
+    addBusinessEmployer(userId: number, businessId: string) {
       this.businessService.addEmployeetoProvider(userId, businessId).subscribe({
         next: (result) => {
           this.addBusinessProvider = new Business();
           this.getLoggedInUser();
           this.getServiceTypes();
-          this.reload(this.addBusinessProvider.id);
+          this.reload(businessId);
           this.router.navigateByUrl('/business/' + businessId)
         },
         error: (nojoy) => {

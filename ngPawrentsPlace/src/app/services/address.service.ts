@@ -28,7 +28,7 @@ export class AddressService {
   }
 
 
-  createForBusiness(businessId: number, address: Address): Observable<Address> {
+  createForBusiness(businessId: string, address: Address): Observable<Address> {
     return this.http.post<Address>(this.url + '/business/' + businessId + '/address', address, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
@@ -39,7 +39,7 @@ export class AddressService {
     );
   }
 
-  updateForBusiness(businessId: number, editAddress: Address): Observable<Address> {
+  updateForBusiness(businessId: string, editAddress: Address): Observable<Address> {
     return this.http.put<Address>(this.url + '/business/' + businessId + '/address/' + editAddress.id, editAddress, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
@@ -50,7 +50,7 @@ export class AddressService {
     );
   }
 
-  destroyForBusiness(businessId: number, addressId: number): Observable<void> {
+  destroyForBusiness(businessId: string, addressId: number): Observable<void> {
     return this.http.delete<void>(this.url + '/business/' + businessId + '/address/' + addressId, this.getHttpOptions());
   }
 

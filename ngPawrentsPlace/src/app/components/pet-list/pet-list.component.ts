@@ -130,7 +130,7 @@ export class PetListComponent {
     });
   }
 
-  addBusinessUsed(userId: number, businessId: number) {
+  addBusinessUsed(userId: number, businessId: string) {
     this.businessService.addBusinessToUserList(userId, businessId).subscribe({
       next: (result) => {
         this.addBusiness = new Business();
@@ -147,7 +147,7 @@ export class PetListComponent {
     });
   }
 
-  removeBusinessUsed(userId: number, businessId: number) {
+  removeBusinessUsed(userId: number, businessId: string) {
     this.businessService.removeBusinessFromUserList(userId, businessId).subscribe({
       next: (result) => {
         this.getLoggedInUser();

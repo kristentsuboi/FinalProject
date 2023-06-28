@@ -114,7 +114,7 @@ export class PetListComponent {
     });
   }
 
-  getBusinesses(serviceTypeId: number) {
+  getBusinesses(serviceTypeId: string) {
     this.businessService.showByServiceType(serviceTypeId).subscribe({
       next: (result) => {
         this.typedBusinesses = result;

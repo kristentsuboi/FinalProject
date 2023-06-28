@@ -50,7 +50,7 @@ export class BusinessService {
     );
   }
 
-  showByServiceType(serviceTypeId: number): Observable<Business[]> {
+  showByServiceType(serviceTypeId: string): Observable<Business[]> {
     return this.http.get<Business[]>(this.url + '/serviceType/' + serviceTypeId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);

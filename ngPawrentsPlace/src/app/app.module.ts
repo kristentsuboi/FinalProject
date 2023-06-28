@@ -29,6 +29,7 @@ import { LastestPostComponent } from './components/lastest-post/lastest-post.com
 import { TeamComponent } from './components/team/team.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForumComponent } from './components/forum/forum.component';
+import { ImageSliderModule } from './imageSlider/imageSlider.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,6 @@ import { ForumComponent } from './components/forum/forum.component';
     NotFoundComponent,
     AccountComponent,
     PetComponent,
-
     BusinessComponent,
     ChatComponent,
     FooterComponent,
@@ -59,8 +59,8 @@ import { ForumComponent } from './components/forum/forum.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-
     NgbAccordionModule,
+    ImageSliderModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

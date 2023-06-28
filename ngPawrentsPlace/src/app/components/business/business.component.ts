@@ -26,7 +26,7 @@ export class BusinessComponent {
   selectedServiceType: ServiceType = new ServiceType();
   serviceTypes: ServiceType[] = [];
   typedBusinesses: Business[] = [];
- addBusinessProvider: Business = new Business();
+  addBusinessProvider: Business = new Business();
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -198,10 +198,15 @@ export class BusinessComponent {
       }
     }
 
+    cancelEditBusiness(businessId: number) {
+      this.editBusiness = null;
+      this.reload(businessId);
+    }
+
     editBusinessInfo(editBusiness: Business) {
       this.businessService.update(editBusiness).subscribe({
         next: (result) => {
-          this.editBusiness = new Business();
+          this.editBusiness = null;
           this.reload(editBusiness.id);
         },
         error: (nojoy) => {

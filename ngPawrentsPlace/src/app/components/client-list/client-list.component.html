@@ -1,6 +1,6 @@
 <div id="userHeader" *ngIf="logged">
-  <div class="container container-fluid" style="height: 150px; margin: 15px">
-    <br>
+  <br>
+  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
     <div class="float-start">
       <h2>{{ logged.username }}</h2>
       <h5>{{ logged.phone }}</h5>
@@ -8,14 +8,14 @@
       <a class="btn btn-outline-dark" [routerLink]="['/account', logged.id]">View Account</a>
       <a class="btn btn-outline-dark" *ngIf="!logged.business" [routerLink]="['/business']">Add Employer</a>
       <a class="btn btn-outline-dark" *ngIf="logged.business" [routerLink]="['/business', logged.business.id]">View Employer</a>
+      </div>
       <img *ngIf="logged.imageUrl" src="{{ logged.imageUrl }}" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
       <img *ngIf="!logged.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="{{logged.username}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-    </div>
   </div>
 </div>
 
 
-<div id="listView" name="listView" *ngIf="logged" style="margin-top: 20px;">
+<div id="listView" name="listView" *ngIf="logged" style="margin: auto; width: 85%">
   <br>
   <br>
   <hr>

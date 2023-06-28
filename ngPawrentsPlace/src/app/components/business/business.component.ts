@@ -218,7 +218,7 @@ export class BusinessComponent {
       // "'https://www.google.com/maps?q='+selected.address.zipCode+'&z=9&output=embed'"
     }
 
-    getBusinesses(serviceTypeId: number) {
+    getBusinesses(serviceTypeId: string) {
       this.businessService.showByServiceType(serviceTypeId).subscribe({
         next: (result) => {
           this.typedBusinesses = result;

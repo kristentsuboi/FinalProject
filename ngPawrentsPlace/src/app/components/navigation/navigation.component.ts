@@ -14,9 +14,13 @@ export class NavigationComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.reload();
+  }
+
+  reload() {
     if(this.checkLogin()) {
-    this.getLoggedInUser();
-    }
+      this.getLoggedInUser();
+      }
   }
 
   checkLogin(): boolean {

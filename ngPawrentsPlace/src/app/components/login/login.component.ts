@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
+    private navigation: NavigationComponent,
     private router: Router
     ) {}
 
@@ -23,6 +25,7 @@ export class LoginComponent {
     console.log(user);
     this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser) => {
+            this.navigation.reload();
             if (loggedInUser.role === 'parent') {
               this.router.navigateByUrl('/pets');
             }

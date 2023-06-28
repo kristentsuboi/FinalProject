@@ -2,6 +2,7 @@ package com.skilldistillery.pawrentsplace.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -276,6 +277,31 @@ public class Pet {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public List<User> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<User> providers) {
+		this.providers = providers;
+	}
+	
+	public void addProvider(User provider) {
+		if (providers == null) {
+			providers = new ArrayList<>();
+		}
+		if (!providers.contains(provider)) {
+			providers.add(provider);
+			provider.addPetClient(this);
+		}
+	}
+	
+	public void removeProvider(User provider) {
+		if (providers != null && providers.contains(provider)) {
+			providers.remove(provider);
+			provider.removePetClient(this);
+		}
+	}
 
 	@Override
 	public int hashCode() {
@@ -293,6 +319,8 @@ public class Pet {
 		Pet other = (Pet) obj;
 		return id == other.id;
 	}
+	
+	
 
 	@Override
 	public String toString() {

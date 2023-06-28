@@ -18,13 +18,14 @@
         <li class="nav-item" *ngIf="checkLogin()">
           <a class="nav-link" [routerLink]="['/forum']">Forum</a>
         </li>
-
-        <li class="nav-item" *ngIf="checkLogin() && loggedInUser && loggedInUser.role === 'parent'">
+        <!-- <span *ngIf="checkLogin()"> -->
+        <li class="nav-item" *ngIf="loggedInUser && loggedInUser.role === 'parent'">
           <a class="nav-link" [routerLink]="['/pets']">My Pets</a>
         </li>
-        <li class="nav-item" *ngIf="checkLogin() && loggedInUser && loggedInUser.role === 'provider'">
+        <li class="nav-item" *ngIf="loggedInUser && loggedInUser.role === 'provider'">
           <a class="nav-link" [routerLink]="['/clients']">My Clients</a>
         </li>
+        <!-- </span> -->
         <li class="nav-item" *ngIf="checkLogin()">
           <a *ngIf="loggedInUser" class="nav-link" [routerLink]="['/account', loggedInUser.id]">Account</a>
         </li>

@@ -5,17 +5,17 @@
 
       <div class="mb-3">
         <label for="username" class="form-label">Create Username:</label>
-        <input id="username" type="text" name="username" [(ngModel)]="user.username" class="form-control" required/>
+        <input id="username" type="text" name="username" [(ngModel)]="newUser.username" class="form-control" required/>
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label">Create Password:</label>
-        <input id="password" type="password" name="password" [(ngModel)]="user.password" class="form-control" required/>
+        <input id="password" type="password" name="password" [(ngModel)]="newUser.password" class="form-control" required/>
       </div>
 
       <div class="mb-3">
         <label for="role" class="form-label">Select Role:</label>
-        <select id="role" name="role" [(ngModel)]="user.role" class="form-select" required>
+        <select id="role" name="role" [(ngModel)]="newUser.role" class="form-select" required>
           <option value="parent">Pawrent</option>
           <option value="provider">Provider</option>
         </select>
@@ -23,21 +23,21 @@
 
       <div class="mb-3">
         <label for="email" class="form-label">Enter E-mail:</label>
-        <input id="email" type="email" name="email" [(ngModel)]="user.email" class="form-control" required/>
+        <input id="email" type="email" name="email" [(ngModel)]="newUser.email" class="form-control" required/>
       </div>
 
       <div class="mb-3">
         <label for="phone" class="form-label">Enter Phone:</label>
-        <input id="phone" type="text" name="phone" [(ngModel)]="user.phone" class="form-control" required/>
+        <input id="phone" type="text" name="phone" [(ngModel)]="newUser.phone" class="form-control" required/>
       </div>
 
       <div class="mb-3">
         <label for="imageUrl" class="form-label">Profile Picture Link:</label>
-        <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="user.imageUrl" class="form-control"/>
+        <input id="imageUrl" type="url" name="imageUrl" [(ngModel)]="newUser.imageUrl" class="form-control"/>
       </div>
 
       <div class="text-center">
-        <input type="submit" value="Register" (click)="register(user)" class="btn btn-primary">
+        <input type="submit" value="Register" (click)="register(newUser)" class="btn btn-primary">
       </div>
     </div>
   </div>

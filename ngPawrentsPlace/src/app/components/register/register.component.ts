@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
 
-  user: User = new User();
+  newUser: User = new User();
 
   constructor(
     private auth: AuthService,
@@ -25,7 +25,12 @@ export class RegisterComponent {
       next: (registeredUser) => {
         this.auth.login(user.username, user.password).subscribe({
           next: (loggedInUser) => {
-            this.router.navigateByUrl('/pets');
+            if (loggedInUser.role === 'parent') {
+              this.router.navigateByUrl('/pets');
+            }
+            if (loggedInUser.role === 'provider') {
+              this.router.navigateByUrl('/clients');
+            }
           },
           error: (problem) => {
             console.error('RegisterComponent.register(): Error logging in user.');

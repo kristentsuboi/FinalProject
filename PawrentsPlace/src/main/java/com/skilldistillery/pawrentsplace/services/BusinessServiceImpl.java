@@ -1,12 +1,15 @@
 package com.skilldistillery.pawrentsplace.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.skilldistillery.pawrentsplace.entities.Business;
-import com.skilldistillery.pawrentsplace.entities.ServiceType;
+import com.skilldistillery.pawrentsplace.entities.Pet;
 import com.skilldistillery.pawrentsplace.entities.User;
 import com.skilldistillery.pawrentsplace.repositories.BusinessRepository;
+import com.skilldistillery.pawrentsplace.repositories.PetRepository;
 import com.skilldistillery.pawrentsplace.repositories.UserRepository;
 
 @Service
@@ -17,6 +20,10 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+
+	@Autowired
+	private PetRepository petRepo;
 
 	@Override
 	public Business findById(int id) {
@@ -68,6 +75,14 @@ public class BusinessServiceImpl implements BusinessService {
 		if ((business != null) && (user != null) && (username.equals(user.getUsername()))) {
 			business.addClient(user);
 			user.addBusinessUsed(business);
+			for (User employee : business.getEmployees()) {
+				for (Pet pet : user.getPets()) {
+					employee.addPetClient(pet);
+					pet.addProvider(employee);
+					userRepo.saveAndFlush(employee);
+					petRepo.saveAndFlush(pet);					
+				}
+			}
 			businessRepo.saveAndFlush(business);
 			userRepo.saveAndFlush(user);
 			return true;

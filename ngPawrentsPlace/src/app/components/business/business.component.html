@@ -1,22 +1,26 @@
 
   <div id="providerHeader" *ngIf="selected">
-    <div class="container container-fluid" style="height: 150px; margin: 15px auto">
+    <div class="container container-fluid" style="height: 150px; margin: 15px auto; width: 85%">
       <br>
       <div class="float-start" *ngIf="loggedInUser && selected">
         <h2>{{selected.name}}</h2>
         <h5>{{ selected.about}}</h5>
         <!-- <h5>{{ selected.email }}</h5> -->
         <h5>{{ selected.phone }}</h5>
-        <p *ngFor=" let service of selected.serviceTypes">{{service.name}}</p>
-
+        <p *ngFor=" let service of selected.serviceTypes">{{service.name}}</p><br>
+        <button *ngIf="!editBusiness" class="btn btn-outline-dark" (click)="setEditBusiness()">Edit Business Information</button>
+      </div>
         <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
         <img *ngIf="!selected.imageUrl" src="http://pluspng.com/img-png/shop-png-black-and-white-shop-icon-it-s-an-icon-for-finding-local-shopping-the-logo-is-a-square-png-50-px-1600.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
 
-        <button class="btn btn-outline-dark" (click)="setEditBusiness()">Edit Business Information</button>
 
-        <div *ngIf="editBusiness">
+    </div>
+  </div>
 
-          <form>
+
+  <div *ngIf="editBusiness" style="margin: auto; width: 85%">
+    <div>
+         <form>
             Name:
             <input type="text" name="name" [(ngModel)]="editBusiness.name" ><br>
             About:
@@ -25,17 +29,14 @@
             <input type="text"  name="phone" [(ngModel)]="editBusiness.phone"><br>
             Image Url:
             <input type="text"  name="imageUrl" [(ngModel)]="editBusiness.imageUrl"><br>
-
-
             <button class="btn btn-outline-dark" (click)="editBusinessInfo(editBusiness)">Edit Business Information</button>
+            <button class="btn btn-outline-dark" (click)="cancelEditBusiness(editBusiness.id)">Cancel</button>
 
+         </form>
+       </div>
+   </div>
 
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="!selected">
+  <div *ngIf="!selected" style="margin: auto; width: 85%">
 
     <div *ngIf="newBusiness && loggedInUser">
       <h3>Select existing business or create new business</h3>
@@ -95,12 +96,6 @@
   </div>
 
 
-
-
-
-
-
-
 <div *ngIf="selected">
 
 
@@ -108,7 +103,7 @@
   <div class="container container-fluid" style="margin: 15px auto">
     <br>
     <!-- <div id="editForm" *ngIf="editUser"> -->
-      <hr>
+
 
     </div>
 

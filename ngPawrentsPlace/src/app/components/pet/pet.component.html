@@ -191,7 +191,7 @@
                   <td *ngIf="!editShot">{{shot.name}}</td>
                   <td *ngIf="!editShot">{{shot.dateAdministered}}</td>
                   <td *ngIf="!editShot">{{shot.frequency}}</td>
-                  <td *ngIf="!editShot">TBP auto-calc</td>
+                  <td *ngIf="!editShot">{{shot.dateAdministered| dueDate:shot.frequency| date:'YYYY-MM-dd'}}</td>
                   <td *ngIf="!editShot">{{shot.notes}}</td>
                   <td *ngIf="!editShot"><span class="float-end"><button class="btn btn-outline-dark" (click)="editShot = shot">Edit</button></span></td>
                 </tr>
@@ -208,7 +208,7 @@
                       <option value="every 3yrs">every 3yrs</option>
                     </select>
                   </td>
-                  <td>auto-calc</td>
+                  <td><em>auto-calc</em></td>
                   <td><input id="notes" type="text" name="notes" [(ngModel)]="editShot.notes" size="12" /></td>
                   <td>
                     <span class="float-end">
@@ -232,7 +232,7 @@
                       <option value="every 3yrs">every 3yrs</option>
                     </select>
                   </td>
-                  <td *ngIf="!editShot">auto-calc</td>
+                  <td *ngIf="!editShot"><em>auto-calc</em></td>
                   <td *ngIf="!editShot"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newShot.notes" size="12" /></td>
                   <td *ngIf="!editShot"><span class="float-end"><button class="btn btn-outline-dark" (click)="addShot(selected.id, newShot)">Add</button></span></td>
                 </tr>
@@ -250,6 +250,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Date Last Administered</th>
                   <th scope="col">Frequency</th>
+                  <th scope="col">Due</th>
                   <th scope="col">With Food</th>
                   <th scope="col">Date Started</th>
                   <th scope="col">Notes</th>
@@ -261,9 +262,11 @@
                   <td *ngIf="!editMedication">{{medication.name}}</td>
                   <td *ngIf="!editMedication">{{medication.lastAdministered}}</td>
                   <td *ngIf="!editMedication">{{medication.frequency}}</td>
+                  <td *ngIf="!editMedication">{{medication.lastAdministered| medicineDue:medication.frequency |date:'YYYY-MM-dd'}}</td>
                   <td *ngIf="!editMedication">{{medication.withFood}}</td>
                   <td *ngIf="!editMedication">{{medication.dateStarted}}</td>
                   <td *ngIf="!editMedication">{{medication.notes}}</td>
+
                   <td *ngIf="!editMedication"><span class="float-end"><button class="btn btn-outline-dark" (click)="editMedication = medication">Edit</button></span></td>
                 </tr>
                 <tr *ngIf="editMedication">
@@ -278,6 +281,7 @@
                       <option value="monthly">monthly</option>
                       <option value="annually">annually</option>
                     </select>
+                 <td><em>auto-calc</em></td>
                   <td><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="editMedication.withFood" /></td>
                   <td><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="editMedication.dateStarted" /></td>
                   <td><input id="notes" type="text" name="notes" [(ngModel)]="editMedication.notes" size="12" /></td>
@@ -303,6 +307,7 @@
                       <option value="annually">annually</option>
                     </select>
                   </td>
+                  <td><em>auto-calc</em></td>
                   <td *ngIf="!editMedication"><input id="withFood" type="checkbox" name="withFood" [(ngModel)]="newMedication.withFood" /></td>
                   <td *ngIf="!editMedication"><input id="dateStarted" type="date" name="dateStarted" [(ngModel)]="newMedication.dateStarted" /></td>
                   <td *ngIf="!editMedication"><input id="notes" type="text" name="notes" placeholder="notes" [(ngModel)]="newMedication.notes" size="12" /></td>

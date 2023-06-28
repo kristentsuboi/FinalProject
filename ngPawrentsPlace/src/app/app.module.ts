@@ -22,13 +22,15 @@ import { PetComponent } from './components/pet/pet.component';
 import { BusinessComponent } from './components/business/business.component';
 import { ChatComponent } from './components/chat/chat.component';
 
-import { TitleCasePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { LastestPostComponent } from './components/lastest-post/lastest-post.component';
 import { TeamComponent } from './components/team/team.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForumComponent } from './components/forum/forum.component';
+import { DueDatePipe } from './pipes/due-date.pipe';
+import { MedicineDuePipe } from './pipes/medicine-due.pipe';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ForumComponent } from './components/forum/forum.component';
     TeamComponent,
     ContactComponent,
     ForumComponent,
+    DueDatePipe,
+    MedicineDuePipe,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +65,9 @@ import { ForumComponent } from './components/forum/forum.component';
     NgbModule,
 
     NgbAccordionModule,
+    DatePipe
   ],
-  providers: [AuthService],
+  providers: [AuthService, DueDatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

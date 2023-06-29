@@ -55,6 +55,11 @@ public class CommentServiceImpl implements CommentService {
 	public boolean delete(String username, int tid) {
 		Comment existingComment = commentRepo.findByUser_UsernameAndId(username, tid);
 		if (existingComment != null) {
+			
+			for(Comment comment : existingComment.getReplies()) {
+				commentRepo.delete(comment);
+			}
+			
 			commentRepo.delete(existingComment);
 			return true;
 		}

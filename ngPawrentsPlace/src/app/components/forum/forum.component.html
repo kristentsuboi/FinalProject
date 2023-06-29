@@ -58,10 +58,10 @@
                       <strong>Subject:</strong> This is an example subject
                       <br />
                       <strong>Question: </strong>{{ comment.body }}
-                      <div *ngIf="comment.user?.username">
-                        <button class="btn btn-default m-1">Edit</button>
+                      <div *ngIf="comment.user && comment.user.id === user.id">
+
                         <button class="btn btn-danger m-1" (click)="deleteComment(comment.id)">Delete</button>
-                        console.log('{{comment.id}}')
+
                       </div>
                     </td>
                     <td>
@@ -110,7 +110,7 @@
                 <strong>Subject:</strong> This is an example subject
                 <br />
                 <strong>Question: </strong>{{ selected.body }}
-                <button class="btn btn-default m-1">Edit</button>
+
                 <button class="btn btn-danger m-1" (click)="deleteComment(selected.id)">Delete</button>
               </td>
               <td>

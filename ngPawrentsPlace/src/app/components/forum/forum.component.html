@@ -1,158 +1,89 @@
-<link
-  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-  rel="stylesheet"
-  id="bootstrap-css"
-/>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container m-3">
-
-  <aside class="aside">
-
-    <div class="col-sm-4 col-md-3 sidebar">
-
-      <div class="list-group">
-
-        <a href="#" class="list-group-item active">
-          Seach By Topic
-          <span class="pull-right" id="slide-submenu">
-            <i class="fa fa-times"></i>
-          </span>
-        </a>
-
-        <a href="#" class="list-group-item">
-          <i class="fa fa-envelope"></i> Welcome Center
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-comment-o"></i> General Pet Discussion
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-search"></i> Health and Wellness
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-user"></i> Training and Behavior
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-envelope"></i> Food and Nutrition
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-envelope"></i> Adoption and Rescue
-        </a>
-        <a href="#" class="list-group-item">
-          <i class="fa fa-envelope"></i> Volunteering
-        </a>
+<div class="d-flex justify-content-center" *ngIf="!selected">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-3 rounded m-3" style="width: 60%; background-color: #F2F2F2;">
+    <div class="text-center">
+      <label for="subject">Subject:</label>
+      <select id="subject" class="form-control m-1" placeholder="Subject">
+        <option>Welcome Center</option>
+        <option>General Pet Discussion</option>
+        <option>Health and Wellness</option>
+        <option>Training and Behavior</option>
+        <option>Food and Nutrition</option>
+        <option>Adoption and Rescue</option>
+        <option>Volunteering</option>
+        <option>Other</option>
+      </select>
+      <label for="question">Question:</label>
+      <textarea id="question" class="form-control m-1" name="body" [(ngModel)]="newComment.body"></textarea>
+      <button class="btn btn-success m-1" (click)="validateForm()">Ask a Question</button>
+    </div>
+  </div>
+</div>
 
 
-        <div class="m-1 text-center" *ngIf="!selected">
-          <a class="list-group-item active">
-            Ask a Question
-            <span class="pull-right" id="slide-submenu">
-              <i class="fa fa-times"></i>
-            </span>
-          </a>
-          <div class="d-inline-block">
-            <label for="subject">Subject:</label>
-            <select id="subject" class="form-control m-1" placeholder="Subject">
-              <option>Welcome Center</option>
-              <option>General Pet Discussion</option>
-              <option>Health and Wellness</option>
-              <option>Training and Behavior</option>
-              <option>Food and Nutrition</option>
-              <option>Adoption and Rescue</option>
-              <option>Volunteering</option>
-              <option>Other</option>
-            </select>
-            <label for="question">Question:</label>
-            <textarea id="question" class="form-control m-1" name="body" [(ngModel)]="newComment.body"></textarea>
-            <button class="btn btn-success m-1" (click)="validateForm()">Ask a Question</button>
+
+
+
+
+<div class="d-flex justify-content-center">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-light p-3 rounded" style="width: 60%">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div *ngFor="let comment of comments" (click)="selected = comment">
+          <div *ngIf="!comment.mainComment">
+            <div id="commentSection" *ngIf="!selected">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>The Paw Square</th>
+                    <th>Date Published</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex justify-content-center align-items-center">
+                        <div>
+                          <img src="assets/images/logo.png" style="border-radius: 50%; height: 100px; width: 100px" />
+                        </div>
+                        <br>
+                      </div>
+                    </td>
+                    <td>
+                      <strong>User: </strong> {{comment.user?.username}}
+                      <br>
+                      <strong>Topic: </strong>{{ comment.topic }}
+                      <br />
+                      <strong>Subject:</strong> This is an example subject
+                      <br />
+                      <strong>Question: </strong>{{ comment.body }}
+                      <div *ngIf="comment.user?.username">
+                        <button class="btn btn-default m-1">Edit</button>
+                        <button class="btn btn-danger m-1" (click)="deleteComment(comment.id)">Delete</button>
+                        console.log('{{comment.id}}')
+                      </div>
+                    </td>
+                    <td>
+                      {{ comment.createdAt }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-
-
-
-
-
-
-
       </div>
     </div>
+  </div>
+</div>
 
 
-  </aside>
-
-
-
-  <div class="row">
-
-
-    <!-- Forum question starts here -->
-
-
-
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div *ngFor="let comment of comments" (click)="selected = comment">
-      <div *ngIf="!comment.mainComment">
-      <div id="commentSection" *ngIf="!selected">
-        <table class="table table-striped">
-
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>The Paw Square</th>
-              <th>Date Published</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-
-              <td>
-                <div class="d-flex justify-content-center align-items-center">
-                  <div>
-                    <img src="assets/images/logo.png" style="border-radius: 50%; height: 100px; width: 100px" />
-                  </div>
-                  <br>
-                </div>
-              </td>
-
-              <td>
-                <strong>User: </strong> {{comment.user?.username}}
-                <br>
-                <strong>Topic: </strong>{{ comment.topic }}
-                <br />
-                <strong>Subject:</strong> This is an example subject
-                <br />
-                <strong>Question: </strong>{{ comment.body }}
-
-
-                <div *ngIf="comment.user && comment.user.id === user.id">
-                  <!-- console.log({{user}}) -->
-                  <button class="btn btn-danger m-1" (click)="deleteComment(comment.id)">Delete</button>
-
-                </div>
-
-
-
-              </td>
-
-              <td>
-                {{ comment.createdAt }}
-              </td>
-            </tr>
-          </tbody>
-
-        </table>
-      </div>
-    </div>
-    </div>
-
-
+<div class="d-flex justify-content-center">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-light p-3 rounded" style="width: 60%">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div id="selectedSection" *ngIf="selected">
         <table class="table table-striped">
-
-
           <thead>
             <tr>
               <th>User</th>
@@ -160,11 +91,8 @@
               <th>Date Published</th>
             </tr>
           </thead>
-
-
           <tbody>
             <tr>
-
               <td>
                 <div class="d-flex justify-content-center align-items-center">
                   <div>
@@ -176,7 +104,6 @@
                   <br>
                 </div>
               </td>
-
               <td>
                 <strong>Topic: </strong>{{ selected.topic }}
                 <br />
@@ -186,28 +113,21 @@
                 <button class="btn btn-default m-1">Edit</button>
                 <button class="btn btn-danger m-1" (click)="deleteComment(selected.id)">Delete</button>
               </td>
-
               <td>
                 {{ selected.createdAt }}
               </td>
             </tr>
           </tbody>
-
-
         </table>
-
-
         <div class="d-flex justify-content-end bg-light">
           <div class="col-lg-11 col-md-11 col-sm-8 col-xs-11 m-2" style="height: 100%;">
             <div *ngFor="let reply of selected.replies">
               <table class="table table-striped m-5">
-
                 <thead>
                   <tr>
                     <th>replied by {{reply.user?.username}}</th>
                   </tr>
                 </thead>
-
                 <tbody>
                   <tr>
                     <td>
@@ -217,48 +137,27 @@
                     </td>
                   </tr>
                 </tbody>
-
               </table>
             </div>
           </div>
         </div>
-
-
-
         <h3>Add a Reply</h3>
-
         <form>
           <div class="form-group">
             <label for="replyBody">Body</label>
-            <textarea
-              class="form-control"
-              name="body"
-              [(ngModel)]="newComment.body"
-            ></textarea>
+            <textarea class="form-control" name="body" [(ngModel)]="newComment.body"></textarea>
           </div>
-
           <div>
             <span class="m-2">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                (click)="replyToComment(newComment)"
-              >
-                Submit Reply
-              </button>
+              <button type="submit" class="btn btn-primary" (click)="replyToComment(newComment)">Submit Reply</button>
             </span>
-
             <span>
-              <button class="btn btn-primary" (click)="selected = null">
-                Back to Forum List
-              </button>
+              <button class="btn btn-primary" (click)="selected = null">Back to Forum List</button>
             </span>
           </div>
         </form>
         <br />
       </div>
-
-
     </div>
   </div>
 </div>

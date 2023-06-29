@@ -556,7 +556,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (1, 'tooth paste', '2020-11-11', 'daily', 0, '2020-11-11', 'brush his teeth', 1);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (1, 'PainRelief', '2023-06-01', 'Twice daily', 1, '2023-05-25', 'Prescribed for joint pain; monitor for any side effects.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (2, 'AllergyRelief', '2023-06-10', 'Daily', 0, '2023-06-01', 'Controls seasonal allergies; administer in the morning.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (3, 'HeartMeds', '2023-06-05', 'Alternate days', 1, '2023-06-01', 'Helps manage heart condition; monitor breathing and energy.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (4, 'VitaminC', '2023-06-15', 'Weekly', 1, '2023-06-01', 'Provides additional immune support; administer after a meal.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (5, 'Dewormer', '2023-05-30', 'Monthly', 1, '2023-05-01', 'Prevents and treats intestinal worms; repeat every month. In this example, the \"Frequency\" column includes options such as \"Twice daily,\" \"Daily,\" \"Alternate days,\" \"Weekly,\" \"Monthly,\" and \"Annually.\" The \"With Food\" column indicates whether the medication should be administered with food (Yes/No). The \"Date Started\" column represents the date when the medication was first started. The \"Notes\" column provides any additional information or instructions related to each medication. Please note that this is a fictional example, and it\'s essential to consult a veterinarian for accurate and personalized information regarding pet medications.', 4);
 
 COMMIT;
 
@@ -566,7 +570,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (1, 'rabies', '2022-10-10', 'once a year', 'all good', 1);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (1, 'Rabies', '2022-03-15', 'Annual', 'Required by law in many jurisdictions. Protects against rabies, a deadly viral disease that can be transmitted to humans through animal bites.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (2, 'Distemper', '2022-03-15', 'Annual', 'Protects against distemper, a highly contagious viral disease that affects the respiratory, gastrointestinal, and nervous systems of dogs.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (3, 'Parvovirus', '2022-03-15', 'Annual', 'Protects against parvovirus, a highly contagious viral disease that affects the gastrointestinal tract and can be life-threatening for dogs.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (4, 'Bordetella', '2022-03-15', 'Semi-annual  ', 'Recommended for dogs that are frequently in contact with other dogs or are in environments like boarding facilities or dog parks.', 4);
 
 COMMIT;
 
@@ -576,8 +583,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (1, 'healthy dog', '2020-11-11', '2020-12-21', NULL, 1, 2, NULL);
-INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (2, 'it looks pretty healthy', '2020-11-12', '2020-11-13', NULL, 1, 3, 1);
+INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (1, 'Thank you for bringing Zara in for her annual check-up! It\'s always a pleasure to see her and ensure she\'s doing well.', '2020-11-11', '2020-12-21', NULL, 4, 5, NULL);
+INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (2, 'Thank you for bringing Zara in for her annual check-up! It\'s always a pleasure to see her and ensure she\'s doing well.', '2020-11-12', '2020-11-13', NULL, 4, 32, 1);
 
 COMMIT;
 
@@ -587,7 +594,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (1, 'keto diet', 'lose weight', 'daily', 'summer pack', '3 times a day', 1);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (1, 'Zara\'s Mix', 'Dry Food', 'Twice daily', 'Provides balanced nutrition for adult dogs.', '1 cup', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (2, 'Fish Treat', 'Treat', 'Occasional', 'High-quality fish treat for training and rewards.', 'N/A', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (3, 'Chicken', 'Wet Food', 'Once daily', 'High-quality fish treat for training and rewards.', '½ can', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (4, 'Carrots', 'Fresh Produce', 'Daily', 'High-quality fish treat for training and rewards.', 'As directed', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (5, 'Supplements', 'Nutritional', 'Daily', 'Provides essential vitamins and minerals for overall health.', 'Provides essential vitamins and minerals for overall health.', 4);
 
 COMMIT;
 
@@ -607,8 +618,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (1, 'call the other doctor', '2020-11-11', NULL, 1, 2);
-INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (2, 'test this medical note', '2020-11-11', NULL, 2, 2);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (1, 'Zara presented with a mild cough and sneezing.', '2020-11-11', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (2, 'Conducted physical examination; heart and lungs clear.', '2023-06-10 ', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (3, 'Prescribed antibiotics for respiratory infection.', '2023-06-10 ', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (4, 'Advised rest and monitored for any changes.', '2023-06-10 ', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (5, 'Performed blood work and urinalysis.', '2023-06-10 ', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (6, 'Results indicate normal values; overall health is good.', '2023-06-10 ', NULL, 4, 5);
+INSERT INTO `medical_note` (`id`, `notes`, `created_at`, `updated_at`, `pet_id`, `user_id`) VALUES (7, 'Recommended dental cleaning in the next month.', '2023-06-10 ', NULL, 4, 5);
 
 COMMIT;
 
@@ -638,10 +654,22 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (1, 'Can i sleep with a dog with rabies?', '2023-06-11', NULL, NULL, NULL, 3, NULL);
-INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (2, 'Why do you wanna sleep with your dog?', '2023-06-12', NULL, NULL, NULL, 2, 1);
-INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (3, 'where can I find a good groomer', '2023-06-12', NULL, NULL, NULL, 2, NULL);
-INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (4, 'know a great guy in Bragg blvr', '2023-06-12', NULL, NULL, NULL, 4, 3);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (1, 'Dogs are such loyal companions. They always bring joy and happiness to our lives.', '2023-06-11', NULL, NULL, NULL, 3, NULL);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (2, 'I completely agree! ', '2023-06-12', NULL, NULL, NULL, 2, 1);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (3, 'Absolutely! Dogs have an incredible ability to brighten our days, no matter what. They truly are man\'s best friend.', '2023-06-13', NULL, NULL, NULL, 4, 1);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (4, 'I couldn\'t agree more. My dog\'s unwavering loyalty has gotten me through some tough times. ', '2023-06-13', NULL, NULL, NULL, 10, 1);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (5, 'Training dogs is essential for their well-being and helps establish a strong bond between the owner and the pet.', '2023-06-13', NULL, NULL, NULL, 11, NULL);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (6, 'Training is so important! It not only teaches dogs good manners and obedience but also stimulates their minds and keeps them engaged.', '2023-06-13', NULL, NULL, NULL, 14, 5);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (7, 'Definitely! Training sessions provide mental stimulation for dogs and give them a sense of purpose.', '2023-06-13', NULL, NULL, NULL, 15, 5);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (8, 'Absolutely! Training helps dogs understand boundaries and expectations', '2023-06-13', NULL, NULL, NULL, 16, 5);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (9, 'What are the key elements of a good pet grooming routine', '2023-06-13', NULL, NULL, NULL, 17, NULL);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (10, 'A good pet grooming routine includes regular brushing to remove tangles and prevent matting. It also involves bathing your pet using pet-friendly shampoos and conditioners to keep their coat clean and healthy.', '2023-05-13', NULL, NULL, NULL, 5, 9);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (11, 'In addition to brushing and bathing, nail trimming is an important aspect of pet grooming. Trimming your pet\'s nails regularly helps prevent overgrowth, discomfort, and potential injuries.', '2023-06-13', NULL, NULL, NULL, 6, 9);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (12, 'Another essential element of a good grooming routine is ear cleaning. Cleaning your pet\'s ears helps prevent wax buildup and infections. Use a gentle, vet-approved ear cleaner and avoid inserting anything deep into the ear canal.', '2023-06-13', NULL, NULL, NULL, 9, 9);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (13, 'Which pet spa in Pawsville offers the most luxurious grooming experience for pampered pets', '2023-05-13', NULL, NULL, NULL, 11, NULL);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (14, 'Pampered Paws Pet Spa in Pawsville is renowned for its luxurious grooming experience. They offer specialty spa treatments like aromatherapy baths, pawdicures, and even pet facials to ensure your furry friend feels like royalty.', '2023-05-13', NULL, NULL, NULL, 12, 13);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (15, 'Pawsome Retreat Pet Spa is a top choice for a luxurious grooming experience in Pawsville. They have a state-of-the-art facility with relaxing music, soothing massage treatments, and a selection of organic grooming products to pamper your pet from head to tail.', '2023-05-13', NULL, NULL, NULL, 10, 13);
+INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (16, 'Tail Waggers Pet Spa & Resort is known for its upscale grooming services.', '2023-05-13', NULL, NULL, NULL, 3, 13);
 
 COMMIT;
 

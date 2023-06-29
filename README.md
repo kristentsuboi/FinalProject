@@ -214,11 +214,6 @@ To view functionality as a PAWvider, use the below account.
         <td>Deletes medical note by Id</td>
     </tr>
     <tr>
-        <td>List&lt;Medical Note&gt;</td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
         <td>Medical Note</td>
         <td>POST api/pets/{petId}/medicalnotes</td>
         <td>Creates a medical note for pet</td>

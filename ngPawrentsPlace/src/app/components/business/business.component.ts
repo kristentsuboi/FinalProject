@@ -20,7 +20,7 @@ export class BusinessComponent {
   selected: Business | null = null;
   loggedInUser: User | null = null;
   editingAddress: Address | null = null;
-  newAddress: Address | null = null;
+  newAddress: Address = new Address();
   editBusiness: Business | null = null;
   newBusiness: Business = new Business();
   selectedServiceType: ServiceType = new ServiceType();
@@ -46,7 +46,7 @@ export class BusinessComponent {
         if (isNaN(id)) {
           this.router.navigateByUrl('**');
         } else {
-         this.reload(idStr);
+         this.reload(id);
         }
       } else {
         this.router.navigateByUrl('business');
@@ -56,7 +56,7 @@ export class BusinessComponent {
     }
 
 
-    reload(buinessId: string) {
+    reload(buinessId: number) {
 
       this.businessService.show(buinessId).subscribe({
         next: (business) => {
@@ -98,7 +98,7 @@ export class BusinessComponent {
       });
     }
 
-    getBusiness(businessId: string){
+    getBusiness(businessId: number){
       this.businessService.show(businessId).subscribe({
         next: (business) => {
           this.selected = business;
@@ -132,7 +132,7 @@ export class BusinessComponent {
 
 
 
-    editAddress(businessId: string, addressId: number, editingAddress: Address) {
+    editAddress(businessId: number, addressId: number, editingAddress: Address) {
       console.log(editingAddress);
       this.addressService.updateForBusiness(businessId, editingAddress).subscribe({
         next: (result) => {
@@ -146,7 +146,7 @@ export class BusinessComponent {
       });
     }
 
-    deleteAddress(addressId: number, businessId: string) {
+    deleteAddress(addressId: number, businessId: number) {
       if (this.loggedInUser) {
       this.addressService.destroyForBusiness(businessId, addressId).subscribe({
         next: (result) => {
@@ -161,7 +161,7 @@ export class BusinessComponent {
       }
     }
 
-    addAddress(businessId: string, newAddress: Address): void {
+    addAddress(businessId: number, newAddress: Address): void {
       console.log(newAddress);
       this.addressService.createForBusiness(businessId, newAddress).subscribe({
         next: (result) => {
@@ -181,7 +181,7 @@ export class BusinessComponent {
       }
     }
 
-    cancelEditAddress(businessId: string) {
+    cancelEditAddress(businessId: number) {
       this.editingAddress = null;
       this.reload(businessId);
     }
@@ -192,7 +192,7 @@ export class BusinessComponent {
       }
     }
 
-    cancelEditBusiness(businessId: string) {
+    cancelEditBusiness(businessId: number) {
       this.editBusiness = null;
       this.reload(businessId);
     }
@@ -217,7 +217,7 @@ export class BusinessComponent {
       // "'https://www.google.com/maps?q='+selected.address.zipCode+'&z=9&output=embed'"
     }
 
-    getBusinesses(serviceTypeId: string) {
+    getBusinesses(serviceTypeId: number) {
       this.businessService.showByServiceType(serviceTypeId).subscribe({
         next: (result) => {
           this.typedBusinesses = result;
@@ -231,7 +231,7 @@ export class BusinessComponent {
         },
       });
     }
-    addBusinessEmployer(userId: number, businessId: string) {
+    addBusinessEmployer(userId: number, businessId: number) {
       this.businessService.addEmployeetoProvider(userId, businessId).subscribe({
         next: (result) => {
           this.addBusinessProvider = new Business();
@@ -243,6 +243,23 @@ export class BusinessComponent {
         error: (nojoy) => {
           console.error(
             'BusinessComponent.addBusinessUsed(): error adding business:' + nojoy
+          );
+          console.error(nojoy);
+        },
+      });
+    }
+
+    removeBusinessEmployer(userId: number, businessId: number) {
+      this.businessService.removeEmployeetoProvider(userId, businessId).subscribe({
+        next: (result) => {
+          this.addBusinessProvider = new Business();
+          this.getLoggedInUser();
+          this.getServiceTypes();
+          this.router.navigateByUrl('/business')
+        },
+        error: (nojoy) => {
+          console.error(
+            'BusinessComponent.removeBusinessEmployer(): error removing business:' + nojoy
           );
           console.error(nojoy);
         },

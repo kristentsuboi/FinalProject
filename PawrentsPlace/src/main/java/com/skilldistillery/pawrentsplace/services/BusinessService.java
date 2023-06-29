@@ -8,7 +8,7 @@ import com.skilldistillery.pawrentsplace.entities.User;
 public interface BusinessService {
     Business findById(int id);
     List<Business> findAll();
-    Business create(Business business);
+    Business create(Business business, String username);
     Business update(int id, Business business);
     boolean delete(int id);
     List<Business> findByServiceTypeId(int serviceType);

@@ -61,8 +61,8 @@ public class BusinessController {
     }
 
     @PostMapping("business")
-    public Business createBusiness(@RequestBody Business business) {
-        return businessService.create(business);
+    public Business createBusiness(@RequestBody Business business, Principal principal) {
+        return businessService.create(business, principal.getName());
     }
 
     @PutMapping("business/{id}")

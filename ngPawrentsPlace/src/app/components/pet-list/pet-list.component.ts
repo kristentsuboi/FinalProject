@@ -114,7 +114,7 @@ export class PetListComponent {
     });
   }
 
-  getBusinesses(serviceTypeId: string) {
+  getBusinesses(serviceTypeId: number) {
     this.businessService.showByServiceType(serviceTypeId).subscribe({
       next: (result) => {
         this.typedBusinesses = result;
@@ -130,7 +130,7 @@ export class PetListComponent {
     });
   }
 
-  addBusinessUsed(userId: number, businessId: string) {
+  addBusinessUsed(userId: number, businessId: number) {
     this.businessService.addBusinessToUserList(userId, businessId).subscribe({
       next: (result) => {
         this.addBusiness = new Business();
@@ -147,7 +147,7 @@ export class PetListComponent {
     });
   }
 
-  removeBusinessUsed(userId: number, businessId: string) {
+  removeBusinessUsed(userId: number, businessId: number) {
     this.businessService.removeBusinessFromUserList(userId, businessId).subscribe({
       next: (result) => {
         this.getLoggedInUser();

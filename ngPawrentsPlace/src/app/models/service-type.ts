@@ -1,11 +1,11 @@
 export class ServiceType {
-  id: string;
+  id: number;
   name: string;
   description: string;
   imageUrl: string;
 
   constructor(
-    id: string = 'select',
+    id: number = 0,
     name: string = "Please Choose",
     description: string = "",
     imageUrl: string = ""

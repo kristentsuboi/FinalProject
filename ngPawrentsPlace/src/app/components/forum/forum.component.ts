@@ -1,6 +1,8 @@
+import { User } from 'src/app/models/user';
 import { CommentService } from './../../services/comment.service';
 import { Component } from '@angular/core';
 import { Comment } from './../../models/comment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-forum',
@@ -13,12 +15,31 @@ export class ForumComponent {
   selectedType: string = 'all';
   newComment: Comment = new Comment();
 
-  constructor(private commentService: CommentService) {}
+  constructor(
+    private commentService: CommentService,
+    private authService: AuthService
+    ) {}
+
+    user: User = new User()
 
 
+    // this.commentService.index().subscribe({
+    //   next: (commentList) => {
+    //     this.comments = commentList;
+    //   },
 
   ngOnInit(): void {
     this.loadComments();
+    // *****************************************************
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+      this.user = user;
+      console.log(user)
+    }});
+    console.log("#######################################");
+    console.log(this.user);
+    console.log("#######################################");
+    // *****************************************************
   }
 
   topic = [
@@ -104,7 +125,7 @@ export class ForumComponent {
         this.reload();
       },
       error: (fail) => {
-        console.error('CommentListComponent.deleteTodo(): error deleting'); 
+        console.error('CommentListComponent.deleteTodo(): error deleting');
         console.error(fail);
       },
     });

@@ -23,7 +23,8 @@ export class HomeComponent {
     { url: '/assets/images/pet24.png', title: 'beach' },
   ];
 
-
+  divWidthPercentage = 80;
+  divHeightPercentage = 40;
 
 
 }

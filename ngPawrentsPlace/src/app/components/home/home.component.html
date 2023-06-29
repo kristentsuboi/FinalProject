@@ -54,16 +54,15 @@
       </div>
     </div>
 
-
-    <hr>
-    <div class="container m-5 text-center">
-      <h1>The <strong>Place</strong> to Coordinate Pet Care</h1>
+    <div class="container-fluid mt-4">
+      <div class="row align-items-center text-center" style="height: 140px">
+        <h1>The <strong>Place</strong> to Coordinate Pet Care</h1>
+      </div>
     </div>
-    <hr>
 
 
 
-    <div class="container-fluid bg-secondary mt-5">
+    <div class="container-fluid bg-secondary">
       <div class="row align-items-center" style="height: 140px">
         <div class="col-2 p-0">
           <img src="assets/images/pet8.png" class="img-fluid" />
@@ -86,17 +85,23 @@
       </div>
     </div>
 
-
-    <div class="container m-5">
-      <hr>
-      <div class="container m-5 text-center">
+    <div class="container-fluid m-5">
+      <div class="text-center align-items-center">
+        <hr>
         <h2 class="m-5">Our Latest Friends</h2>
       </div>
-      <div style="width: 800px; height: 400px; margin: 0 auto">
+    </div>
+
+
+    <div class="container-fluid m-5">
+      <div [style.width.vw]="divWidthPercentage" [style.height.vh]="divHeightPercentage" style="margin: 0 auto">
         <image-slider [slides]="slides"></image-slider>
       </div>
       <div class="m-5"></div>
     </div>
+
+
+
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>

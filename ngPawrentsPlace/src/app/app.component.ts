@@ -10,11 +10,11 @@ import { SlideInterface } from './imageSlider/types/slide.interface';
 export class AppComponent {
 
   slides: SlideInterface[] = [
-    { url: '/assets/images/image-1.jpeg', title: 'beach' },
-    { url: '/assets/images/image-2.jpeg', title: 'boat' },
-    { url: '/assets/images/image-3.jpeg', title: 'forest' },
-    { url: '/assets/images/image-4.jpeg', title: 'city' },
-    { url: '/assets/images/image-5.jpeg', title: 'italy' },
+    { url: 'assets/images/image-1.jpeg', title: 'beach' },
+    { url: 'assets/images/image-2.jpeg', title: 'boat' },
+    { url: 'assets/images/image-3.jpeg', title: 'forest' },
+    { url: 'assets/images/image-4.jpeg', title: 'city' },
+    { url: 'assets/images/image-5.jpeg', title: 'italy' },
   ];
 
   title = 'ngPawrentsPlace';

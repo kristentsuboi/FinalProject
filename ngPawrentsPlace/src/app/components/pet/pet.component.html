@@ -424,10 +424,7 @@
 
 
                 <table id="replyTable" *ngFor="let reply of petComment.replies" class="table">
-
-
                   <tr *ngIf="!editPetCommentReply">
-
                     <td *ngIf="reply.user">
                       <img *ngIf="reply.user.imageUrl" src="{{reply.user.imageUrl}}" alt="profile picture" style="max-width: 35px">
                       <img *ngIf="!reply.user.imageUrl" src="https://vectorified.com/images/avatar-icon-png-1.png" alt="profile picture" style="max-width: 35px">
@@ -435,15 +432,11 @@
                       <span *ngIf="reply.updatedAt && (reply.updatedAt != reply.createdAt)">&ensp;Updated:&ensp;{{reply.updatedAt}}</span>
                     </tr>
                     <tr *ngIf="!editPetCommentReply">
-
                       <td *ngIf="reply.user">{{reply.body}}
                         <span *ngIf="loggedInUser.id === reply.user.id" class="float-end"><button class="btn btn-outline-dark" (click)="setEditPetCommentReply(reply)">Edit</button></span>
-
                       </td>
                     </tr>
-
                   </table>
-
                   <table class="table table-striped" *ngIf="editPetCommentReply && editPetCommentReply.mainComment">
                     <thead *ngIf="editPetCommentReply.mainComment.id === petComment.id">
                       <tr >

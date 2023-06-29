@@ -345,7 +345,7 @@ Discuss overall project structure
 
 
 ## Entity Relationship Model
-- add PNG
+<img src="https://github.com/kristentsuboi/FinalProject/blob/main/DB/EER.png?raw=true">
 
 ## Technologies and Methodologies Used
 - RESTful Services

@@ -29,8 +29,12 @@ import { LastestPostComponent } from './components/lastest-post/lastest-post.com
 import { TeamComponent } from './components/team/team.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForumComponent } from './components/forum/forum.component';
+
 import { DueDatePipe } from './pipes/due-date.pipe';
 import { MedicineDuePipe } from './pipes/medicine-due.pipe';
+
+import { ImageSliderModule } from './imageSlider/imageSlider.module';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +50,6 @@ import { MedicineDuePipe } from './pipes/medicine-due.pipe';
     NotFoundComponent,
     AccountComponent,
     PetComponent,
-
     BusinessComponent,
     ChatComponent,
     FooterComponent,
@@ -63,9 +66,12 @@ import { MedicineDuePipe } from './pipes/medicine-due.pipe';
     FormsModule,
     HttpClientModule,
     NgbModule,
-
     NgbAccordionModule,
+
     DatePipe
+
+    ImageSliderModule
+
   ],
   providers: [AuthService, DueDatePipe],
   bootstrap: [AppComponent],

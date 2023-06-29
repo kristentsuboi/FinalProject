@@ -15,6 +15,7 @@ ngb-accordian > ngb-panel {
 
 }
 
+
 #addReply{
   width: 80%;
   align-self: flex-end;
@@ -26,3 +27,8 @@ ngb-accordian > ngb-panel {
 
 
 
+
+
+body {
+  background-image: url('https://live.staticflickr.com/65535/53009485404_9125290c12_m.jpg');
+}

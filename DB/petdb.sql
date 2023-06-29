@@ -630,12 +630,9 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (1, 'Can i sleep with a dog with rabies?', '2023-06-11', NULL, NULL, 'general', 3, NULL);
-
 INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (3, 'where can I find a good groomer', '2023-06-26', NULL, NULL, 'groomer', 3, NULL);
 INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (4, 'I know a great guy in Bragg blvr', '2023-06-26', NULL, NULL, 'groomer', 2, 3);
-
 INSERT INTO `comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `topic`, `user_id`, `replying_to_id`) VALUES (2, 'why do you wanna sleep with you dog?', '2023-06-12', NULL, NULL, 'general', 2, 1);
-
 
 COMMIT;
 

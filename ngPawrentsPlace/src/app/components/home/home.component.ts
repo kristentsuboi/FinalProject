@@ -9,11 +9,21 @@ import { SlideInterface } from 'src/app/imageSlider/types/slide.interface';
 export class HomeComponent {
 
   slides: SlideInterface[] = [
-    { url: '/assets/images/image-1.jpeg', title: 'beach' },
-    { url: '/assets/images/image-2.jpeg', title: 'boat' },
-    { url: '/assets/images/image-3.jpeg', title: 'forest' },
-    { url: '/assets/images/image-4.jpeg', title: 'city' },
-    { url: '/assets/images/image-5.jpeg', title: 'italy' },
+    { url: '/assets/images/pet13.png', title: 'beach' },
+    { url: '/assets/images/pet14.png', title: 'beach' },
+    { url: '/assets/images/pet15.png', title: 'beach' },
+    { url: '/assets/images/pet16.png', title: 'beach' },
+    { url: '/assets/images/pet17.png', title: 'beach' },
+    { url: '/assets/images/pet18.png', title: 'beach' },
+    { url: '/assets/images/pet19.png', title: 'beach' },
+    { url: '/assets/images/pet20.png', title: 'beach' },
+    { url: '/assets/images/pet21.png', title: 'beach' },
+    { url: '/assets/images/pet22.png', title: 'beach' },
+    { url: '/assets/images/pet23.png', title: 'beach' },
+    { url: '/assets/images/pet24.png', title: 'beach' },
   ];
+
+
+
 
 }

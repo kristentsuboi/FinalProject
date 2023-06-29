@@ -1,6 +1,6 @@
-<div id="userHeader" *ngIf="loggedInUser">
+<div *ngIf="loggedInUser">
   <br>
-  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
+  <div id="accountHeader" class="container container-fluid" style="height: 210px; width: 85%; margin: 15px auto">
     <div class="float-start">
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
@@ -12,10 +12,9 @@
   </div>
 </div>
 
-<div class="container container-fluid" style="margin: 15px auto; width: 85%">
-  <br>
-  <div id="editForm" *ngIf="editUser">
-    <hr>
+<div id="accountEditForm" class="container container-fluid" style="margin: 15px auto; width: 85%" *ngIf="editUser">
+  <div id="editForm" >
+
     <div name="editUserForm" class="container m-5">
       <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -54,12 +53,12 @@
   </div>
 </div>
 
-<div class="container container-fluid" style="margin: 15px auto; width: 85%" *ngIf="loggedInUser">
-  <br>
+<div id="userAddress" class="container container-fluid" style="margin: 15px auto; width: 85%" *ngIf="loggedInUser">
+
   <div id="address">
-    <hr>
+
     <h4>Address</h4>
-    <br>
+
     <div *ngIf="loggedInUser.address && !editingAddress">
       <p>{{loggedInUser.address.street | titlecase }}</p>
       <p>{{loggedInUser.address.city  | titlecase }}</p>

@@ -1,7 +1,6 @@
-<div id="userHeader" *ngIf="loggedInUser">
-  <br>
-  <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
-    <div class="float-start">
+<div id="userHeader" class="container container-fluid" style="height: 210px; width: 81%; margin: 15px auto" *ngIf="loggedInUser">
+  <div >
+    <div class="float-start" style="width: 70%;">
       <h2>{{ loggedInUser.username }}</h2>
       <h5>{{ loggedInUser.phone }}</h5>
       <h5>{{ loggedInUser.email }}</h5>
@@ -13,9 +12,7 @@
 </div>
 
 <div id="listView" name="listView" *ngIf="!selected" style="margin-top: 20px; width: 85%" class="container container-fluid">
-  <br>
-  <br>
-  <hr>
+
   <h4 style="text-align: center;">My Pets</h4>
   <table class="table table-striped">
     <thead>

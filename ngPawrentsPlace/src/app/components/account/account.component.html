@@ -61,9 +61,7 @@
 
     <div *ngIf="loggedInUser.address && !editingAddress">
       <p>{{loggedInUser.address.street | titlecase }}</p>
-      <p>{{loggedInUser.address.city  | titlecase }}</p>
-      <p>{{loggedInUser.address.state}}</p>
-      <p>{{loggedInUser.address.zipCode}}</p>
+      <p>{{loggedInUser.address.city  | titlecase }}, {{loggedInUser.address.state}} {{loggedInUser.address.zipCode}}</p>
       <button class="btn btn-outline-dark" (click)="setEditAddress()">Edit Address</button>
     </div>
 

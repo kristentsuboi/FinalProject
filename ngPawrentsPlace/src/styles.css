@@ -38,4 +38,17 @@ ngb-accordian > ngb-panel {
 
 body {
   background-image: url('https://live.staticflickr.com/65535/53009485404_9125290c12_m.jpg');
+  height: 100%;
 }
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+

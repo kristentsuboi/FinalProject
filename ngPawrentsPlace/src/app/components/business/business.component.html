@@ -152,7 +152,7 @@
     width="500" height="350" frameborder="0" style="border: 0"
     allowfullscreen> </iframe>
   </div>
-  <a class="btn btn-outline-dark float-start" style="margin-bottom: 15px; margin-left:50px" [routerLink]="['/clients']">Back to Clients</a>
+  <a *ngIf="loggedInUser && loggedInUser.role === 'provider'" class="btn btn-outline-dark float-start" style="margin-bottom: 15px; margin-left:50px" [routerLink]="['/clients']">Back to Clients</a>
   </div>
 
 

@@ -23,7 +23,7 @@ export class DueDatePipe implements PipeTransform {
     if(frequency === "every 2yrs"){
       dueDate.setDate(lastDate.getDate() + 730);
     }
-    if(frequency === " every 3yrs"){
+    if(frequency === "every 3yrs"){
       dueDate.setDate(lastDate.getDate() + 1095);
     }
 

@@ -36,8 +36,16 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public Business create(Business business) {
+	public Business create(Business business, String username) {
+		User user = userRepo.findByUsername(username);
+		if (user != null) {
+			user.setBusiness(null);
+			user.setBusiness(business);
+			businessRepo.saveAndFlush(business);
+			userRepo.saveAndFlush(user);
 		return businessRepo.saveAndFlush(business);
+		}
+		return null;
 	}
 
 	@Override
@@ -111,6 +119,14 @@ public class BusinessServiceImpl implements BusinessService {
 		if (business != null && user != null) {
 			user.setBusiness(business);
 			business.addEmployee(user);
+			for (User humanClient : business.getClients()) {
+				for (Pet petClient : humanClient.getPets()) {
+					user.addPetClient(petClient);
+					petClient.addProvider(user);
+//					userRepo.saveAndFlush(user);
+//					petRepo.saveAndFlush(petClient);					
+				}
+			}
 			userRepo.saveAndFlush(user);
 			businessRepo.saveAndFlush(business);
 			return true;
@@ -125,6 +141,14 @@ public class BusinessServiceImpl implements BusinessService {
 		if (business != null && user != null) {
 			user.setBusiness(null);
 			business.removeEmployee(user);
+			for (User employee : business.getEmployees()) {
+				for (Pet pet : user.getPets()) {
+					employee.removePetClient(pet);
+					pet.removeProvider(employee);
+//					userRepo.saveAndFlush(employee);
+//					petRepo.saveAndFlush(pet);					
+				}
+			}
 			userRepo.saveAndFlush(user);
 			businessRepo.saveAndFlush(business);
 			return true;

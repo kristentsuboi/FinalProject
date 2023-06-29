@@ -5,14 +5,10 @@ ngb-accordian > ngb-panel {
   background-color: gray;
 }
 
-
-
 #replyTable{
   width: 80%;
   align-self: flex-end;
   margin-left: 10%;
-
-
 }
 
 
@@ -20,13 +16,20 @@ ngb-accordian > ngb-panel {
   width: 80%;
   align-self: flex-end;
   margin-left: 10%;
-
-
 }
 
+#businessMap {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-
-
+#businessInfoHeader, #editBusinessForm, #businessAddress {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  margin: 30px auto;
+  width: 85%;
+  padding: 15px
+}
 
 
 body {

@@ -15,7 +15,7 @@ The purpose of the application is to demonstrate our ability to create a project
 Pawrents Place is an application for pet owners. This application shows their pets basic information, medial information, shot records, and discussion boards for communication amongs that owner and the PAWviders (providers) they choose such as vets, boarders, groomers, etc. The information is available to the PAWvider as well. No more asking for shot records and feeding information because Pawrents Place provides that data.
 
 ### Link to Deployed Application
-- INSERT LINK AFTER DEPLOYMENT
+- <a href="http://3.131.187.115:8080/PawrentsPlace/#/home">Pawrents Place Application </a>
 
 ### How to Login
 To view functionality as a pet owner, you can create your own profile and upload your pets, or use the below account for demo

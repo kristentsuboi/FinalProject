@@ -67,9 +67,7 @@ import { ImageSliderModule } from './imageSlider/imageSlider.module';
     HttpClientModule,
     NgbModule,
     NgbAccordionModule,
-
-    DatePipe
-
+    DatePipe,
     ImageSliderModule
 
   ],

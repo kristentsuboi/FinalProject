@@ -93,7 +93,6 @@
                   <label for="serviceType">Service Type:&ensp;</label>
                   <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
                     <!-- (onChange)="getBusinesses()" -->
-
                     <option *ngFor="let service of serviceTypes" value="{{service.id}}">{{service.name}}</option>
                   </select>
                   <input class="btn btn-outline-dark" type="submit" value="Find" (click)="getBusinesses(selectedServiceType.id)" style="margin-left: 5px;"/>
@@ -104,7 +103,6 @@
                   </select>
                   <span class="float-end"><input type="submit" class="btn btn-outline-dark" (click)="addBusinessUsed(loggedInUser.id, addBusiness.id)" value="Add"/></span>
                 </td>
-
               </tr>
             </tbody>
           </table>

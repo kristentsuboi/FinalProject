@@ -18,11 +18,11 @@ Pawrents Place is an application for pet owners. This application shows their pe
 - INSERT LINK AFTER DEPLOYMENT
 
 ### How to Login
-- To view functionality as a pet owner, you can create your own profile and upload your pets, or use the below account for demo
---username: owner
---password: wombat1
+To view functionality as a pet owner, you can create your own profile and upload your pets, or use the below account for demo
+- username: owner
+- password: wombat1
 
-- To view functionality as a PAWvider, use the below account.
+To view functionality as a PAWvider, use the below account.
 - username: vet
 - password: wombat1
 
@@ -359,6 +359,7 @@ Discuss overall project structure
 - Angular
 - DOM
 - Bootstrap
+- Agile
 
 ## Lessons Learned
 blah

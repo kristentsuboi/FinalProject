@@ -597,7 +597,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `pet_provider` (`provider_id`, `pet_id`) VALUES (2, 1);
+INSERT INTO `pet_provider` (`provider_id`, `pet_id`) VALUES (5, 1);
 
 COMMIT;
 

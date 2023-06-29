@@ -23,7 +23,8 @@ ngb-accordian > ngb-panel {
   margin-bottom: 15px;
 }
 
-#businessInfoHeader, #editBusinessForm, #businessAddress {
+#businessInfoHeader, #editBusinessForm, #businessAddress, #profileScreenshot, #aboutHeader,
+#userHeader, #petHeader, #providerHeader, #accountHeader, #accountEditForm, #userAddress {
   background-color: whitesmoke;
   border-radius: 10px;
   margin: 30px auto;
@@ -31,6 +32,9 @@ ngb-accordian > ngb-panel {
   padding: 15px
 }
 
+#aboutHeader {
+  text-align: center;
+}
 
 body {
   background-image: url('https://live.staticflickr.com/65535/53009485404_9125290c12_m.jpg');

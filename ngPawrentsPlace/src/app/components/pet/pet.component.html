@@ -1,10 +1,8 @@
 
-<div name="detailPetView" *ngIf="selected && loggedInUser">
+<div id="detailPetView"*ngIf="selected && loggedInUser">
 
-  <div name="petHeader" >
-    <br>
-    <div class="container container-fluid" style="height: 150px; width: 85%; margin: 15px auto">
-      <div class="float-start">
+  <div id="petHeader" class="container container-fluid" style="height: 210px; width: 81%; margin: 15px auto" >
+      <div class="float-start" style="width: 70%;">
         <h2>{{ selected.name | titlecase }}</h2>
         <h5>{{selected.species | titlecase }}<span *ngIf="selected.breed">: {{selected.breed | titlecase }}</span></h5>
         <h5>{{selected.gender}}</h5>
@@ -12,7 +10,6 @@
       </div>
       <img *ngIf="selected.imageUrl" src="{{ selected.imageUrl }}" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
       <img *ngIf="!selected.imageUrl" src="https://cdn.onlinewebfonts.com/svg/img_74660.png" alt="{{selected.name}} picture" class="rounded float-end" style="max-width: 150px; justify-content: right;"><br>
-    </div>
   </div>
 
   <div class="container container-fluid" style="margin-bottom: 15px; width: 85%">
@@ -39,14 +36,6 @@
           <p>{{selected.user.phone}}</p>
           <p> {{selected.user.email}}</p>
         </div>
-
-
-
-
-
-
-
-
 
         <div name="editPetBasicsView" *ngIf="editPet" style="width: max-content;">
 
@@ -138,7 +127,7 @@
                 <td *ngIf="!editDiet">{{diet.amount}}</td>
                 <td *ngIf="!editDiet">{{diet.frequency}}</td>
                 <td *ngIf="!editDiet">{{diet.notes}}</td>
-                <td *ngIf="!editDiet"><span class="float-end"><button class="btn btn-outline-dark" (click)="editDiet = diet">Edit</button></span></td>
+                <td *ngIf="!editDiet"><span class="float-end"><button *ngIf="loggedInUser.role === 'parent'" class="btn btn-outline-dark" (click)="editDiet = diet">Edit</button></span></td>
               </tr>
               <tr *ngIf="editDiet">
                 <td><input id="name" type="text" name="name" [(ngModel)]="editDiet.name" size="12" /></td>
@@ -154,8 +143,8 @@
                   </span>
                 </td>
               </tr>
-              <th *ngIf="!editDiet" colspan="6">&ensp;Add Diet:</th>
-              <tr>
+              <th *ngIf="!editDiet && loggedInUser.role === 'parent'" colspan="6">&ensp;Add Diet:</th>
+              <tr *ngIf="loggedInUser.role === 'parent'">
                 <td *ngIf="!editDiet"><input id="name" type="text" name="name" placeholder="name" [(ngModel)]="newDiet.name" size="12" required /></td>
                 <td *ngIf="!editDiet"><input id="type" type="text" name="type" placeholder="type" [(ngModel)]="newDiet.type" size="12" required /></td>
                 <td *ngIf="!editDiet"><input id="amount" type="text" name="amount" placeholder="amount" [(ngModel)]="newDiet.amount" size="12" required /></td>

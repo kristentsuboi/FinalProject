@@ -1,8 +1,8 @@
 
-  <div id="businessHeader" *ngIf="selected">
-    <div id="businessInfoHeader" class="container container-fluid" style="height: 280px; margin: 15px auto; width: 85%">
-      <br>
-      <div class="float-start" *ngIf="loggedInUser && selected">
+  <div  *ngIf="selected">
+    <div id="businessInfoHeader" class="container container-fluid" style="height: 290px">
+
+      <div class="container container-fluid float-start" style="width: 70%" *ngIf="loggedInUser && selected">
         <h2>{{selected.name | titlecase}}</h2>
         <h5>{{ selected.about}}</h5>
         <!-- <h5>{{ selected.email }}</h5> -->
@@ -80,7 +80,7 @@
           <select id="serviceType" name="id" [(ngModel)]="selectedServiceType.id">
                <option *ngFor="let service of serviceTypes; let i = index" value="{{service.id}}">{{service.name}}</option>
           </select>
-          <br><button class="btn btn-outline-dark" (click)="addBusiness(newBusiness)">Add Business</button>
+          <br><button class="btn btn-outline-dark" style="margin-bottom: 15px" (click)="addBusiness(newBusiness)">Add Business</button>
         </form>
       </div>
   </div>
@@ -152,7 +152,7 @@
     width="500" height="350" frameborder="0" style="border: 0"
     allowfullscreen> </iframe>
   </div>
-  <a class="btn btn-outline-dark float-start" [routerLink]="['/clients']">Back to Clients</a>
+  <a class="btn btn-outline-dark float-start" style="margin-bottom: 15px; margin-left:50px" [routerLink]="['/clients']">Back to Clients</a>
   </div>
 
 

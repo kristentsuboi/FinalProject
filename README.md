@@ -5,7 +5,7 @@
 ### Team Members
 - Braylin Pichardo (Developer, Database Administrator
 - Kristen Tsuboi (Developer, RepoOwner)
-- Kris Veseley (Developer)
+- Kris Vesely (Developer)
 - Tia Wright (Developer, Scrum Master)
 
 ## Overview

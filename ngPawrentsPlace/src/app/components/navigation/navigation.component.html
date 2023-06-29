@@ -10,7 +10,10 @@
       <!-- <a class="navbar-brand m-0" [routerLink]="['/home']">
         <img src="assets/images/logo.png" height="75px" width="75px"/>
       </a> -->
-      <a class="navbar-brand" [routerLink]="['/home']">Pawrents Place<span></span></a>
+      <a class="navbar-brand" [routerLink]="['/home']">Pawrents Place<span>
+          <img src="https://i1.wp.com/thefamilysupportcenter.org/wp-content/uploads/2018/04/kisspng-dog-paw-cougar-drawing-clip-art-paw-prints-5ad0eba3679bd0.8414908415236412514244.png" alt="paw print" style="max-width: 25px; margin-left: 10px;"/>
+        </span>
+      </a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngIf="!checkLogin()">
           <a class="nav-link" [routerLink]="['/about']">About</a>

@@ -309,13 +309,13 @@
           <div name="medicalNotes">
             <br>
             <h5>Medical Notes:</h5>
-
+            <div>
               <table class="table table-striped" *ngFor="let medicalNote of selected.medicalNotes">
-                <thead>
+                <!-- <thead>
                   <tr>
                     <th scope="col"></th>
                   </tr>
-                </thead>
+                </thead> -->
                 <tbody>
                   <tr *ngIf="!editMedicalNote && medicalNote.user">
                     <td>
@@ -332,7 +332,7 @@
                   </tr>
                 </tbody>
               </table>
-
+            </div>
               <table class="table table-striped" *ngIf="editMedicalNote">
                 <thead>
                   <tr>
@@ -437,6 +437,7 @@
                       </td>
                     </tr>
                   </table>
+
                   <table class="table table-striped" *ngIf="editPetCommentReply && editPetCommentReply.mainComment">
                     <thead *ngIf="editPetCommentReply.mainComment.id === petComment.id">
                       <tr >

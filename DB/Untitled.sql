@@ -556,11 +556,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (1, 'PainRelief', '2023-06-01', 'twice daily', 1, '2023-05-25', 'Prescribed for joint pain; monitor for any side effects.', 4);
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (2, 'AllergyRelief', '2023-06-10', 'daily', 0, '2023-06-01', 'Controls seasonal allergies; administer in the morning.', 4);
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (3, 'HeartMeds', '2023-06-05', 'dlternate days', 1, '2023-06-01', 'Helps manage heart condition; monitor breathing and energy.', 4);
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (4, 'VitaminC', '2023-06-15', 'weekly', 1, '2023-06-01', 'Provides additional immune support; administer after a meal.', 4);
-INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (5, 'Dewormer', '2023-05-30', 'monthly', 1, '2023-05-01', 'Prevents and treats intestinal worms; repeat every month.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (1, 'PainRelief', '2023-06-01', 'Twice daily', 1, '2023-05-25', 'Prescribed for joint pain; monitor for any side effects.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (2, 'AllergyRelief', '2023-06-10', 'Daily', 0, '2023-06-01', 'Controls seasonal allergies; administer in the morning.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (3, 'HeartMeds', '2023-06-05', 'Alternate days', 1, '2023-06-01', 'Helps manage heart condition; monitor breathing and energy.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (4, 'VitaminC', '2023-06-15', 'Weekly', 1, '2023-06-01', 'Provides additional immune support; administer after a meal.', 4);
+INSERT INTO `medication` (`id`, `name`, `last_administered`, `frequency`, `with_food`, `date_started`, `notes`, `pet_id`) VALUES (5, 'Dewormer', '2023-05-30', 'Monthly', 1, '2023-05-01', 'Prevents and treats intestinal worms; repeat every month.', 4);
 
 COMMIT;
 
@@ -570,10 +570,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (1, 'Rabies', '2022-03-15', 'annual', 'Required by law in many jurisdictions. Protects against rabies, a deadly viral disease that can be transmitted to humans through animal bites.', 4);
-INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (2, 'Distemper', '2022-03-15', 'annual', 'Protects against distemper, a highly contagious viral disease that affects the respiratory, gastrointestinal, and nervous systems of dogs.', 4);
-INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (3, 'Parvovirus', '2022-03-15', 'annual', 'Protects against parvovirus, a highly contagious viral disease that affects the gastrointestinal tract and can be life-threatening for dogs.', 4);
-INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (4, 'Bordetella', '2022-03-15', 'semi-annual  ', 'Recommended for dogs that are frequently in contact with other dogs or are in environments like boarding facilities or dog parks.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (1, 'Rabies', '2022-03-15', 'Annual', 'Required by law in many jurisdictions. Protects against rabies, a deadly viral disease that can be transmitted to humans through animal bites.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (2, 'Distemper', '2022-03-15', 'Annual', 'Protects against distemper, a highly contagious viral disease that affects the respiratory, gastrointestinal, and nervous systems of dogs.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (3, 'Parvovirus', '2022-03-15', 'Annual', 'Protects against parvovirus, a highly contagious viral disease that affects the gastrointestinal tract and can be life-threatening for dogs.', 4);
+INSERT INTO `shot` (`id`, `name`, `date_administered`, `frequency`, `notes`, `pet_id`) VALUES (4, 'Bordetella', '2022-03-15', 'Semi-annual  ', 'Recommended for dogs that are frequently in contact with other dogs or are in environments like boarding facilities or dog parks.', 4);
 
 COMMIT;
 
@@ -594,11 +594,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (1, 'Zara\'s Mix', 'Dry Food', 'twice daily', 'Provides balanced nutrition for adult dogs.', '1 cup', 4);
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (2, 'Fish Treat', 'Treat', 'occasional', 'High-quality fish treat for training and rewards.', 'N/A', 4);
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (3, 'Chicken', 'Wet Food', 'once daily', 'High-quality fish treat for training and rewards.', '½ can', 4);
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (4, 'Carrots', 'Fresh Produce', 'daily', 'High-quality fish treat for training and rewards.', 'As directed', 4);
-INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (5, 'Supplements', 'Nutritional', 'daily', 'Provides essential vitamins and minerals for overall health.', 'Provides essential vitamins and minerals for overall health.', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (1, 'Zara\'s Mix', 'Dry Food', 'Twice daily', 'Provides balanced nutrition for adult dogs.', '1 cup', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (2, 'Fish Treat', 'Treat', 'Occasional', 'High-quality fish treat for training and rewards.', 'N/A', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (3, 'Chicken', 'Wet Food', 'Once daily', 'High-quality fish treat for training and rewards.', '½ can', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (4, 'Carrots', 'Fresh Produce', 'Daily', 'High-quality fish treat for training and rewards.', 'As directed', 4);
+INSERT INTO `diet` (`id`, `name`, `type`, `frequency`, `notes`, `amount`, `pet_id`) VALUES (5, 'Supplements', 'Nutritional', 'Daily', 'Provides essential vitamins and minerals for overall health.', 'Provides essential vitamins and minerals for overall health.', 4);
 
 COMMIT;
 
@@ -608,7 +608,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `petdb`;
-INSERT INTO `pet_provider` (`provider_id`, `pet_id`) VALUES (5, 4);
+INSERT INTO `pet_provider` (`provider_id`, `pet_id`) VALUES (2, 4);
 
 COMMIT;
 

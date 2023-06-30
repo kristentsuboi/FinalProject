@@ -18,28 +18,19 @@ export class ForumComponent {
   constructor(
     private commentService: CommentService,
     private authService: AuthService
-    ) {}
+  ) {}
 
-    user: User = new User()
+  user: User = new User();
 
-
-    // this.commentService.index().subscribe({
-    //   next: (commentList) => {
-    //     this.comments = commentList;
-    //   },
 
   ngOnInit(): void {
     this.loadComments();
-    // *****************************************************
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
-      this.user = user;
-      console.log(user)
-    }});
-    console.log("#######################################");
-    console.log(this.user);
-    console.log("#######################################");
-    // *****************************************************
+        this.user = user;
+      },
+    });
+
   }
 
   topic = [
@@ -79,8 +70,8 @@ export class ForumComponent {
 
   reload() {
     this.commentService.index().subscribe({
-      next: (todoList) => {
-        this.comments = todoList;
+      next: (comment) => {
+        this.comments = comment;
       },
       error: (someError) => {
         console.error('TodoListComponent.reload(): error getting todo list');
@@ -88,6 +79,12 @@ export class ForumComponent {
       },
     });
   }
+
+  hardRefresh() {
+    location.reload();
+  }
+
+
 
   addNewComment(newComment: Comment): void {
     console.log(newComment);
@@ -105,11 +102,11 @@ export class ForumComponent {
 
   replyToComment(newComment: Comment): void {
     console.log(newComment);
-    newComment.mainComment = this.selected
+    newComment.mainComment = this.selected;
     this.commentService.create(newComment).subscribe({
       next: (createdComment) => {
         this.newComment = new Comment();
-        this.selected?.replies.push(createdComment)
+        this.selected?.replies.push(createdComment);
         this.reload();
       },
       error: (error) => {
@@ -122,7 +119,7 @@ export class ForumComponent {
   deleteComment(commentId: number) {
     this.commentService.destroy(commentId).subscribe({
       next: () => {
-        this.reload();
+        this.hardRefresh();
       },
       error: (fail) => {
         console.error('CommentListComponent.deleteTodo(): error deleting');

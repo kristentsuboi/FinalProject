@@ -40,7 +40,7 @@ public class MedicalNote {
 	@JoinColumn(name="pet_id")
 	private Pet pet; 
 
-	@JsonIgnoreProperties({"medicalNotes", "pets", "petComments"})
+	@JsonIgnoreProperties({"medicalNotes", "pets", "petComments", "comments"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

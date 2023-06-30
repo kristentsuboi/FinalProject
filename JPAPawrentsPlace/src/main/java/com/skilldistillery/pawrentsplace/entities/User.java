@@ -71,6 +71,7 @@ public class User {
 	@ManyToMany(mappedBy="clients")
 	private List<Business> businessesUsed;
 	
+	@JsonIgnoreProperties(value={"user", "pet"}, allowSetters=true)	///
 	@OneToMany(mappedBy="user")
 	private List<MedicalNote> medicalNotes;
 	

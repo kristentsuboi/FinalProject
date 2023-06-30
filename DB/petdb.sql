@@ -584,7 +584,7 @@ COMMIT;
 START TRANSACTION;
 USE `petdb`;
 INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (1, 'Thank you for bringing Zara in for her annual check-up! It\'s always a pleasure to see her and ensure she\'s doing well.', '2020-11-11', '2020-12-21', NULL, 4, 5, NULL);
-INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (2, 'Thank you for bringing Zara in for her annual check-up! It\'s always a pleasure to see her and ensure she\'s doing well.', '2020-11-12', '2020-11-13', NULL, 4, 32, 1);
+INSERT INTO `pet_comment` (`id`, `body`, `created_at`, `updated_at`, `image_url`, `pet_id`, `user_id`, `replying_to_id`) VALUES (2, 'Thanks for all your hard work!', '2020-11-12', '2020-11-13', NULL, 4, 32, 1);
 
 COMMIT;
 

@@ -336,7 +336,7 @@ To view functionality as a PAWvider, use the below account.
 </table>
 
 ## Implementation
-Discuss overall project structure
+This project was built as a sprint using an agil framework.
 
 
 ## Entity Relationship Model

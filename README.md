@@ -357,7 +357,10 @@ Discuss overall project structure
 - Agile
 
 ## Lessons Learned
-blah
+- Descriptive variable naming is key
+- Layering user input validation using Service implementations and form controls
+- Rigorous git flow prevents version discrepancy (incl. STS Boot and DB refreshes when appl.)
+- Surgical use of JsonIgnoreProperties to prevent recursion while allowing DB manipulation
 
 ### Reference Links
 - [Trello Board] (https://trello.com/b/yvDxicfI/angular-aurora)

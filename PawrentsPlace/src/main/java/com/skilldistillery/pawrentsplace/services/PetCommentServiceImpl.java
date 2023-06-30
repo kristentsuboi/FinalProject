@@ -41,7 +41,7 @@ public class PetCommentServiceImpl implements PetCommentService {
 
 	@Override
 	public PetComment create(String username, int petId, PetComment comment) {
-		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
+		Pet pet = petRepo.findById(petId);
 		User user = userRepo.findByUsername(username);
 		if (pet != null && user != null) {
 			comment.setPet(pet);
@@ -56,7 +56,7 @@ public class PetCommentServiceImpl implements PetCommentService {
 
 	@Override
 	public PetComment update(String username, int petCommentId, PetComment comment, int petId) {
-		Pet managedPet = petRepo.findByUser_UsernameAndId(username, petId);
+		Pet managedPet = petRepo.findById(petId);
 		PetComment managedPetComment = petCommentRepo.findById(petCommentId);
 		if (managedPetComment != null) {
 			managedPetComment.setBody(comment.getBody());
@@ -88,7 +88,7 @@ public class PetCommentServiceImpl implements PetCommentService {
 	
 	@Override
 	public PetComment createReply(String username, int petId,int mainCommentId, PetComment commentReply) {
-		Pet pet = petRepo.findByUser_UsernameAndId(username, petId);
+		Pet pet = petRepo.findById(petId);
 		User user = userRepo.findByUsername(username);
 		
 		System.out.println(username);
